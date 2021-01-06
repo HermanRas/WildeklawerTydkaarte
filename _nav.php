@@ -16,17 +16,17 @@
 
             <?php 
             // you are a user higher acl
-            // if($_SESSION['acl'] > 3){
+            if($_SESSION['acl'] > 3){
             ?>
             <li class="nav-item">
                 <a class="nav-link" href="user_Input.php">Invoere</a>
             </li>
             <?php
-            // }
+            }
             ?>
             <?php 
             // you are a admin or higher acl
-            // if($_SESSION['acl'] > 6){
+            if($_SESSION['acl'] > 6){
             ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -48,7 +48,7 @@
                 <a class="nav-link" href="admin_Summary.php">Verslae <span class="sr-only">(current)</span></a>
             </li>
             <?php
-            // }
+            }
             ?>
 
         </ul>

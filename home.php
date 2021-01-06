@@ -17,9 +17,9 @@
 
 
     <!-- Page Title -->
-    <h1 class="text-center">Admin Opsomming</h1>
+    <h1 class="text-center">Tuisblad</h1>
     <!-- Main Content -->
-    <?php include_once('_admin.php'); ?>
+    <?php include_once('_home.php'); ?>
 
     <!-- Footer -->
     <?php include_once('_footer.php'); ?>
