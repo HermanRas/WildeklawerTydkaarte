@@ -1,5 +1,5 @@
 <!-- The Page Title -->
-<title>Wildeklawer</title>
+<title>Wildeklawer Tydkaarte</title>
 
 <!-- Chrome/android APP settings -->
 <meta name="theme-color" content="#00AB93">

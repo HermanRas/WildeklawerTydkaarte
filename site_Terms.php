@@ -11,14 +11,14 @@
 <body>
 
     <!-- //////////////////////////////////////////////////////////////////// -->
-    <!-- //    FIND and replace "Wildeklawer" and "www.wildeklawer.co.za"  // -->
+    <!-- //    FIND and replace "Wildeklawerapps" and "www.Wildeklawerapps.co.za"  // -->
     <!-- //////////////////////////////////////////////////////////////////// -->
     <h1>Terms and Conditions for Uni-Soft trading as Dragoon Information Security</h1>
 
     <h2>Introduction</h2>
 
     <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website,
-        Wildeklawer accessible at www.wildeklawer.co.za.</p>
+        Wildeklawerapps accessible at www.Wildeklawerapps.co.za.</p>
 
     <p>These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to
         accept all terms and conditions written in here. You must not use this Website if you disagree with any of these
