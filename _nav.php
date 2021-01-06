@@ -39,9 +39,9 @@
                     <a class="dropdown-item" href="admin_Produce.php">Gewas</a>
                     <a class="dropdown-item" href="admin_Farm.php">Plaas</a>
                     <a class="dropdown-item" href="admin_Farm.php">Spilpunt</a>
-                    <a class="dropdown-item" href="admin_Destination.php">Taak</a>
+                    <a class="dropdown-item" href="admin_Task.php">Taake</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="admin_Trip.php">Ritrekords</a>
+                    <a class="dropdown-item" href="admin_Time.php">Tydrekords</a>
                 </div>
             </li>
             <li class="nav-item">
