@@ -26,6 +26,9 @@
 - 2021/01/06 added spry admin page
 - 2021/01/06 fixed notification popup not working
 - 2021/01/06 install QR Scanner JS Code
+- 2021/01/06 Build user Input screen
+- 2021/01/06 Build Report View for mySQL
+- 2021/01/06 add Report to home screen
 
 
 ### CHANGE LOG
@@ -34,6 +37,7 @@
 - updated site theme to meet bootstrap 5 specs
 
 ### TO DO
+- scanner page needs work
+- data table css is ge F&$#.. update
 - add sql injection protection using ARG passing for MySQL on all admin pages
 - build form template with notifications
-- scanner page needs work
