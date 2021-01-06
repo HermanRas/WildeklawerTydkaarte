@@ -1,0 +1,30 @@
+body{
+    font-family: "Open Sans" !important; 
+    font-size: 18px;
+    font-variant: normal;
+    font-weight: 700;
+}
+
+a {
+    color: #00AB93;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    color: #000;
+}
+
+.list-group-item.active {
+    background-color:#00AB93;
+    border-color:rgb(1, 134, 117);
+}
+
+td.details-control {
+    background: url('Img/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('Img/details_close.png') no-repeat center center;
+}
