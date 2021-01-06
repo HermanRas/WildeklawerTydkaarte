@@ -11,17 +11,14 @@
 <link href="CSS/app.css" rel="stylesheet">
 <!-- end of bootstrap -->
 
-<!-- start jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<!-- End of jQuery -->
-
 <!-- Import Custom Font -->
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 <!-- end of Custom Font -->
 
 <!-- start dataTables.net -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<script src="./JS/jquery.dataTables.min.js"></script>
 <!-- end of dataTables -->
 
 <!-- font-awesome 5.10.2 // not needed for theme -->

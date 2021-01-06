@@ -2,6 +2,11 @@
 // Start the session
 session_start();
 
+
+// TEMP bypass login to test site
+header("Location: admin_Summary.php");
+die;
+
 // if all 4 pin codes entered
 if ((null !== $_POST["pin1"]) && (null !== $_POST["pin2"]) && (null !== $_POST["pin3"]) && (null !== $_POST["pin4"])){
 

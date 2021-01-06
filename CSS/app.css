@@ -3,6 +3,14 @@ body{
     font-size: 18px;
     font-variant: normal;
     font-weight: 700;
+    background-image: url('../Img/splash.jpg');
+    background-size: cover;
+    width: 100%;
+}
+
+.container{
+    background: rgba(245, 235, 222, 0.50);
+    border-radius: 15px;
 }
 
 a {
