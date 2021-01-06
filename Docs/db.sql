@@ -6,7 +6,7 @@ DROP TABLE plaas;
 CREATE TABLE plaas ( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
-	beskrywing VARCHAR(254));
+	afkorting VARCHAR(254));
 
 insert into plaas (naam) values ('ROM');
 insert into plaas (naam) values ('DB');
@@ -15,7 +15,7 @@ DROP TABLE gewas;
 CREATE TABLE gewas ( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
-	beskrywing VARCHAR(254));
+	afkorting VARCHAR(254));
 	
 insert into gewas (naam) values ('Uie');
 insert into gewas (naam) values ('Aartappels');
@@ -26,7 +26,7 @@ DROP TABLE Spilpunt;
 CREATE TABLE Spilpunt ( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
-	beskrywing VARCHAR(254),
+	afkorting VARCHAR(254),
 	plaas_id INT UNSIGNED NOT NULL);
 
 insert into Spilpunt (plaas_id,naam) values (1,'T1');
@@ -36,7 +36,7 @@ DROP TABLE Task;
 CREATE TABLE Task ( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
-	beskrywing VARCHAR(254));
+	afkorting VARCHAR(254));
 
 insert into Task (naam) values ('Oes');
 insert into Task (naam) values ('Plant');
@@ -49,10 +49,11 @@ CREATE TABLE users(
 	van VARCHAR(254) NOT NULL,
 	CN INT UNSIGNED NOT NULL,
 	pwd VARCHAR(254),
+	farm_id INT UNSIGNED NOT NULL,
 	accesslevel INT UNSIGNED NOT NULL);
 
-insert into users (naam,van,CN,pwd,accesslevel) values ('admin','system',0,'1234',7);
-insert into users (naam,van,CN,pwd,accesslevel) values ('admin','worker',0,'1111',4);
+insert into users (naam,van,CN,pwd,farm_id,accesslevel) values ('admin','system',0,'1234',1,7);
+insert into users (naam,van,CN,pwd,farm_id,accesslevel) values ('admin','worker',0,'1111',1,4);
 
 DROP TABLE workers;
 CREATE TABLE workers( 

@@ -20,4 +20,5 @@
 - updated site theme to meet bootstrap 5 specs
 
 ### TO DO
+- add sql injection protection using ARG passing for MySQL on all admin pages
 - build form template with notifications

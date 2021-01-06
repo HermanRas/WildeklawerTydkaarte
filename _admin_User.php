@@ -8,27 +8,32 @@ if (isset($_POST['action'])){
     if ($_POST['action']== 'update'){
         $uid = $_POST['uid'];
         $naam = $_POST['userName'];
+        $van = $_POST['userVan'];
         $pwd = $_POST['userPin'];
+        $CN = $_POST['CN'];
         $acl = $_POST['acl'];
         $farm_id = $_POST['farm_id'];
 
-        include_once('_db_open.php');
-        $sql = "update users set naam='$naam',pwd='$pwd',accesslevel='$acl',plaas_id='$farm_id' where id = '$uid'";
-        $result = $conn->query($sql);
-
+        $sql = "update users set naam='$naam',van='$van',CN='$CN',pwd='$pwd',accesslevel='$acl',farm_id='$farm_id' where id = '$uid'";
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
         echo '<script>  window.location.replace("admin_User.php?notice=update"); </script>';
     }
     
     //do actions add
     if ($_POST['action']== 'add'){
         $naam = $_POST['userName'];
+        $van = $_POST['userVan'];
+        $CN = $_POST['CN'];
         $pwd = $_POST['userPin'];
         $acl = $_POST['acl'];
         $farm_id = $_POST['farm_id'];
 
-        include_once('_db_open.php');
-        $sql = "insert into users (naam,pwd,accesslevel,plaas_id) values('$naam','$pwd','$acl','$farm_id');";
-        $result = $conn->query($sql);
+        $sql = "insert into users (naam,van,CN,pwd,accesslevel,farm_id) values('$naam','$van','$CN','$pwd','$acl','$farm_id');";
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
         echo '<script>  window.location.replace("admin_User.php?notice=add"); </script>';
     }
 }
@@ -38,10 +43,10 @@ if (isset($_GET['delete'])){
     //delete user with uid
     $uid = $_GET['delete'];
     
-    include_once('_db_open.php');
     $sql = "delete from users where id = '$uid'";
-    $result = $conn->query($sql);
-
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $result = sqlQuery($sql, $sqlargs);
     echo '<script>  window.location.replace("admin_User.php?notice=delete"); </script>';
 }
 
@@ -85,17 +90,18 @@ if (isset($_GET['notice'])){
     <?php
     //if no add or update show form
     if ((!isset($_GET['add']))&&(!isset($_GET['name']))){
-        include_once('_db_open.php');
         $sql = "select * from users limit 0,1000";
-        $result = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
     ?>
     <div class="form-group">
         <label for="User">Users:</label>
         <select class="form-control" id="User" onchange="updateAction()">
             <option value="">Kies Gebruiker</option>
             <?php
-                foreach ($result as $row) {
-                    echo '<option value="'. $row['id'] .'">'. $row['naam'] .'</option>';
+                foreach ($result[0] as $row) {
+                    echo '<option value="'. $row['id'] .'">'. $row['naam'] . ' ' .$row['van'].'</option>';
                 }
             ?>
             <option value="addUser">+Nuwe Gebruiker</option>
@@ -108,18 +114,24 @@ if (isset($_GET['notice'])){
     <?php
     //if add new
     if (isset($_GET['add'])){
-        include_once('_db_open.php');
-
         $sql = "select * from plaas;";
-        $resultFarm = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $resultFarm = sqlQuery($sql, $sqlargs);
 
         $sql = "select * from access where naam not like '%spare%';";
-        $resultAcl = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $resultAcl = sqlQuery($sql, $sqlargs);
     ?>
     <form method="POST" id="frmAdd">
         <div class="form-group">
             <label for="userName">Naam:</label>
             <input type="text" class="form-control" value="" name="userName" id="userName" placeholder="Naam">
+            <label for="userVan">Van:</label>
+            <input type="text" class="form-control" value="" name="userVan" id="userVan" placeholder="Van">
+            <label for="CN">"Werker Nommer:</label>
+            <input type="number" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
             <label for="userPin">PIN:</label>
             <input type="text" class="form-control" value="" name="userPin" id="userPin" placeholder="PIN">
 
@@ -127,7 +139,7 @@ if (isset($_GET['notice'])){
             <select class="form-control" name="farm_id" id="farm_id">
                 <option value="">Kies Plaas</option>
                 <?php
-                    foreach ($resultFarm as $row) {
+                    foreach ($resultFarm[0] as $row) {
                         echo '<option value="'. $row['id'].'" '. $selected .'>('. $row['id']. ') ' . $row['naam'] .'</option>';
                      }
                 ?>
@@ -137,7 +149,7 @@ if (isset($_GET['notice'])){
             <select class="form-control" name="acl" id="acl" required>
                 <option value="">Kies Toegang</option>
                 <?php
-                    foreach ($resultAcl as $row) {
+                    foreach ($resultAcl[0] as $row) {
                         if($row['id']==$acl){
                             $selected = "selected";
                         }else{
@@ -160,27 +172,42 @@ if (isset($_GET['notice'])){
     <?php
     //update current
     if (isset($_GET['name'])){
-        include_once('_db_open.php');
         $uid = $_GET['name'];
         $sql = "select * from users where id = '$uid' limit 1;";
-        $result = $conn->query($sql);
-        foreach ($result as $row) {
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
+
+        foreach ($result[0] as $row) {
             $name = $row['naam'];
+            $van = $row['van'];
+            $CN = $row['CN'];
             $pass = $row['pwd'];
             $acl = $row['accesslevel'];
-            $farm_id = $row['plaas_id'];
+            $farm_id = $row['farm_id'];
         }
 
         $sql = "select * from access where naam not like '%spare%';";
-        $resultAcl = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $resultAcl = sqlQuery($sql, $sqlargs);
 
         $sql = "select * from plaas;";
-        $resultFarm = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $resultFarm = sqlQuery($sql, $sqlargs);
     ?>
     <form method="POST" id="frmUpdate">
         <div class="form-group">
-            <label for="userName">Verander Gebruiker:</label>
-            <input type="text" class="form-control" value="<?php echo $name; ?>" name="userName" id="userName">
+            <label for="userName">Naam:</label>
+            <input type="text" class="form-control" value="<?php echo $name; ?>" name="userName" id="userName"
+                placeholder="Naam">
+            <label for="userVan">Van:</label>
+            <input type="text" class="form-control" value="<?php echo $van; ?>" name="userVan" id="userVan"
+                placeholder="Van">
+            <label for="CN">"Werker Nommer:</label>
+            <input type="number" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
+                placeholder="Werker Nommer">
             <input type="hidden" value="<?php echo $uid; ?>" name="uid" id="uid">
 
             <label for="userPin">Verander PIN:</label>
@@ -190,7 +217,7 @@ if (isset($_GET['notice'])){
             <select class="form-control" name="farm_id" id="farm_id">
                 <option value="">Kies Plaas</option>
                 <?php
-                    foreach ($resultFarm as $row) {
+                    foreach ($resultFarm[0] as $row) {
                         if($row['id']==$farm_id){
                             $selected = "selected";
                         }else{
@@ -205,7 +232,7 @@ if (isset($_GET['notice'])){
             <select class="form-control" name="acl" id="acl">
                 <option value="">Kies Toegang</option>
                 <?php
-                    foreach ($resultAcl as $row) {
+                    foreach ($resultAcl[0] as $row) {
                         if($row['id']==$acl){
                             $selected = "selected";
                         }else{

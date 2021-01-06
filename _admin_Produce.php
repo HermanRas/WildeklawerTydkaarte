@@ -10,10 +10,10 @@ if (isset($_POST['action'])){
         $naam = $_POST['produceName'];
         $afk = $_POST['produceAfk'];
 
-        include_once('_db_open.php');
         $sql = "update gewas set naam='$naam',afkorting='$afk' where id = '$uid'";
-        $result = $conn->query($sql);
-
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
         echo '<script>  window.location.replace("admin_Produce.php?notice=update"); </script>';
     }
     
@@ -22,9 +22,10 @@ if (isset($_POST['action'])){
         $naam = $_POST['produceName'];
         $Afk = $_POST['produceAfk'];
 
-        include_once('_db_open.php');
         $sql = "insert into gewas (naam,afkorting) values('$naam','$Afk');";
-        $result = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
         echo '<script>  window.location.replace("admin_Produce.php?notice=add"); </script>';
     }
 }
@@ -34,10 +35,10 @@ if (isset($_GET['delete'])){
     //delete produce with uid
     $uid = $_GET['delete'];
     
-    include_once('_db_open.php');
     $sql = "delete from gewas where id = '$uid'";
-    $result = $conn->query($sql);
-
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $result = sqlQuery($sql, $sqlargs);
     echo '<script>  window.location.replace("admin_Produce.php?notice=delete"); </script>';
 }
 
@@ -81,16 +82,17 @@ if (isset($_GET['notice'])){
     <?php
     //if no add or update show form
     if ((!isset($_GET['add']))&&(!isset($_GET['name']))){
-        include_once('_db_open.php');
         $sql = "select * from gewas limit 0,1000";
-        $result = $conn->query($sql);
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
     ?>
     <div class="form-group">
         <label for="produce">Gewas:</label>
         <select class="form-control" id="Produce" onchange="updateAction()">
             <option value="">Kies Gewas</option>
             <?php
-                foreach ($result as $row) {
+                foreach ($result[0] as $row) {
                     echo '<option value="'. $row['id'] .'">'. $row['naam'] .'</option>';
                 }
             ?>
@@ -109,8 +111,8 @@ if (isset($_GET['notice'])){
         <div class="form-group">
             <label for="produceName">Naam:</label>
             <input type="text" class="form-control" value="" name="produceName" id="produceName" placeholder="Naam">
-            <label for="produceAfk">Afkorting:</label>
-            <input type="text" class="form-control" value="" name="produceAfk" id="produceAfk" placeholder="Afkorting">
+            <label for="produceAfk">afkorting:</label>
+            <input type="text" class="form-control" value="" name="produceAfk" id="produceAfk" placeholder="afkorting">
             <input type="hidden" name="action" value="add">
         </div>
         <button type="button" class="btn btn-success" onclick="frmAdd.submit()">Voeg By</button>
@@ -124,11 +126,12 @@ if (isset($_GET['notice'])){
     <?php
     //update current
     if (isset($_GET['name'])){
-        include_once('_db_open.php');
         $uid = $_GET['name'];
         $sql = "select * from gewas where id = '$uid' limit 1;";
-        $result = $conn->query($sql);
-        foreach ($result as $row) {
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $result = sqlQuery($sql, $sqlargs);
+        foreach ($result[0] as $row) {
             $name = $row['naam'];
             $Afk = $row['afkorting'];
         }
@@ -139,7 +142,7 @@ if (isset($_GET['notice'])){
             <input type="text" class="form-control" value="<?php echo $name; ?>" name="produceName" id="produceName">
             <input type="hidden" value="<?php echo $uid; ?>" name="uid" id="uid">
 
-            <label for="produceAfk">Verander Afkorting:</label>
+            <label for="produceAfk">Verander afkorting:</label>
             <input type="text" class="form-control" value="<?php echo $Afk; ?>" name="produceAfk" id="produceAfk">
             <input type="hidden" name="action" value="update">
         </div>
