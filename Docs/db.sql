@@ -27,10 +27,10 @@ CREATE TABLE Spilpunt (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
 	afkorting VARCHAR(254),
-	plaas_id INT UNSIGNED NOT NULL);
+	farm_id INT UNSIGNED NOT NULL);
 
-insert into Spilpunt (plaas_id,naam) values (1,'T1');
-insert into Spilpunt (plaas_id,naam) values (1,'T2');
+insert into Spilpunt (farm_id,naam) values (1,'T1');
+insert into Spilpunt (farm_id,naam) values (1,'T2');
 
 DROP TABLE Task;
 CREATE TABLE Task ( 
