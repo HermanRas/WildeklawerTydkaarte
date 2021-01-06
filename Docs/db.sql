@@ -92,18 +92,42 @@ INSERT INTO access(naam)
 DROP TABLE worklog;
 CREATE TABLE worklog( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNSIGNED NOT NULL,
 	worker_id INT UNSIGNED NOT NULL,
 	farm_id INT UNSIGNED NOT NULL,
 	produce_id INT UNSIGNED NOT NULL,
 	spry_id INT UNSIGNED NOT NULL,
+	task_id INT UNSIGNED NOT NULL,
 	crates INT NOT NULL,
 	logDate DATE NOT NULL,
 	logTime TIME NOT NULL,
 	Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
 
-
-
-
+DROP VIEW vWorkLog;
+CREATE VIEW vWorkLog AS
+Select
+  worklog.id,
+  workers.naam,
+  workers.van,
+  workers.CN,
+  plaas.naam As plaas,
+  gewas.naam As gewas,
+  spilpunt.naam As Spilpunt,
+  task.naam As taak,
+  worklog.crates,
+  worklog.logDate,
+  worklog.logTime,
+  worklog.Created,
+  users.naam As Bestuurder_naam,
+  users.van As Bestuurder_Van
+From
+  worklog Inner Join
+  spilpunt On spilpunt.id = worklog.spry_id Left Join
+  users On users.id = worklog.user_id Left Join
+  task On task.id = worklog.task_id Left Join
+  plaas On plaas.id = worklog.farm_id Left Join
+  gewas On gewas.id = worklog.produce_id Left Join
+  workers On workers.id = worklog.worker_id;
 
 
 

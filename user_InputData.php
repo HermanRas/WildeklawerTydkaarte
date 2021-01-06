@@ -13,13 +13,11 @@ if(!isset($_COOKIE['Gewas'])){
 
 if (isset($_POST['Plaas'])){
     $Plaas = $_POST["Plaas"];
-    $bestemming = $_POST["bestemming"];
+    $spilpunt = $_POST["spilpunt"];
     $Gewas = $_POST["Gewas"];
-    $Blok = $_POST["Blok"];
-    setcookie('bestemming_id', $bestemming, time() + (86400 * 30), "/"); // 86400 = 1 day
+    setcookie('spilpunt_id', $spilpunt, time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('farm_id', $Plaas, time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('Gewas', $Gewas, time() + (86400 * 30), "/"); // 86400 = 1 day
-    setcookie('Blok', $Blok, time() + (86400 * 30), "/"); // 86400 = 1 day
 }
 ?>
 <!DOCTYPE html>
