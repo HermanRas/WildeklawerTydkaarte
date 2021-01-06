@@ -96,7 +96,7 @@ if (isset($_GET['notice'])){
         $result = sqlQuery($sql, $sqlargs);
     ?>
     <div class="form-group">
-        <label for="User">Users:</label>
+        <label for="User">Gebruikers:</label>
         <select class="form-control" id="User" onchange="updateAction()">
             <option value="">Kies Gebruiker</option>
             <?php
@@ -130,7 +130,7 @@ if (isset($_GET['notice'])){
             <input type="text" class="form-control" value="" name="userName" id="userName" placeholder="Naam">
             <label for="userVan">Van:</label>
             <input type="text" class="form-control" value="" name="userVan" id="userVan" placeholder="Van">
-            <label for="CN">"Werker Nommer:</label>
+            <label for="CN">Werker Nommer:</label>
             <input type="number" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
             <label for="userPin">PIN:</label>
             <input type="text" class="form-control" value="" name="userPin" id="userPin" placeholder="PIN">
@@ -205,7 +205,7 @@ if (isset($_GET['notice'])){
             <label for="userVan">Van:</label>
             <input type="text" class="form-control" value="<?php echo $van; ?>" name="userVan" id="userVan"
                 placeholder="Van">
-            <label for="CN">"Werker Nommer:</label>
+            <label for="CN">Werker Nommer:</label>
             <input type="number" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
                 placeholder="Werker Nommer">
             <input type="hidden" value="<?php echo $uid; ?>" name="uid" id="uid">

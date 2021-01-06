@@ -35,7 +35,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="admin_User.php">Gebruikers</a>
-                    <a class="dropdown-item" href="admin_User.php">Werknemers</a>
+                    <a class="dropdown-item" href="admin_Workers.php">Werknemers</a>
                     <a class="dropdown-item" href="admin_Produce.php">Gewas</a>
                     <a class="dropdown-item" href="admin_Farm.php">Plaas</a>
                     <a class="dropdown-item" href="admin_Farm.php">Spilpunt</a>
