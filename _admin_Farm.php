@@ -42,34 +42,6 @@ if (isset($_GET['delete'])){
     $result = sqlQuery($sql, $sqlargs);
     echo '<script>  window.location.replace("admin_Farm.php?notice=delete"); </script>';
 }
-
-if (isset($_GET['notice'])){
-    
-    //if delete
-    if ($_GET['notice']=='delete'){
-    echo '<div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Plaas Verwyder !
-         </div>';
-    }
-
-    //if update
-    if ($_GET['notice']=='update'){
-    echo '<div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Plaas Opgedateer !
-         </div>';
-    }
-
-    //if add
-    if ($_GET['notice']=='add'){
-    echo '<div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Plaas Bygevoeg !
-         </div>';
-    }
-}
-
 ?>
 
 <script src="JS/farmAction.js">
@@ -81,6 +53,34 @@ if (isset($_GET['notice'])){
 
 <div class="container">
     <?php
+
+    if (isset($_GET['notice'])){
+        
+        //if delete
+        if ($_GET['notice']=='delete'){
+        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Plaas Verwyder !
+            </div>';
+        }
+
+        //if update
+        if ($_GET['notice']=='update'){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Plaas Opgedateer !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+
+        //if add
+        if ($_GET['notice']=='add'){
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Plaas Bygevoeg !
+            </div>';
+        }
+    }
+
     //if no add or update show form
     if ((!isset($_GET['add']))&&(!isset($_GET['name']))){
         $sql = "select * from plaas limit 0,1000";

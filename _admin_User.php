@@ -49,34 +49,6 @@ if (isset($_GET['delete'])){
     $result = sqlQuery($sql, $sqlargs);
     echo '<script>  window.location.replace("admin_User.php?notice=delete"); </script>';
 }
-
-if (isset($_GET['notice'])){
-    
-    //if delete
-    if ($_GET['notice']=='delete'){
-    echo '<div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Gebruiker Verwyder !
-         </div>';
-    }
-
-    //if update
-    if ($_GET['notice']=='update'){
-    echo '<div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Gebruiker Opgedateer !
-         </div>';
-    }
-
-    //if add
-    if ($_GET['notice']=='add'){
-    echo '<div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Gebruiker Bygevoeg !
-         </div>';
-    }
-}
-
 ?>
 
 <script src="JS/userAction.js">
@@ -88,6 +60,34 @@ if (isset($_GET['notice'])){
 
 <div class="container">
     <?php
+
+    if (isset($_GET['notice'])){
+        
+        //if delete
+        if ($_GET['notice']=='delete'){
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Gebruiker Verwyder !
+            </div>';
+        }
+
+        //if update
+        if ($_GET['notice']=='update'){
+        echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Gebruiker Opgedateer !
+            </div>';
+        }
+
+        //if add
+        if ($_GET['notice']=='add'){
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Gebruiker Bygevoeg !
+            </div>';
+        }
+    }
+
     //if no add or update show form
     if ((!isset($_GET['add']))&&(!isset($_GET['name']))){
         $sql = "select * from users limit 0,1000";
