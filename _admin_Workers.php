@@ -160,6 +160,7 @@ if (isset($_GET['delete'])){
         <button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
         <button type="button" class="btn btn-warning"
             onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
+        <a class="btn btn-info" href="user_InputSelect.php?qr=<?php echo $CN ;?>">QR_CODE</a>
     </form>
     <?php
     }

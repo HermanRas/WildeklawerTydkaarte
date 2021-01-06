@@ -31,7 +31,7 @@ if ((null !== $_POST["pin1"]) && (null !== $_POST["pin2"]) && (null !== $_POST["
             
             // if user
             if ($db_data['accesslevel'] == '4'){
-                $myPage = 'user_Input.php';
+                $myPage = 'user_InputSelect.php';
             }
 
             // if user

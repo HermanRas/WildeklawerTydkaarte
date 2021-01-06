@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link active" href="user_DayLive.php">Opsoming <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="home.php">Register <span class="sr-only">(current)</span></a>
             </li>
 
             <?php 
