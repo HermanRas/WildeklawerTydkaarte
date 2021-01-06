@@ -19,7 +19,7 @@
             if($_SESSION['acl'] > 3){
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="user_Input.php">Invoere</a>
+                <a class="nav-link" href="user_InputSelect.php">Invoere</a>
             </li>
             <?php
             }

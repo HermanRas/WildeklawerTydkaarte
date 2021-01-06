@@ -88,3 +88,22 @@ INSERT INTO access(naam)
 
 INSERT INTO access(naam)
     VALUES ( 'System Admin');
+
+DROP TABLE worklog;
+CREATE TABLE worklog( 
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	worker_id INT UNSIGNED NOT NULL,
+	farm_id INT UNSIGNED NOT NULL,
+	produce_id INT UNSIGNED NOT NULL,
+	spry_id INT UNSIGNED NOT NULL,
+	crates INT NOT NULL,
+	logDate DATE NOT NULL,
+	logTime TIME NOT NULL,
+	Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+
+
+
+
+
+

@@ -14,6 +14,20 @@
 [!["SweetAlert 2"](https://img.shields.io/badge/SweetAlert-2-blue.svg)](https://sweetalert2.github.io/#download)
 
 ## Work in progress
+### DONE
+- 2021/01/06 updated bootstrap theme to Bootstrap 5
+- 2021/01/06 updated app.css
+- 2021/01/06 build my SQL DB template
+- 2021/01/06 added users admin page
+- 2021/01/06 added workers admin page
+- 2021/01/06 added produce admin page
+- 2021/01/06 added farm admin page
+- 2021/01/06 added tasks admin page
+- 2021/01/06 added spry admin page
+- 2021/01/06 fixed notification popup not working
+- 2021/01/06 install QR Scanner JS Code
+
+
 ### CHANGE LOG
 - refractured folders and files
 - built bootstrap 5 from source
@@ -22,3 +36,4 @@
 ### TO DO
 - add sql injection protection using ARG passing for MySQL on all admin pages
 - build form template with notifications
+- scanner page needs work
