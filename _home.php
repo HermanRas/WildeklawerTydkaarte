@@ -1,4 +1,5 @@
 <?php
+$msg = '';
 if (isset($_GET['delete'])){
     
     $tid = $_GET['delete'];
@@ -10,7 +11,7 @@ if (isset($_GET['delete'])){
     $result = sqlQuery($sql, $sqlargs);
 
     //if delete
-    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 Taak Verwyder !
             </div>';
@@ -18,6 +19,7 @@ if (isset($_GET['delete'])){
 ?>
 
 <div class="container">
+    <?php echo $msg; ?>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="0">Datum</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="1">Plaas</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="2">Gewas</a>
