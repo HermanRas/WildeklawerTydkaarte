@@ -3,15 +3,17 @@ if (isset($_GET['delete'])){
     
     $tid = $_GET['delete'];
     
-    include_once('_db_open.php');
-    $sql = "delete from trips where id = '$tid'";
-    $result = $conn->query($sql);
+
+    $sql = "delete from worklog where id = '$tid'";
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $result = sqlQuery($sql, $sqlargs);
 
     //if delete
-    echo '<div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-            Trip Verwyder !
-         </div>';
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Taak Verwyder !
+            </div>';
     }
 ?>
 
@@ -49,7 +51,7 @@ if (isset($_GET['delete'])){
                 foreach ($result[0] as $row) {
                 ?>
                 <td>
-                    <a href="admin_Trip.php?delete=<?php echo $row['id'] ?>" style="color:red;"><i
+                    <a href="home.php?delete=<?php echo $row['id'] ?>" style="color:red;"><i
                             class="fa fa-trash-alt"></i></a>
                     <span class="small">
                         <?php echo $row['logDate'].' '.$row['logTime'];?>
