@@ -46,7 +46,7 @@ if (isset($_GET['delete'])){
 }
 ?>
 
-<script src="JS/workerAction.js">
+<script src="js/workerAction.js">
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do onchange Actions
 ///////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ if (isset($_GET['delete'])){
         if ($_GET['notice']=='delete'){
         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                Werknemers Verwyder !
+                Werker Verwyder !
             </div>';
         }
 
@@ -70,7 +70,7 @@ if (isset($_GET['delete'])){
         if ($_GET['notice']=='update'){
         echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                Werknemers Opgedateer !
+                Werker Opgedateer !
             </div>';
         }
 
@@ -78,7 +78,7 @@ if (isset($_GET['delete'])){
         if ($_GET['notice']=='add'){
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                Werknemers Bygevoeg !
+                Werker Bygevoeg !
             </div>';
         }
     }
@@ -91,15 +91,15 @@ if (isset($_GET['delete'])){
         $result = sqlQuery($sql, $sqlargs);
     ?>
     <div class="form-group">
-        <label for="worker">Werknemers:</label>
+        <label for="worker">Werker:</label>
         <select class="form-control" id="worker" onchange="updateAction()">
-            <option value="">Kies Werknemers</option>
+            <option value="">Kies Werker</option>
             <?php
                 foreach ($result[0] as $row) {
                     echo '<option value="'. $row['id'] .'">'. $row['naam'] .' '. $row['van'] .'</option>';
                 }
             ?>
-            <option value="addWorker">+Nuwe Werknemer</option>
+            <option value="addWorker">+Nuwe Werker</option>
         </select>
     </div>
     <?php
@@ -160,7 +160,7 @@ if (isset($_GET['delete'])){
         <button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
         <button type="button" class="btn btn-warning"
             onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
-        <a class="btn btn-info" href="user_InputSelect.php?qr=<?php echo $CN ;?>">QR_CODE</a>
+        <a class="btn btn-info" href="user_InputSelect.php?qr=<?php echo $CN ;?>">QR KODE</a>
     </form>
     <?php
     }

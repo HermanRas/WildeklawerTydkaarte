@@ -17,7 +17,7 @@
 
 
     <!-- Page Title -->
-    <h1 class="text-center">Werknemers Admin</h1>
+    <h1 class="text-center">Werker Admin</h1>
     <!-- Main Content -->
     <?php include_once('_admin_Workers.php'); ?>
 

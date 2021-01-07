@@ -10,11 +10,10 @@ if(isset($_GET['qr'])){
 
 <!-- section-block -->
 <div class="container">
-    <h1>Print Or Share User QR Code</h1>
     <div class="card">
         <form action="user_InputSelect.php">
             <div class="card-body">
-                <h2>QR vir Werker Nomer: <span class="text-inline" id="QrID"><?php echo $qr; ?></span>
+                <h2>QR vir Werker Nommer: <span class="text-inline" id="QrID"><?php echo $qr; ?></span>
                 </h2>
                 <section id="qr-code">
                 </section>
@@ -49,7 +48,7 @@ function PrintElem() {
 
 <!-- Load QR Code rendering Module -->
 <script type="module">
-import QrCode from './JS/qr-code.min.js';
+import QrCode from './js/qr-code.min.js';
 
 function readSettings() {
     let settings = {};
@@ -84,7 +83,7 @@ renderQrCode();
     #################################################################
  -->
 <div class="container">
-    <h3>Please Scan QR Code</h3>
+    <h3>Scan QR Kode</h3>
     <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
     <span id="cam-qr-result">scanning...</span>
 </div>
@@ -92,8 +91,8 @@ renderQrCode();
 <!-- Page Level Scripts -->
 <script type="module">
 //import plugins
-import QrScanner from "./JS/qr-scanner.min.js";
-QrScanner.WORKER_PATH = './JS/qr-scanner-worker.min.js';
+import QrScanner from "./js/qr-scanner.min.js";
+QrScanner.WORKER_PATH = './js/qr-scanner-worker.min.js';
 
 //set defaults
 const video = document.getElementById('qr-video');
@@ -101,8 +100,8 @@ const camQrResult = document.getElementById('cam-qr-result');
 
 //run scan
 function setResult(label, result) {
-    label.innerHTML = '<h4> Werknemer: ' + result +
-        ' gekies</h4><a href="user_InputData.php?User=' + result + '" class="btn btn-secondary">Next</button>';
+    label.innerHTML = '<h4> Werker: ' + result +
+        ' gekies</h4><a href="user_InputData.php?User=' + result + '" class="btn btn-secondary">Stuur</button>';
     document.getElementById('memberName').value = result;
 
     label.style.color = 'orange';

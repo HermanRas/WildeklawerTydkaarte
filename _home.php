@@ -20,7 +20,7 @@ if (isset($_GET['delete'])){
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="1">Plaas</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="2">Gewas</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="3">Spilpunt</a>
-    <a class="toggle-vis btn btn-info btn-sm my-2" data-column="4">Werknemers</a>
+    <a class="toggle-vis btn btn-info btn-sm my-2" data-column="4">Werker</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="5">Bestuurder</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="6">Taak</a>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="7">Kratte</a>
@@ -32,7 +32,7 @@ if (isset($_GET['delete'])){
                 <th>Plaas</th>
                 <th>Gewas</th>
                 <th>Spilpunt</th>
-                <th>Werknemers</th>
+                <th>Werker</th>
                 <th>Bestuurder</th>
                 <th>Taak</th>
                 <th>Kratte</th>

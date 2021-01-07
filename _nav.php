@@ -35,11 +35,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="admin_User.php">Gebruikers</a>
-                    <a class="dropdown-item" href="admin_Workers.php">Werknemers</a>
-                    <a class="dropdown-item" href="admin_Produce.php">Gewas</a>
-                    <a class="dropdown-item" href="admin_Farm.php">Plaas</a>
-                    <a class="dropdown-item" href="admin_Spry.php">Spilpunt</a>
-                    <a class="dropdown-item" href="admin_Task.php">Taake</a>
+                    <a class="dropdown-item" href="admin_Workers.php">Werkers</a>
+                    <a class="dropdown-item" href="admin_Produce.php">Gewasse</a>
+                    <a class="dropdown-item" href="admin_Farm.php">Plase</a>
+                    <a class="dropdown-item" href="admin_Spry.php">Spilpunte</a>
+                    <a class="dropdown-item" href="admin_Task.php">Take</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="admin_Time.php">Tydrekords</a>
                 </div>

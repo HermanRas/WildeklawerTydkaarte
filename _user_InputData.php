@@ -115,7 +115,7 @@ if (isset($_POST['Plaas'])){
                     $sqlargs = array();
                     $result = sqlQuery($sql, $sqlargs);
                     ?>
-            <label>Werknemer:</label>
+            <label>Werker:</label>
             <input type="text" class="form-control"
                 value="<?php echo $result[0][0]['naam']." ".$result[0][0]['van']." - ($CN)" ?>" readonly>
             <input type="hidden" name="CN" value="<?php echo $result[0][0]['id']; ?>">
@@ -139,7 +139,7 @@ if (isset($_POST['Plaas'])){
         </div>
 
         <div class="form-group">
-            <label>kratte:</label>
+            <label>Kratte:</label>
             <input type="number" class="form-control" placeholder="" id="kratte" name="kratte" required>
         </div>
         <button class="btn btn-primary" id="Stuur">Stoor</button>

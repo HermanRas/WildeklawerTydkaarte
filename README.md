@@ -25,7 +25,7 @@
 - 2021/01/06 added tasks admin page
 - 2021/01/06 added spry admin page
 - 2021/01/06 fixed notification popup not working
-- 2021/01/06 install QR Scanner JS Code
+- 2021/01/06 install QR Scanner js Code
 - 2021/01/06 Build user Input screen
 - 2021/01/06 Build Report View for mySQL
 - 2021/01/06 add Report to home screen
