@@ -12,25 +12,23 @@ if (isset($_POST['Plaas'])){
     $Plaas = $_POST["Plaas"];
     $CN = $_POST["CN"];
     $spilpunt = $_POST["spilpunt"];
-    $Gewas = $_POST["Gewas"];
     $Spry = $_POST["spilpunt"];
-    $kratte = $_POST["kratte"];
+    $clockType = $_POST["clockType"];
     $task = $_POST["Taak"];
     $date = $_POST["Date"];
     $time = $_POST["time"];
 
-    
-    $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
-    values('$uid','$CN',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time');";
-    
+    $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime)
+    values('$uid','$CN',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
+
     require_once 'config/db_query.php';
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);
-    
-    $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },3000);</script>' .
+
+    $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },3000);</script>' .
             '<div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            Taak Bygevoeg !</div>'.
+            Tyd rooster Opgedateer !</div>'.
             '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
 }
 ?>
@@ -87,27 +85,6 @@ if (isset($_POST['Plaas'])){
         </div>
 
         <div class="form-group">
-            <label>Gewas:</label>
-            <select id="Gewas" name="Gewas" class="form-control" required>
-                <option value="" selected>Kies Gewas</option>
-                <?php
-                    $sql = "select * from gewas limit 0,1000";
-                    require_once 'config/db_query.php';
-                    $sqlargs = array();
-                    $result = sqlQuery($sql, $sqlargs);
-                    // Options
-                    foreach ($result[0] as $row) {
-                        if ($row['id']==$_COOKIE['Gewas']){
-                            echo '<option value="'.$row['id'].'" selected>'.$row['naam'].'</option>';
-                        }else{
-                            echo '<option value="'.$row['id'].'">'.$row['naam'].'</option>';
-                        }
-                    }
-                      ?>
-            </select>
-        </div>
-
-        <div class="form-group">
             <?php
                     $CN = $_GET['User'];
                     $sql = "select * from workers where CN='$CN' limit 0,1000";
@@ -122,8 +99,45 @@ if (isset($_POST['Plaas'])){
         </div>
 
         <div class="form-group">
+            <?php
+                $CN = $_GET['User'];
+                $sql = "SELECT * from clocklog 
+                        left join workers on workers.id = clocklog.worker_id
+                        where CN='$CN' 
+                        and logDate = CURDATE()
+                        order by clocklog.id DESC
+                        limit 1";
+                require_once 'config/db_query.php';
+                $sqlargs = array();
+                $result = sqlQuery($sql, $sqlargs);
+
+                // var_dump($result[1]);
+                // die;
+                if ($result[1] == 0){
+                    // has not clocked today
+                    $direction = 0;
+                    $directionString = 'IN';
+                }else{
+                    if($result[0][0]['clockType'] == 0){
+                        // has clocked in
+                        $direction = 1;
+                        $directionString = 'UIT';
+                    }else{
+                        // has clocked out
+                        $direction = 0;
+                        $directionString = 'IN';
+                    }
+                }
+            ?>
+            <label>IN / UIT:</label>
+            <input type="text" class="form-control" value="<?php echo $directionString ?>" readonly>
+            <input type="hidden" name="clockType" value="<?php echo $direction ?>">
+        </div>
+
+
+        <div class="form-group">
             <label>Taak:</label>
-            <select id="Taak" name="Taak" class="form-control" onchange="updateTask(this.value);" required>
+            <select id="Taak" name="Taak" class="form-control" required>
                 <option value="" selected>Kies Taak</option>
                 <?php
                     $sql = "select * from task limit 0,1000";
@@ -131,17 +145,17 @@ if (isset($_POST['Plaas'])){
                     $sqlargs = array();
                     $result = sqlQuery($sql, $sqlargs);
                     // Options
-                    foreach ($result[0] as $row) {
-                            echo '<option value="'.$row['id'].'">'.$row['naam'].'</option>';
+                    if ( $direction == 0){
+                        foreach ($result[0] as $row) {
+                                echo '<option value="'.$row['id'].'">'.$row['naam'].'</option>';
+                        }
+                    }else{
+                                echo '<option value="0" selected>Teken Uit</option>';
                     }
                       ?>
             </select>
         </div>
 
-        <div class="form-group">
-            <label>Kratte:</label>
-            <input type="number" class="form-control" placeholder="" id="kratte" name="kratte" required>
-        </div>
         <button class="btn btn-primary" id="Stuur">Stoor</button>
 
         <br>
@@ -193,20 +207,3 @@ if (isset($_POST['Plaas'])){
     </script>
     <?php }?>
 </div>
-
-
-<!-- Page Level Scrip -->
-<script>
-// Fix crate listing for clearing field
-function updateTask(taskID) {
-    // console.log(taskID);
-    let kratte = document.getElementById('kratte');
-    if (taskID == 1 || taskID == 4) {
-        kratte.readOnly = true;
-        kratte.value = 0;
-    } else {
-        kratte.readOnly = false;
-        kratte.value = '';
-    }
-}
-</script>

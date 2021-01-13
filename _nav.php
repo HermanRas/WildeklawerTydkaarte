@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link active" href="home.php">Register <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="home.php">Tuis <span class="sr-only">(current)</span></a>
             </li>
 
             <?php 
@@ -20,6 +20,9 @@
             ?>
             <li class="nav-item">
                 <a class="nav-link" href="user_InputSelect.php">Invoere</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="user_InputBadge.php">Teken In/Uit</a>
             </li>
             <?php
             }
@@ -40,12 +43,10 @@
                     <a class="dropdown-item" href="admin_Farm.php">Plase</a>
                     <a class="dropdown-item" href="admin_Spry.php">Spilpunte</a>
                     <a class="dropdown-item" href="admin_Task.php">Take</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="admin_Time.php">Tydrekords</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin_Summary.php">Verslae <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="admin_Summary.php">Verslae</a>
             </li>
             <?php
             }
