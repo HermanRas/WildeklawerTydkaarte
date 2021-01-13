@@ -37,7 +37,37 @@ if (isset($_POST['Plaas'])){
 
 <div class="container">
     <?php 
+    $CN = $_GET['User'];
+    $sql = "SELECT * from clocklog 
+            left join workers on workers.id = clocklog.worker_id
+            where CN='$CN' 
+            and logDate = CURDATE()
+            order by clocklog.id DESC
+            limit 1";
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $res = sqlQuery($sql, $sqlargs);
+
+    if($res[1] == 0){ // not clocked in
+         $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },10000);</script>' .
+            '<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            Werker is nie op tyd kaart nie, teken eers in!</div>'.
+            '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+    }else{
+        if ($res[0][0]['task_id'] == 1 || $res[0][0]['task_id'] == 4 || $res[0][0]['clockType']){ //for Algemeen or skoffel
+            $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },10000);</script>' .
+                '<div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Taak het geen invoer (Algemeen of Skoffel)!</div>'.
+                '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+        }
+    }
+
+    if ($msg !== ''){
         echo $msg; 
+        die;
+        }
     ?>
 
     <?php if (!isset($_POST['Plaas'])){ ?>
@@ -126,7 +156,7 @@ if (isset($_POST['Plaas'])){
             <select id="Taak" name="Taak" class="form-control" onchange="updateTask(this.value);" required>
                 <option value="" selected>Kies Taak</option>
                 <?php
-                    $sql = "select * from task limit 0,1000";
+                    $sql = "SELECT * from task where (naam != 'Skoffel') AND (naam != 'Algemeen') limit 0,1000";
                     require_once 'config/db_query.php';
                     $sqlargs = array();
                     $result = sqlQuery($sql, $sqlargs);
