@@ -37,7 +37,7 @@ CREATE TABLE Task (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
 	afkorting VARCHAR(254));
-
+insert into Task (naam) values ('General');
 insert into Task (naam) values ('Oes');
 insert into Task (naam) values ('Plant');
 insert into Task (naam) values ('Skoffel');
@@ -99,6 +99,19 @@ CREATE TABLE worklog(
 	spry_id INT UNSIGNED NOT NULL,
 	task_id INT UNSIGNED NOT NULL,
 	crates INT NOT NULL,
+	logDate DATE NOT NULL,
+	logTime TIME NOT NULL,
+	Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+DROP TABLE clocklog;
+CREATE TABLE clocklog( 
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNSIGNED NOT NULL,
+	worker_id INT UNSIGNED NOT NULL,
+	task_id INT UNSIGNED NOT NULL,
+	farm_id INT UNSIGNED NOT NULL,
+	spry_id INT UNSIGNED NOT NULL,
+	clockType BIT NOT NULL,
 	logDate DATE NOT NULL,
 	logTime TIME NOT NULL,
 	Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
