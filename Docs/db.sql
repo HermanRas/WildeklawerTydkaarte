@@ -22,25 +22,25 @@ insert into gewas (naam) values ('Aartappels');
 insert into gewas (naam) values ('Wortels');
 insert into gewas (naam) values ('Beet');
 
-DROP TABLE Spilpunt;
-CREATE TABLE Spilpunt ( 
+DROP TABLE spilpunt;
+CREATE TABLE spilpunt ( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
 	afkorting VARCHAR(254),
 	farm_id INT UNSIGNED NOT NULL);
 
-insert into Spilpunt (farm_id,naam) values (1,'T1');
-insert into Spilpunt (farm_id,naam) values (1,'T2');
+insert into spilpunt (farm_id,naam) values (1,'T1');
+insert into spilpunt (farm_id,naam) values (1,'T2');
 
-DROP TABLE Task;
-CREATE TABLE Task ( 
+DROP TABLE task;
+CREATE TABLE task ( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
 	afkorting VARCHAR(254));
-insert into Task (naam) values ('General');
-insert into Task (naam) values ('Oes');
-insert into Task (naam) values ('Plant');
-insert into Task (naam) values ('Skoffel');
+insert into task (naam) values ('General');
+insert into task (naam) values ('Oes');
+insert into task (naam) values ('Plant');
+insert into task (naam) values ('Skoffel');
 
 DROP TABLE users;
 CREATE TABLE users( 
@@ -103,7 +103,7 @@ CREATE TABLE worklog(
 	logTime TIME NOT NULL,
 	Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
 
-DROP TABLE clocklog;
+--DROP TABLE clocklog;
 CREATE TABLE clocklog( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT UNSIGNED NOT NULL,
@@ -125,7 +125,7 @@ Select
   workers.CN,
   plaas.naam As plaas,
   gewas.naam As gewas,
-  spilpunt.naam As Spilpunt,
+  spilpunt.naam As spilpunt,
   task.naam As taak,
   worklog.crates,
   worklog.logDate,
