@@ -14,7 +14,7 @@ if (isset($_POST['action'])){
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
-        echo '<script>  window.location.replace("admin_task.php?notice=update"); </script>';
+        echo '<script>  window.location.replace("admin_Task.php?notice=update"); </script>';
     }
     
     //do actions add
@@ -26,7 +26,7 @@ if (isset($_POST['action'])){
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
-        echo '<script>  window.location.replace("admin_task.php?notice=add"); </script>';
+        echo '<script>  window.location.replace("admin_Task.php?notice=add"); </script>';
     }
 }
 
@@ -39,7 +39,7 @@ if (isset($_GET['delete'])){
     require_once 'config/db_query.php';
     $sqlargs = array();
     $result = sqlQuery($sql, $sqlargs);
-    echo '<script>  window.location.replace("admin_task.php?notice=delete"); </script>';
+    echo '<script>  window.location.replace("admin_Task.php?notice=delete"); </script>';
 }
 ?>
 
@@ -117,7 +117,7 @@ if (isset($_GET['delete'])){
         </div>
         <button type="button" class="btn btn-success" onclick="frmAdd.submit()">Voeg By</button>
         <button type="button" class="btn btn-warning"
-            onclick="window.location.href='admin_task.php'">Kanselleer</button>
+            onclick="window.location.href='admin_Task.php'">Kanselleer</button>
     </form>
     <?php
     }
@@ -149,7 +149,7 @@ if (isset($_GET['delete'])){
         <button type="button" class="btn btn-success" onclick="frmUpdate.submit()">Verander</button>
         <button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
         <button type="button" class="btn btn-warning"
-            onclick="window.location.href='admin_task.php'">Kanselleer</button>
+            onclick="window.location.href='admin_Task.php'">Kanselleer</button>
     </form>
     <?php
     }

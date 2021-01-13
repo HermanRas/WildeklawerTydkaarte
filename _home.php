@@ -4,7 +4,6 @@ if (isset($_GET['delete'])){
     
     $tid = $_GET['delete'];
     
-
     $sql = "delete from worklog where id = '$tid'";
     require_once 'config/db_query.php';
     $sqlargs = array();
@@ -46,7 +45,7 @@ if (isset($_GET['delete'])){
             <tr>
                 <?php
                 $sql = "select * from vWorkLog
-                        order by Created desc;";
+                        order by id desc;";
                 require_once 'config/db_query.php';
                 $sqlargs = array();
                 $result = sqlQuery($sql, $sqlargs);
@@ -73,7 +72,6 @@ if (isset($_GET['delete'])){
         </tbody>
     </table>
 </div>
-
 
 <script>
 // add fancy search and filter to table

@@ -27,6 +27,9 @@ if (isset($_POST['Plaas'])){
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);
 
+    echo $sql;
+    die;
+    
     $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },3000);</script>' .
             '<div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
