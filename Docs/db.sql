@@ -37,7 +37,7 @@ CREATE TABLE task (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	naam VARCHAR(254) NOT NULL,
 	afkorting VARCHAR(254));
-insert into task (naam) values ('General');
+insert into task (naam) values ('Algemeen');
 insert into task (naam) values ('Oes');
 insert into task (naam) values ('Plant');
 insert into task (naam) values ('Skoffel');
@@ -103,7 +103,7 @@ CREATE TABLE worklog(
 	logTime TIME NOT NULL,
 	Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
 
---DROP TABLE clocklog;
+DROP TABLE clocklog;
 CREATE TABLE clocklog( 
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT UNSIGNED NOT NULL,
@@ -143,4 +143,138 @@ From
   workers On workers.id = worklog.worker_id;
 
 
+DROP VIEW vclocklogOut;
+CREATE VIEW vclocklogOut AS
+Select
+  clocklog.id,
+  workers.naam,
+  workers.van,
+  workers.CN,
+  users.naam As managerNaam,
+  workers.van As managerVen,
+  clocklog.logDate,
+  clocklog.logTime,
+  plaas.naam As plaasNaam,
+  spilpunt.naam As sipluntNaam,
+  task.naam As taakNaam,
+  'UIT' As clockType
+From
+  clocklog left Join
+  plaas On clocklog.farm_id = plaas.id left Join
+  spilpunt On clocklog.spry_id = spilpunt.id left Join
+  task On clocklog.task_id = task.id left Join
+  users On clocklog.user_id = users.id left Join
+  workers On clocklog.worker_id = workers.id
+Where
+  clocklog.clockType = 1
 
+
+DROP VIEW vclocklogIn;
+CREATE VIEW vclocklogIn AS
+Select
+  clocklog.id,
+  workers.naam,
+  workers.van,
+  workers.CN,
+  users.naam As managerNaam,
+  workers.van As managerVen,
+  clocklog.logDate,
+  clocklog.logTime,
+  plaas.naam As plaasNaam,
+  spilpunt.naam As sipluntNaam,
+  task.naam As taakNaam,
+  'IN' As clockType
+From
+  clocklog left Join
+  plaas On clocklog.farm_id = plaas.id left Join
+  spilpunt On clocklog.spry_id = spilpunt.id left Join
+  task On clocklog.task_id = task.id left Join
+  users On clocklog.user_id = users.id left Join
+  workers On clocklog.worker_id = workers.id
+Where
+  clocklog.clockType = 0
+
+DROP VIEW vclocklogNotOut;
+CREATE VIEW vclocklogNotOut AS
+Select
+  Max(clocklog.id) As Max_id,
+  workers.naam,
+  workers.van,
+  workers.CN,
+  users.naam As managerNaam,
+  workers.van As managerVen,
+  clocklog.logDate,
+  clocklog.logTime,
+  plaas.naam As plaasNaam,
+  spilpunt.naam As sipluntNaam,
+  task.naam As taakNaam,
+  clocklog.clockType
+From
+  clocklog Left Join
+  plaas On clocklog.farm_id = plaas.id Left Join
+  spilpunt On clocklog.spry_id = spilpunt.id Left Join
+  task On clocklog.task_id = task.id Left Join
+  users On clocklog.user_id = users.id Left Join
+  workers On clocklog.worker_id = workers.id
+
+DROP VIEW vclocklogInOut;
+CREATE VIEW vclocklogInOut AS
+Select
+  vclocklogin.logDate As inDate,
+  vclocklogin.logTime As inTime,
+  (Select
+    vclocklogout.logDate
+  From
+    vclocklogout
+  Where
+    vclocklogout.id > vclocklogin.id
+  Limit 1) As outDate,
+  (Select
+    vclocklogout.logTime
+  From
+    vclocklogout
+  Where
+    vclocklogout.id > vclocklogin.id
+  Limit 1) As outTime,
+  vclocklogin.naam,
+  vclocklogin.van,
+  vclocklogin.CN,
+  vclocklogin.managerNaam,
+  vclocklogin.managerVen,
+  vclocklogin.plaasNaam,
+  vclocklogin.sipluntNaam,
+  vclocklogin.taakNaam
+From
+  vclocklogin
+
+DROP VIEW vworktimecalc;
+CREATE VIEW vworktimecalc AS
+Select
+  TimeDiff(vclockloginout.inTime, vclockloginout.outTime) As MinutesOnClock,
+  vclockloginout.inDate,
+  vclockloginout.inTime,
+  vclockloginout.outDate,
+  vclockloginout.outTime,
+  vclockloginout.naam,
+  vclockloginout.van,
+  vclockloginout.CN,
+  vclockloginout.managerNaam,
+  vclockloginout.managerVen,
+  vclockloginout.plaasNaam,
+  vclockloginout.sipluntNaam,
+  vclockloginout.taakNaam
+From
+  vclockloginout
+
+DROP VIEW vshifttotal;
+CREATE VIEW vshifttotal AS
+Select
+  Sec_To_Time(Sum(Time_To_Sec(wildeklawertydkaarte.vworktimecalc.MinutesOnClock))) As TimeWorked,
+  vworktimecalc.outDate as Date,
+  vworktimecalc.naam,
+  vworktimecalc.van,
+  vworktimecalc.CN,
+  vworktimecalc.managerNaam,
+  vworktimecalc.managerVen
+From
+  vworktimecalc
