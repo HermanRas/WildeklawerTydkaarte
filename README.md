@@ -37,7 +37,14 @@
 - updated site theme to meet bootstrap 5 specs
 
 ### TO DO
-- scanner page needs work
+- scanner page needs work (Title)
+- scanner  add name and surname of worker
+- error page gee meer info
+- Invoer page wys kratte ge stoor
+- maak taak in cookies
+- update menu icons
 - data table css is ge F&$#.. update
 - add sql injection protection using ARG passing for MySQL on all admin pages
 - build form template with notifications
+- Add Daai Reports
+- Mass check-in
