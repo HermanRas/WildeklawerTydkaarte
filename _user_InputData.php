@@ -153,20 +153,22 @@ if (isset($_POST['Plaas'])){
         </div>
 
         <div class="form-group">
+            <?php
+            $CN = $_GET['User'];
+            $sql = "SELECT *,task.naam as task_name from clocklog
+            left join workers on workers.id = clocklog.worker_id
+            left join task on clocklog.task_id = task.id
+            where CN='$CN'
+            and logDate = CURDATE()
+            order by clocklog.id DESC
+            limit 1";
+            require_once 'config/db_query.php';
+            $sqlargs = array();
+            $res = sqlQuery($sql, $sqlargs);
+        ?>
             <label>Taak:</label>
-            <select id="Taak" name="Taak" class="form-control" onchange="updateTask(this.value);" required>
-                <option value="" selected>Kies Taak</option>
-                <?php
-                    $sql = "SELECT * from task where (naam != 'Skoffel') AND (naam != 'Algemeen') limit 0,1000";
-                    require_once 'config/db_query.php';
-                    $sqlargs = array();
-                    $result = sqlQuery($sql, $sqlargs);
-                    // Options
-                    foreach ($result[0] as $row) {
-                            echo '<option value="'.$row['id'].'">'.$row['naam'].'</option>';
-                    }
-                      ?>
-            </select>
+            <input id="Taak" type="hidden" value="<?=$res[0][0]['task_id']?>" name="Taak">
+            <input type="text" class="form-control" value="<?=$res[0][0]['task_name']?>" readonly>
         </div>
 
         <div class="form-group">

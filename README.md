@@ -15,6 +15,9 @@
 
 ## Work in progress
 ### DONE
+- 2021/01/06 refractured folders and files
+- 2021/01/06 built bootstrap 5 from source
+- 2021/01/06 updated site theme to meet bootstrap 5 specs
 - 2021/01/06 updated bootstrap theme to Bootstrap 5
 - 2021/01/06 updated app.css
 - 2021/01/06 build my SQL DB template
@@ -29,22 +32,20 @@
 - 2021/01/06 Build user Input screen
 - 2021/01/06 Build Report View for mySQL
 - 2021/01/06 add Report to home screen
-
-
-### CHANGE LOG
-- refractured folders and files
-- built bootstrap 5 from source
-- updated site theme to meet bootstrap 5 specs
+- 2021/01/21 on input page added crates collected
+- 2021/01/22 changed menu nav from text to icons
+- 2021/01/22 added banners and title to scanning page
+- 2021/01/23 taak dropdown moved to sql query, lookup from clock in 
 
 ### TO DO
-- scanner page needs work (Title)
-- scanner  add name and surname of worker
+- scanner add name and surname of worker
+- add all pages banner
 - error page gee meer info
-- Invoer page wys kratte ge stoor
-- maak taak in cookies
 - update menu icons
 - data table css is ge F&$#.. update
-- add sql injection protection using ARG passing for MySQL on all admin pages
 - build form template with notifications
 - Add Daai Reports
 - Mass check-in
+
+### Look At
+- add sql injection protection using ARG passing for MySQL on all admin pages
