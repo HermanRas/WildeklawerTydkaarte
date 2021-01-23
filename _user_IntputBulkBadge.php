@@ -89,12 +89,23 @@ renderQrCode();
     ## show camera and Code if found
     #################################################################
  -->
-<h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Massa Klok</h1>
-<div class="container">
-    <h3>Lees QR Kode</h3>
-    <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
-    <span id="cam-qr-result">scanning...</span>
-</div>
+<form action="user_InputBulkClock.php" method="post">
+    <h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Massa Klok</h1>
+    <div class="container">
+        <h3>Lees al die QR Kodes</h3>
+        <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
+        <br>
+        <h3 class="bg-primary p-1 m-1">Werker Lys:</h3>
+        <ul class="text-xs bg-white" id="cam-qr-result"></ul>
+        <div id="butDiv"></div>
+    </div>
+</form>
+<script>
+// clearItem if error
+function clearItem(e) {
+    console.log(e.parentElement.parentElement.removeChild(e.parentElement));
+}
+</script>
 
 <!-- Page Level Scripts -->
 <script type="module">
@@ -105,18 +116,33 @@ QrScanner.WORKER_PATH = './js/qr-scanner-worker.min.js';
 //set defaults
 const video = document.getElementById('qr-video');
 const camQrResult = document.getElementById('cam-qr-result');
+var lastResult = '';
 
 //run scan
 function setResult(label, result) {
-    var cn = result.split("(");
-    label.innerHTML = '<h4> Werker: ' + result +
-        ' gekies</h4><a href="user_InputClock.php?User=' + cn[0] + '" class="btn btn-secondary">Stuur</button>';
-    document.getElementById('memberName').value = result;
+    if (lastResult == result) {
+        scanner.start();
+    } else {
+        lastResult = result;
+        var cn = result.split("(");
+        label.innerHTML =
+            '<li>' +
+            '<input type="hidden" name="CN[]" value="' + cn[0] + '">' +
+            '<input type="hidden" name="name[]" value="' + result + '">' +
+            result +
+            '<input type="button" class="btn-sm btn-close" onclick="clearItem(this);" >' +
+            '</li>' +
+            label.innerHTML;
+        document.getElementById('butDiv').innerHTML = '<button href="user_InputClock.php?User=' + cn[0] +
+            '" class="btn btn-secondary">Stuur</button>';
 
-    label.style.color = 'orange';
-    clearTimeout(label.highlightTimeout);
-    label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+        label.style.color = 'orange';
+        clearTimeout(label.highlightTimeout);
+        label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+        scanner.start();
+    }
 }
+
 
 // ####### Web Cam Scanning #######
 const scanner = new QrScanner(video, result => setResult(camQrResult, result));

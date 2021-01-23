@@ -10,7 +10,7 @@ if (isset($_POST['Plaas'])){
 
     $uid = $_SESSION["uid"];
     $Plaas = $_POST["Plaas"];
-    $CN = $_POST["CN"];
+    $CNs = $_POST["CN"];
     $spilpunt = $_POST["spilpunt"];
     $Spry = $_POST["spilpunt"];
     $clockType = $_POST["clockType"];
@@ -18,12 +18,15 @@ if (isset($_POST['Plaas'])){
     $date = $_POST["Date"];
     $time = $_POST["time"];
 
-    $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime)
-    values('$uid','$CN',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
+    foreach ($CNs as $CN ) {
+    $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime) 
+            values('$uid','$CN',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
 
     require_once 'config/db_query.php';
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);
+    }
+
 
     $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },3000);</script>' .
             '<div class="alert alert-success alert-dismissible" role="alert">
@@ -33,7 +36,7 @@ if (isset($_POST['Plaas'])){
 }
 ?>
 
-<h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Klok</h1>
+<h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Massa-Klok</h1>
 <div class="container">
     <?php 
         echo $msg; 
@@ -86,22 +89,19 @@ if (isset($_POST['Plaas'])){
         </div>
 
         <div class="form-group">
-            <?php
-                    $CN = $_GET['User'];
-                    $sql = "select * from workers where CN='$CN' limit 0,1000";
-                    require_once 'config/db_query.php';
-                    $sqlargs = array();
-                    $result = sqlQuery($sql, $sqlargs);
-                    ?>
-            <label>Werker:</label>
-            <input type="text" class="form-control"
-                value="<?php echo $result[0][0]['naam']." ".$result[0][0]['van']." - ($CN)" ?>" readonly>
-            <input type="hidden" name="CN" value="<?php echo $result[0][0]['id']; ?>">
+            <label>Werkers:</label>
+            <?php 
+                for ($i=0; $i < count($_POST['CN']); $i++) { 
+                    # code...
+                    echo '<input type="text" class="form-control mt-1" value="'. $_POST['name'][$i].'" readonly>';
+                    echo '<input type="hidden" name="CN[]" value="'. $_POST['CN'][$i].'">';
+                }
+            ?>
         </div>
 
         <div class="form-group">
             <?php
-                $CN = $_GET['User'];
+                $CN = $_POST['CN'][0];
                 $sql = "SELECT * from clocklog 
                         left join workers on workers.id = clocklog.worker_id
                         where CN='$CN' 
