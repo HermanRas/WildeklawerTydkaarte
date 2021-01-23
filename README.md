@@ -37,15 +37,16 @@
 - 2021/01/22 added banners and title to scanning page
 - 2021/01/23 taak dropdown moved to sql query, lookup from clock in
 - 2021/01/23 completely reworked menu
+- 2021/01/23 add all pages banner
 
 ### TO DO
 - scanner add name and surname of worker
-- add all pages banner
 - error page gee meer info
 - data table css is ge F&$#.. update
-- build form template with notifications
 - Add Daai Reports
 - Mass check-in
+
+- confirm page banner color to match icons
 
 ### Look At
 - add sql injection protection using ARG passing for MySQL on all admin pages

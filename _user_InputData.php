@@ -28,10 +28,10 @@ if (isset($_POST['Plaas'])){
     $res = sqlQuery($sql, $sqlargs);
     
     $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },3000);</script>' .
-            '<h1 class="text-success text-center" style="font-size:10rem;">'. $kratte.'</h1>'.
             '<div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             Taak Bygevoeg !</div>'.
+            '<h1 class="text-success text-center" style="font-size:10rem;">'. $kratte.'</h1>'.
             '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
 }
 ?>
@@ -61,7 +61,7 @@ if (isset($_POST['Plaas'])){
             $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },10000);</script>' .
                 '<div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                Taak het geen invoer (Algemeen of Skoffel)!</div>'.
+                Die Werker is in geklok op \'n Taak wat geen invoer nodig het nie, soos skoffel of algemeen, klok uit en weer in met \'n nuwe taak wat invoer bevat.!</div>'.
                 '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
         }
     }
