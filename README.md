@@ -35,13 +35,13 @@
 - 2021/01/21 on input page added crates collected
 - 2021/01/22 changed menu nav from text to icons
 - 2021/01/22 added banners and title to scanning page
-- 2021/01/23 taak dropdown moved to sql query, lookup from clock in 
+- 2021/01/23 taak dropdown moved to sql query, lookup from clock in
+- 2021/01/23 completely reworked menu
 
 ### TO DO
 - scanner add name and surname of worker
 - add all pages banner
 - error page gee meer info
-- update menu icons
 - data table css is ge F&$#.. update
 - build form template with notifications
 - Add Daai Reports

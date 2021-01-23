@@ -17,7 +17,9 @@
 
 
     <!-- Page Title -->
-    <h1 class="text-center">Spilpunt Admin</h1>
+    <h1 class="bg-warning">
+        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Spilpunt">Admn - Spilpunt
+    </h1>
     <!-- Main Content -->
     <?php include_once('_admin_Spry.php'); ?>
 

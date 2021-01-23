@@ -57,12 +57,12 @@
                 <span class="text-xxs">Verslae</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Tyd PerDag</a>
-                <a class="dropdown-item" href="#">Tyd PerTaak</a>
-                <a class="dropdown-item" href="#">Tyd Staat</a>
-                <a class="dropdown-item" href="#">Gem TydPerTaak</a>
-                <a class="dropdown-item" href="#">Gem TydPerGewas</a>
-                <a class="dropdown-item" href="#">???</a>
+                <a class="dropdown-item" href="admin_Verslae.php">Tyd PerDag</a>
+                <a class="dropdown-item" href="admin_Verslae.php">Tyd PerTaak</a>
+                <a class="dropdown-item" href="admin_Verslae.php">Tyd Staat</a>
+                <a class="dropdown-item" href="admin_Verslae.php">Gem TydPerTaak</a>
+                <a class="dropdown-item" href="admin_Verslae.php">Gem TydPerGewas</a>
+                <a class="dropdown-item" href="admin_Verslae.php">???</a>
             </div>
         </li>
     </ul>

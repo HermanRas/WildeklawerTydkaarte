@@ -17,9 +17,11 @@
 
 
     <!-- Page Title -->
-    <h1 class="text-center">Admin Opsomming</h1>
+    <h1 class="bg-primary">
+        <img style="height:1.5em;" src="Img/verslae.png" class="rounded m-1 p-1" alt="Verslae">Verslae - ?
+    </h1>
     <!-- Main Content -->
-    <?php include_once('_admin.php'); ?>
+    <?php include_once('_admin_verslae.php'); ?>
 
     <!-- Footer -->
     <?php include_once('_footer.php'); ?>

@@ -36,6 +36,7 @@ if (isset($_POST['Plaas'])){
 }
 ?>
 
+<h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Invoer</h1>
 <div class="container">
     <?php 
     $CN = $_GET['User'];

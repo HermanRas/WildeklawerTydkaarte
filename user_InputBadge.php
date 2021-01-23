@@ -17,7 +17,6 @@
 
 
     <!-- Page Title -->
-    <h1 class="text-center"></h1>
     <!-- Main Content -->
     <?php include_once('_user_IntputBadge.php'); ?>
 

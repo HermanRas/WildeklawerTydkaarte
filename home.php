@@ -17,7 +17,7 @@
 
 
     <!-- Page Title -->
-    <h1 class="text-center">Tuisblad - Werk Register</h1>
+
     <!-- Main Content -->
     <?php include_once('_home.php'); ?>
 

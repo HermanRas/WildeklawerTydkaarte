@@ -33,6 +33,7 @@ if (isset($_POST['Plaas'])){
 }
 ?>
 
+<h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Klok</h1>
 <div class="container">
     <?php 
         echo $msg; 

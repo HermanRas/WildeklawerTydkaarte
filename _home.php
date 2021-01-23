@@ -16,7 +16,7 @@ if (isset($_GET['delete'])){
             </div>';
     }
 ?>
-
+<h1 class="bg-info"><img style="height:1.5em;" src="Img/tuis.png" class="rounded m-1 p-1" alt="Tuis">Tuis</h1>
 <div class="container">
     <?php echo $msg; ?>
     <a class="toggle-vis btn btn-info btn-sm my-2" data-column="0">Datum</a>
