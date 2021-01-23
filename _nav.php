@@ -1,57 +1,72 @@
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark p-1">
 
-    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link active" href="home.php">Tuis <span class="sr-only">(current)</span></a>
-            </li>
 
-            <?php 
-            // you are a user higher acl
-            if($_SESSION['acl'] > 3){
-            ?>
-            <?php
-            }
-            ?>
-            <?php 
-            // you are a admin or higher acl
-            if($_SESSION['acl'] > 6){
-            ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Admin
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="admin_User.php">Gebruikers</a>
-                    <a class="dropdown-item" href="admin_Workers.php">Werkers</a>
-                    <a class="dropdown-item" href="admin_Produce.php">Gewasse</a>
-                    <a class="dropdown-item" href="admin_Farm.php">Plase</a>
-                    <a class="dropdown-item" href="admin_Spry.php">Spilpunte</a>
-                    <a class="dropdown-item" href="admin_Task.php">Take</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin_Summary.php">Verslae</a>
-            </li>
-            <?php
-            }
-            ?>
+    <a class="btn btn-outline-secondary m-2 p-0 px-1" href="home.php">
+        <img style="max-height:40px;" src="Img/tuis.png" class="rounded" alt="Tuis">
+        <br>
+        <span class="text-xxs">Tuis</span>
+    </a>
 
-        </ul>
-    </div>
+    <a href="user_InputSelect.php" class="btn btn-outline-secondary m-2 p-0 px-1">
+        <img style="max-height:40px;" src="Img/invoere.png" class="rounded" alt="Invoer">
+        <br>
+        <span class="text-xxs">Invoer</span>
+    </a>
+    <a href="user_InputBadge.php" class="btn btn-outline-secondary m-2 p-0 px-1">
+        <img style="max-height:40px;" src="Img/klok.png" class="rounded" alt="Klok">
+        <br>
+        <span class="text-xxs">Klok</span>
+    </a>
+    <a href="#" class="btn btn-outline-secondary m-2 p-0 px-1">
+        <img style="max-height:40px;" src="Img/Bulk_klok.png" class="rounded" alt="BulkKlok">
+        <br>
+        <span class="text-xxs">x-Klok</span>
+    </a>
+    <a href="_logout.php" class="btn btn-outline-secondary m-2 p-0 px-1">
+        <img style="max-height:40px;" src="Img/teken_uit.png" class="rounded" alt="TekenUit">
+        <br>
+        <span class="text-xxs">TekenUit</span>
+    </a>
 
-    <a href="user_InputSelect.php"><img style="height:60px;" src="Img/invoere.png"
-            class="rounded btn btn-outline-secondary m-1 p-1" alt="Invoer"></a>
-    <a href="user_InputBadge.php"><img style="height:60px;" src="Img/klok.png"
-            class="rounded btn btn-outline-secondary m-1 p-1" alt="Klok"></a>
-    <a href="#"><img style="height:60px;" src="Img/Bulk_klok.png" class="rounded btn btn-outline-secondary m-1 p-1"
-            alt="BulkKlok"></a>
-    <a href="_logout.php"><img style="height:60px;" src="Img/teken_uit.png"
-            class="rounded btn btn-outline-secondary m-1 p-1" alt="TekenUit"></a>
-    <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <?php 
+        // you are a admin or higher acl
+        if($_SESSION['acl'] > 6){
+    ?>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="btn btn-outline-secondary m-2 p-0 px-1  dropdown-toggle" href="#" id="navbarDropdown"
+                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img style="max-height:40px;" src="Img/admin.png" class="rounded" alt="admin">
+                <br>
+                <span class="text-xxs">Admin</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="admin_User.php">Gebruikers</a>
+                <a class="dropdown-item" href="admin_Workers.php">Werkers</a>
+                <a class="dropdown-item" href="admin_Produce.php">Gewasse</a>
+                <a class="dropdown-item" href="admin_Farm.php">Plase</a>
+                <a class="dropdown-item" href="admin_Spry.php">Spilpunte</a>
+                <a class="dropdown-item" href="admin_Task.php">Take</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="btn btn-outline-secondary m-2 p-0 px-1  dropdown-toggle" href="#" id="navbarDropdown"
+                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img style="max-height:40px;" src="Img/verslae.png" class="rounded" alt="verslae">
+                <br>
+                <span class="text-xxs">Verslae</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Tyd PerDag</a>
+                <a class="dropdown-item" href="#">Tyd PerTaak</a>
+                <a class="dropdown-item" href="#">Tyd Staat</a>
+                <a class="dropdown-item" href="#">Gem TydPerTaak</a>
+                <a class="dropdown-item" href="#">Gem TydPerGewas</a>
+                <a class="dropdown-item" href="#">???</a>
+            </div>
+        </li>
+    </ul>
+    <?php
+        }
+    ?>
 </nav>

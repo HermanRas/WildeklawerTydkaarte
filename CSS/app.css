@@ -24,6 +24,10 @@ body{
     color: #FFF;
 }
 
+.text-xxs{
+    font-size: x-small!important;
+}
+
 a {
     color: #00AB93;
 }
