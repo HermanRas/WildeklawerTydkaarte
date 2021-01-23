@@ -17,10 +17,10 @@
         <br>
         <span class="text-xxs">Klok</span>
     </a>
-    <a href="#" class="btn btn-outline-secondary m-2 p-0 px-1">
+    <a href="user_InputBulkBadge.php" class="btn btn-outline-secondary m-2 p-0 px-1">
         <img style="max-height:40px;" src="Img/Bulk_klok.png" class="rounded" alt="BulkKlok">
         <br>
-        <span class="text-xxs">x-Klok</span>
+        <span class="text-xxs">Massa-Klok</span>
     </a>
     <a href="_logout.php" class="btn btn-outline-secondary m-2 p-0 px-1">
         <img style="max-height:40px;" src="Img/teken_uit.png" class="rounded" alt="TekenUit">
