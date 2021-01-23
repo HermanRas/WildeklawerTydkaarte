@@ -82,8 +82,9 @@ renderQrCode();
     ## show camera and Code if found
     #################################################################
  -->
+<h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Klok</h1>
 <div class="container">
-    <h3>Scan QR Kode</h3>
+    <h3>Lees QR Kode</h3>
     <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
     <span id="cam-qr-result">scanning...</span>
 </div>

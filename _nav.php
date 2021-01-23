@@ -1,15 +1,4 @@
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark p-1">
-    <a href="user_InputSelect.php"><img style="height:60px;" src="img/invoere.png"
-            class="rounded btn btn-outline-secondary m-1 p-1" alt="Invoer"></a>
-    <a href="user_InputBadge.php"><img style="height:60px;" src="img/klok.png"
-            class="rounded btn btn-outline-secondary m-1 p-1" alt="Klok"></a>
-    <a href="_logout.php"><img style="height:60px;" src="img/teken_uit.png"
-            class="rounded btn btn-outline-secondary m-1 p-1" alt="TekenUit"></a>
-    <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -21,12 +10,6 @@
             // you are a user higher acl
             if($_SESSION['acl'] > 3){
             ?>
-            <li class="nav-item">
-                <a class="nav-link" href="user_InputSelect.php">Invoere</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="user_InputBadge.php">Klok In/Uit</a>
-            </li>
             <?php
             }
             ?>
@@ -56,10 +39,19 @@
             ?>
 
         </ul>
-        <ul class="navbar-nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="_logout.php">Teken Uit</a>
-            </li>
-        </ul>
     </div>
+
+    <a href="user_InputSelect.php"><img style="height:60px;" src="Img/invoere.png"
+            class="rounded btn btn-outline-secondary m-1 p-1" alt="Invoer"></a>
+    <a href="user_InputBadge.php"><img style="height:60px;" src="Img/klok.png"
+            class="rounded btn btn-outline-secondary m-1 p-1" alt="Klok"></a>
+    <a href="#"><img style="height:60px;" src="Img/Bulk_klok.png" class="rounded btn btn-outline-secondary m-1 p-1"
+            alt="BulkKlok"></a>
+    <a href="_logout.php"><img style="height:60px;" src="Img/teken_uit.png"
+            class="rounded btn btn-outline-secondary m-1 p-1" alt="TekenUit"></a>
+    <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 </nav>

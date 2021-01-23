@@ -19,6 +19,11 @@ body{
     margin-top: 15px;
 }
 
+.bg-wk{
+    background-color: #07325a!important;
+    color: #FFF;
+}
+
 a {
     color: #00AB93;
 }
