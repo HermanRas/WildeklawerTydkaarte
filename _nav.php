@@ -49,6 +49,8 @@
                 <a class="dropdown-item" href="admin_Task.php">Take</a>
             </div>
         </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
             <a class="btn btn-outline-secondary m-2 p-0 px-1  dropdown-toggle" href="#" id="navbarDropdown"
                 role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -6,14 +6,21 @@
 $qr = '';
 if(isset($_GET['qr'])){
     $qr = $_GET['qr'];
+    $sql = "SELECT * from workers 
+            where CN='$qr' 
+            limit 1";
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $res = sqlQuery($sql, $sqlargs);
 ?>
 
 <!-- section-block -->
 <div class="container">
     <div class="card">
-        <form action="user_InputClock.php">
+        <form action="user_InputSelect.php">
             <div class="card-body">
-                <h2>QR vir Werker Nommer: <span class="text-inline" id="QrID"><?php echo $qr; ?></span>
+                <h2>QR vir Werker Nommer: <span class="text-inline"
+                        id="QrID"><?php echo $qr . " (".$res[0][0]['naam']." ".$res[0][0]['van'].")"; ?></span>
                 </h2>
                 <section id="qr-code">
                 </section>
@@ -101,8 +108,9 @@ const camQrResult = document.getElementById('cam-qr-result');
 
 //run scan
 function setResult(label, result) {
+    var cn = result.split("(");
     label.innerHTML = '<h4> Werker: ' + result +
-        ' gekies</h4><a href="user_InputClock.php?User=' + result + '" class="btn btn-secondary">Stuur</button>';
+        ' gekies</h4><a href="user_InputClock.php?User=' + cn[0] + '" class="btn btn-secondary">Stuur</button>';
     document.getElementById('memberName').value = result;
 
     label.style.color = 'orange';

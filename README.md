@@ -38,10 +38,10 @@
 - 2021/01/23 taak dropdown moved to sql query, lookup from clock in
 - 2021/01/23 completely reworked menu
 - 2021/01/23 add all pages banner
+- 2021/01/23 scanner add name and surname of worker
+- 2021/01/23 error page gee meer info
 
 ### TO DO
-- scanner add name and surname of worker
-- error page gee meer info
 - data table css is ge F&$#.. update
 - Add Daai Reports
 - Mass check-in
