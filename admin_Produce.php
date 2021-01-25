@@ -18,7 +18,7 @@
 
     <!-- Page Title -->
     <h1 class="bg-warning">
-        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Gewas">Admn - Gewas
+        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Gewas">Admin - Gewas
     </h1>
     <!-- Main Content -->
     <?php include_once('_admin_Produce.php'); ?>

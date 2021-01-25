@@ -18,7 +18,7 @@
 
     <!-- Page Title -->
     <h1 class="bg-warning">
-        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Gebruikers">Admn - Gebruikers
+        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Gebruikers">Admin - Gebruikers
     </h1>
     <!-- Main Content -->
     <?php include_once('_admin_User.php'); ?>
