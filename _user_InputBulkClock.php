@@ -19,8 +19,17 @@ if (isset($_POST['Plaas'])){
     $time = $_POST["time"];
 
     foreach ($CNs as $CN ) {
+    // Lookup user_id
+    $sql = "select id from `workers` where CN = '$CN' limit 1;";
+
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $worker_id = sqlQuery($sql, $sqlargs);
+    $worker_id = $worker_id[0][0]['id'];
+
+    // add worker to clock log
     $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime) 
-            values('$uid','$CN',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
+            values('$uid','$worker_id',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
 
     require_once 'config/db_query.php';
     $sqlargs = array();

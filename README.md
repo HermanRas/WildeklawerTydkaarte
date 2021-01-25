@@ -40,11 +40,12 @@
 - 2021/01/23 add all pages banner
 - 2021/01/23 scanner add name and surname of worker
 - 2021/01/23 error page gee meer info
+- 2021/01/23 Mass check-in added
 
 ### TO DO
+- mass check in direction not working
 - data table css is ge F&$#.. update
 - Add Daai Reports
-- Mass check-in
 
 - confirm page banner color to match icons
 
