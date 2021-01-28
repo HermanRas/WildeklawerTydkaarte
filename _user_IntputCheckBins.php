@@ -11,10 +11,6 @@ $qr = '';
             workers.naam,
             workers.van,
             workers.CN,
-            worklog.farm_id,
-            worklog.produce_id,
-            worklog.spry_id,
-            worklog.task_id,
             SUM(worklog.crates) as 'crates'
             From
             workers Left Join
@@ -23,8 +19,7 @@ $qr = '';
             worklog.logDate = CurDate()
             and CN = '$CN'
             Group By
-            worklog.logDate, workers.naam, workers.van, workers.CN, worklog.farm_id,
-            worklog.produce_id, worklog.spry_id, worklog.task_id
+            worklog.logDate, workers.naam, workers.van, workers.CN
             limit 1";
     require_once 'config/db_query.php';
     $sqlargs = array();
@@ -93,7 +88,8 @@ function readSettings() {
     ## show camera and Code if found
     #################################################################
  -->
-<h1 class="bg-dark"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Soek Bins
+<h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Bins vir
+    Vandag
 </h1>
 <div class="container">
     <h3>Lees QR Kode</h3>
