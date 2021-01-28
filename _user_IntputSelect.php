@@ -110,7 +110,7 @@ const camQrResult = document.getElementById('cam-qr-result');
 function setResult(label, result) {
     var cn = result.split("(");
     label.innerHTML = '<h4> Werker: ' + result +
-        ' gekies</h4><a href="user_InputData.php?User=' + cn[0] + '" class="btn btn-secondary">Stuur</button>';
+        ' gekies</h4><a href="user_InputData.php?User=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
     document.getElementById('memberName').value = result;
 
     label.style.color = 'orange';

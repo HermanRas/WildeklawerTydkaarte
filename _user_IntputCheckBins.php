@@ -4,28 +4,44 @@
     ## show QR Code for printing
     #################################################################
 $qr = '';
-if(isset($_GET['qr'])){
-    $qr = $_GET['qr'];
-    $sql = "SELECT * from workers 
-            where CN='$qr' 
+            if(isset($_GET['CN'])){
+                $CN = $_GET['CN'];
+                $sql = "SELECT
+            worklog.logDate,
+            workers.naam,
+            workers.van,
+            workers.CN,
+            worklog.farm_id,
+            worklog.produce_id,
+            worklog.spry_id,
+            worklog.task_id,
+            SUM(worklog.crates) as 'crates'
+            From
+            workers Left Join
+            worklog On workers.id = worklog.worker_id
+            Where
+            worklog.logDate = CurDate()
+            and CN = '$CN'
+            Group By
+            worklog.logDate, workers.naam, workers.van, workers.CN, worklog.farm_id,
+            worklog.produce_id, worklog.spry_id, worklog.task_id
             limit 1";
     require_once 'config/db_query.php';
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);
+    $kratte = $res[0][0]['crates'];
 ?>
 
 <!-- section-block -->
 <div class="container">
     <div class="card">
-        <form action="user_InputSelect.php">
+        <form action="user_InputCheckBins.php">
             <div class="card-body">
                 <h2>QR vir Werker Nommer: <span class="text-inline"
                         id="QrID"><?php echo $qr . " (".$res[0][0]['naam']." ".$res[0][0]['van'].")"; ?></span>
                 </h2>
-                <section id="qr-code">
-                </section>
-                <input class="btn btn-success" type="button" value="Druk" onclick="PrintElem()">
-                <input class="btn btn-primary" type="submit" value="Kanselleer">
+                <h1 class="text-success text-center" style="font-size:10rem;"><?php echo $kratte; ?></h1>
+                <input class="btn btn-primary" type="submit" value="Soek Weer">
             </div>
         </form>
     </div>
@@ -67,18 +83,6 @@ function readSettings() {
     settings.text = document.getElementById('QrID').innerText;
     return settings;
 }
-
-function renderQrCode() {
-    let time = new Date(),
-        container = document.querySelector('#qr-code'),
-        settings = readSettings();
-    container.innerHTML = '';
-    QrCode.render(settings, container);
-}
-for (let input of document.querySelectorAll('input, select')) {
-    input.addEventListener('change', renderQrCode);
-}
-renderQrCode();
 </script>
 
 <?php
@@ -89,7 +93,8 @@ renderQrCode();
     ## show camera and Code if found
     #################################################################
  -->
-<h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Klok</h1>
+<h1 class="bg-dark"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Soek Bins
+</h1>
 <div class="container">
     <h3>Lees QR Kode</h3>
     <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
@@ -110,7 +115,7 @@ const camQrResult = document.getElementById('cam-qr-result');
 function setResult(label, result) {
     var cn = result.split("(");
     label.innerHTML = '<h4> Werker: ' + result +
-        ' gekies</h4><a href="user_InputClock.php?User=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
+        ' gekies</h4><a href="user_InputCheckBins.php?CN=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
     document.getElementById('memberName').value = result;
 
     label.style.color = 'orange';
