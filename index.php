@@ -9,17 +9,19 @@
     <!-- Custom Headers -->
     <?php include_once('_header.php'); ?>
 
+    <!-- include libraries(for login CSS  & jQuery) -->
+    <link href="CSS/login.css" rel="stylesheet">
+    <script src="App/app.js"></script>
+</head>
+
+<body onload="init()">
+
     <div class="center">
         <div style="margin:0 auto; text-align:center; ">
             <h1>Tydkaarte</h1>
         </div>
     </div>
 
-    <!-- include libraries(for login CSS  & jQuery) -->
-    <link href="CSS/login.css" rel="stylesheet">
-</head>
-
-<body>
     <h1 style="text-align: center;color: #fff;"></h1>
     <form method="POST" action="_login.php" id="frm_login">
         <div class="numpad"></div>
