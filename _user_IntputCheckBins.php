@@ -7,20 +7,20 @@ $qr = '';
             if(isset($_GET['CN'])){
                 $CN = $_GET['CN'];
                 $sql = "SELECT
-            worklog.logDate,
-            workers.naam,
-            workers.van,
-            workers.CN,
-            SUM(worklog.crates) as 'crates'
-            From
-            workers Left Join
-            worklog On workers.id = worklog.worker_id
-            Where
-            worklog.logDate = CurDate()
-            and CN = '$CN'
-            Group By
-            worklog.logDate, workers.naam, workers.van, workers.CN
-            limit 1";
+                        worklog.logDate,
+                        workers.naam,
+                        workers.van,
+                        workers.CN,
+                        SUM(worklog.crates) as 'crates'
+                        From
+                        workers Left Join
+                        worklog On workers.id = worklog.worker_id
+                        Where
+                        worklog.logDate = CurDate()
+                        and CN = '$CN'
+                        Group By
+                        worklog.logDate, workers.naam, workers.van, workers.CN
+                        limit 1";
     require_once 'config/db_query.php';
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);

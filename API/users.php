@@ -25,22 +25,35 @@ if (isset($_GET['KEY'])){
         //is results for excel or Offline app?
         if (isset($_GET['EXCEL'])){
             //for excel use
-            echo '<table>';
+            echo '<table style="border:1px solid black;width:100%">';
             echo '    <thead>';
-            echo '        <tr>';
-            echo '            <th>id</th>';
-            echo '            <th>naam</th>';
-            echo '            <th>van</th>';
-            echo '            <th>CN</th>';
-            echo '            <th>farm_id</th>';
-            echo '            <th>accesslevel</th>';
+            echo '        <tr style="border:1px solid black;">';
+            echo '            <th style="border:1px solid black;">id</th>';
+            echo '            <th style="border:1px solid black;">naam</th>';
+            echo '            <th style="border:1px solid black;">van</th>';
+            echo '            <th style="border:1px solid black;">CN</th>';
+            echo '            <th style="border:1px solid black;">plaas_naam</th>';
+            echo '            <th style="border:1px solid black;">plaas_afk</th>';
+            echo '            <th style="border:1px solid black;">acc_naam</th>';
+            echo '            <th style="border:1px solid black;">acc_afk</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';
-            echo '        <tr>';
-            echo '            <td>id</td>';
-            echo '            <td>with two columns</td>';
-            echo '        </tr>';
+
+            // repeat for all records
+            foreach ($result[0] as $row) {
+                echo "        <tr>";
+                echo "            <td style=\"border:1px solid black;\">".$row['id']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['naam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['van']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['CN']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['plaas_naam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['plaas_afk']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['acc_naam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['acc_afk']."</td>";
+                echo "        </tr>";
+            }
+
             echo '    </tbody>';
             echo '</table>';
         }else{
