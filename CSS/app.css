@@ -8,6 +8,19 @@ body{
     width: 100%;
 }
 
+.AppOffline{
+    position: absolute;
+    
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+
+    bottom: 0px;
+    right: 0px;
+    
+    background-color: red;
+    border-radius: 25px;
+}
 
 .container{
     background: rgba(245, 235, 222, 0.50);
