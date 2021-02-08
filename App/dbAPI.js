@@ -1,4 +1,4 @@
-export function getDBUpdate(URL, table) {
+function getDBUpdate(URL, table) {
     var xhttpOldCalls = new XMLHttpRequest();
     xhttpOldCalls.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

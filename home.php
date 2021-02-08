@@ -11,7 +11,7 @@
     <?php include_once('_header.php'); ?>
 </head>
 
-<body>
+<body onload="updateDB()">
     <!-- NAV BAR -->
     <?php include_once('_nav.php'); ?>
 

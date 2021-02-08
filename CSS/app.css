@@ -10,14 +10,11 @@ body{
 
 .AppOffline{
     position: absolute;
-    
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
     padding: 0.5rem;
-
     bottom: 0px;
     right: 0px;
-    
     background-color: red;
     border-radius: 25px;
 }

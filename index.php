@@ -11,10 +11,12 @@
 
     <!-- include libraries(for login CSS  & jQuery) -->
     <link href="CSS/login.css" rel="stylesheet">
-    <script type="module" src="App/app.js"></script>
+
+    <script src="App/dbAPI.js"></script>
+    <script src="App/app.js"></script>
 </head>
 
-<body>
+<body onload="setup()">
 
     <div class="center">
         <div style="margin:0 auto; text-align:center; ">

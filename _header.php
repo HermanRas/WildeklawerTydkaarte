@@ -6,6 +6,11 @@
 <link rel="icon" href="Img/icon.jpeg" sizes="192x192">
 <!-- end of Chrome/Android App Settings  -->
 
+<!-- Start of App JS -->
+<script src="App/dbAPI.js"></script>
+<script src="App/app.js"></script>
+<!-- End Of App JS -->
+
 <!-- Bootstrap // you can use hosted CDN here-->
 <link href="CSS/bootstrap.min.css" rel="stylesheet">
 <link href="CSS/app.css" rel="stylesheet">
