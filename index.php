@@ -11,10 +11,10 @@
 
     <!-- include libraries(for login CSS  & jQuery) -->
     <link href="CSS/login.css" rel="stylesheet">
-    <script src="App/app.js"></script>
+    <script type="module" src="App/app.js"></script>
 </head>
 
-<body onload="init()">
+<body>
 
     <div class="center">
         <div style="margin:0 auto; text-align:center; ">

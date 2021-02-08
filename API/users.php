@@ -10,6 +10,7 @@ if (isset($_GET['KEY'])){
                 users.naam,
                 users.van,
                 users.CN,
+                users.pwd,
                 plaas.naam As plaas_naam,
                 plaas.afkorting As plaas_afk,
                 access.naam As acc_naam,
@@ -62,10 +63,12 @@ if (isset($_GET['KEY'])){
         }
 
     }else{
+        http_response_code(403);
         $err = array('error'=>'API AUTH KEY FAILED');
         echo   json_encode($err);
     }
 }else{
+    http_response_code(403);
     $err = array('error'=>'NO API KEY');
     echo   json_encode($err);
 }
