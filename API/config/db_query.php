@@ -5,6 +5,7 @@ function sqlQuery($sql,$args){
             $stmt = $pdo->prepare($sql);
             $stmt->execute($args);
         } catch (PDOException $e) {
+            http_response_code(500);
             // echo $e->getMessage();
         }
         $results = $stmt->fetchAll();
@@ -18,6 +19,7 @@ function sqlQueryEmulate($sql,$args){
             $stmt = $pdo->prepare($sql);
             $stmt->execute($args);
         } catch (PDOException $e) {
+            http_response_code(500);
             // echo $e->getMessage();
         }
         $results = $stmt->fetchAll();

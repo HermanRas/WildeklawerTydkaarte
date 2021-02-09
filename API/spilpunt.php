@@ -42,10 +42,12 @@ if (isset($_GET['KEY'])){
         }
 
     }else{
+        http_response_code(403);
         $err = array('error'=>'API AUTH KEY FAILED');
         echo   json_encode($err);
     }
 }else{
+    http_response_code(403);
     $err = array('error'=>'NO API KEY');
     echo   json_encode($err);
 }

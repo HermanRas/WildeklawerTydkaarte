@@ -38,12 +38,14 @@ if (isset($_GET['KEY'])){
             //for application use
             echo json_encode($result[0]);
         }
-
+        
     }else{
+        http_response_code(403);
         $err = array('error'=>'API AUTH KEY FAILED');
         echo   json_encode($err);
     }
 }else{
+    http_response_code(403);
     $err = array('error'=>'NO API KEY');
     echo   json_encode($err);
 }
