@@ -1,6 +1,12 @@
 <!-- The Page Title -->
 <title>Wildeklawer Tydkaarte</title>
 
+<!-- Add Manifest -->
+<link rel="manifest" href="./manifest.json">
+<script src="./service-worker-install.js"></script>
+<script src="./service-worker.js"></script>
+<!-- End Manifest -->
+
 <!-- Chrome/android APP settings -->
 <meta name="theme-color" content="#00AB93">
 <link rel="icon" href="Img/icon.jpeg" sizes="192x192">

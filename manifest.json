@@ -1,0 +1,31 @@
+{
+    "theme_color": "#07325a",
+    "background_color": "#f5ebde",
+    "display": "standalone",
+    "scope": "./",
+    "start_url": "./",
+    "name": "WK Tydkaart",
+    "short_name": "WKT",
+    "icons": [
+        {
+            "src": "Img/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "Img/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "Img/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "Img/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
