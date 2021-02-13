@@ -58,8 +58,8 @@
 
             <div class="form-group">
                 <label>Taak:</label>
-                <input id="Taak_name" type="text" class="form-control" value="<?=$res[0][0]['task_name']?>" readonly>
-                <input id="Taak" type="hidden" value="<?=$res[0][0]['task_id']?>" name="Taak">
+                <input id="Taak_name" type="text" class="form-control" value="" readonly>
+                <input id="Taak" type="hidden" value="" name="Taak">
             </div>
 
             <div class="form-group">
@@ -73,7 +73,7 @@
                 <label>Datum:</label>
                 <script>
                     // Use of Date.now() function 
-                    var date = new Date().toISOString().substring(0, 10)
+                    var date = new Date().toISOString().substring(0, 10);
                     // Printing the current date
                     document.write('<input type="date" value="' + date +
                         '" class="form-control" id="date"  name="Date" required>');
@@ -82,7 +82,6 @@
 
             <div class="form-group">
                 <label>Tyd:</label>
-
                 <script>
                     // Use of Date.now() function 
                     var date = new Date();

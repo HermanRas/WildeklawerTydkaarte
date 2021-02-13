@@ -5,7 +5,8 @@ if (isset($_GET['KEY'])){
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
         // All good do some work
-        $sql = "SELECT * from `clocklog`";
+        $sql = "SELECT  clocklog.*,workers.cn from `clocklog` 
+                left join workers on workers.id = worker_id";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);

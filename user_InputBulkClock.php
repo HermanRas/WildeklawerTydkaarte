@@ -1,4 +1,4 @@
-<?php require_once('config/_session.php');
+<?php 
 if(!isset($_COOKIE['bestemming_id'])){
     setcookie('bestemming_id', 999, time() + (86400 * 30), "/"); // 86400 = 1 day
 }

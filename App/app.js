@@ -57,6 +57,7 @@ function updateDB() {
         getDBUpdate(baseURL + '/API/gewas.php' + '?KEY=' + apiKey, 'gewas');
         getDBUpdate(baseURL + '/API/task.php' + '?KEY=' + apiKey, 'task');
         getDBUpdate(baseURL + '/API/access.php' + '?KEY=' + apiKey, 'access');
+        getDBUpdate(baseURL + '/API/clocklog.php' + '?KEY=' + apiKey, 'clockings');
 
         var now = new Date();
         window.localStorage.setItem('db_details', JSON.stringify({ 'version': 1, 'last_update': now }));

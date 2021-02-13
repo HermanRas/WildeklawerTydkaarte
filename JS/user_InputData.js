@@ -9,7 +9,7 @@ function updateData() {
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 Die Werker is in geklok op \'n Taak wat geen invoer nodig het nie, soos skoffel of algemeen, klok uit en weer in met \'n nuwe taak wat invoer bevat.!</div>
                 <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
-            window.setTimeout(function () { window.location = "user_InputBadge.php"; }, 10000);
+            // window.setTimeout(function () { window.location = "user_InputBadge.php"; }, 10000);
         } else {
             // all good let them caputer
             getlist(document.getElementById('Plaas'));
@@ -24,7 +24,7 @@ function updateData() {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             Werker is nie op tyd kaart nie, teken eers in !</div>
             <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
-        window.setTimeout(function () { window.location = "user_InputBadge.php"; }, 10000);
+        // window.setTimeout(function () { window.location = "user_InputBadge.php"; }, 10000);
     }
 }
 
@@ -36,26 +36,34 @@ function getTask() {
     let results = JSON.parse(localStorage.getItem("clockings"));
 
     // if there is any clockings
-    if (results.count > 1) {
+    if (results.length > 0) {
         // remove anyone that not the right company number
+        let date = new Date().toISOString().substring(0, 10);
         const worker = results.filter(function (worker) {
-            return worker.cn == CN;
+            if (worker.cn == CN && worker.logDate == date) {
+                return worker;
+            }
+            // return worker.cn == CN;
         });
-        // if thre is clockings
-        if (worker.count) {
+        console.log(worker);
+        // if there is clockings
+        if (worker.length > 0) {
             // if the work type is not 1 & 4
-            if (worker[0]['clockType'] != 0) {
+            if (worker[0]['clockType'] == 0) {
                 return worker[0]['task_id'];
             } else {
                 // you last clocked out
+                console.log('you last clocked out');
                 return 0;
             }
         } else {
             // you have not clocked today
+            console.log('you have not clocked today');
             return 0;
         }
     } else {
         // nobody clocked today
+        console.log('nobody clocked today');
         return 0;
     }
 }
@@ -161,17 +169,14 @@ function getGewasList(Element) {
 }
 
 function setTaskValue(taskID) {
-    // $CN = $_GET['User'];
-    // $sql = "SELECT *,task.naam as task_name from clocklog
-    // left join workers on workers.id = clocklog.worker_id
-    // left join task on clocklog.task_id = task.id
-    // where CN = '$CN'
-    // and logDate = CURDATE()
-    // order by clocklog.id DESC
-    // limit 1";
-    // require_once 'config/db_query.php';
-    // $sqlargs = array();
-    // $res = sqlQuery($sql, $sqlargs);
+    const task = document.getElementById('Taak_name');
+    const task_id = document.getElementById('Taak');
+    const tasks = JSON.parse(localStorage.getItem("task"));
+    const taskVal = tasks.filter(function (taskVal) {
+        return taskVal.id == taskID;
+    })
+    task.value = taskVal[0]['naam'];
+    task_id.value = taskVal[0]['id'];
 }
 
 function getLoginUser() {
