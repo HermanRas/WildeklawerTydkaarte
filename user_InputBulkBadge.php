@@ -22,7 +22,7 @@
 
 
     <!-- Footer -->
-    <?php include_once('_footer.php'); ?>
+    <?php include_once('_footer.html'); ?>
 </body>
 
 </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The Page Title -->
+    <title>Wildeklawer Tydkaarte</title>
+
+    <!-- Add Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./service-worker-install.js"></script>
+    <script src="./service-worker.js"></script>
+    <!-- End Manifest -->
+
+    <!-- Chrome/android APP settings -->
+    <meta name="theme-color" content="#00AB93">
+    <link rel="icon" href="Img/icon.jpeg" sizes="192x192">
+    <!-- end of Chrome/Android App Settings  -->
+
+    <!-- Start of App JS -->
+    <script src="App/dbAPI.js"></script>
+    <script src="App/app.js"></script>
+    <!-- End Of App JS -->
+
+    <!-- Bootstrap // you can use hosted CDN here-->
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="CSS/app.css" rel="stylesheet">
+    <!-- end of bootstrap -->
+
+    <!-- Import Custom Font -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <!-- end of Custom Font -->
+
+    <!-- start dataTables.net -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!-- end of dataTables -->
+
+    <!-- font-awesome 5.10.2 // not needed for theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <!-- end of font-awesome  -->
+
+    <!-- include libraries(for login CSS  & jQuery) -->
+    <link href="CSS/login.css" rel="stylesheet">
+
+    <script src="App/dbAPI.js"></script>
+    <script src="App/app.js"></script>
+</head>
+
+<body onload="setup()">
+
+    <div class="center">
+        <div style="margin:0 auto; text-align:center; ">
+            <h1>Tydkaarte</h1>
+        </div>
+    </div>
+
+    <h1 style="text-align: center;color: #fff;"></h1>
+    <form method="POST" action="_login.php" id="frm_login">
+        <div class="numpad"></div>
+        <script src="js\login.js"></script>
+    </form>
+
+    <!-- footer -->
+    <iframe src="_footer.html" frameborder="0" width="100%"></iframe>
+</body>
+
+</html>

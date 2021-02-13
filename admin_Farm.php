@@ -24,7 +24,7 @@
     <?php include_once('_admin_Farm.php'); ?>
 
     <!-- Footer -->
-    <?php include_once('_footer.php'); ?>
+    <?php include_once('_footer.html'); ?>
 </body>
 
 </html>
