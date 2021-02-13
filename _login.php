@@ -44,15 +44,15 @@ if ((null !== $_POST["pin1"]) && (null !== $_POST["pin2"]) && (null !== $_POST["
 
         }else{
             //no with that pin or too many users with same pin
-            header("Location: index.php");
+            header("Location: index.html");
         }
     }else{
         // db no data
-        header("Location: index.php");
+        header("Location: index.html");
     }
 }else{
     // not all 4 pins was entered
-    header("Location: index.php");
+    header("Location: index.html");
 }
 
 

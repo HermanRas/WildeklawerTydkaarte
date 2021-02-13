@@ -6,5 +6,5 @@ session_start();
 session_destroy();
 
 //send them back to login
-header("Location: index.php");
+header("Location: index.html");
 ?>
