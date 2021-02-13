@@ -123,3 +123,19 @@ if (!sessionStorage.getItem('acl')) {
         window.location.replace("index.html");
     }
 }
+
+function loadData(URI, TAG) {
+    function httpGet(theUrl) {
+        var xmlHttp = null;
+
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", theUrl, false);
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
+    if (TAG) {
+        document.getElementById(TAG).innerHTML = httpGet(URI);
+    } else {
+        document.write(httpGet(URI));
+    }
+}

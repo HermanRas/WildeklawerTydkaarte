@@ -52,7 +52,7 @@ if (isset($_GET['delete'])){
                 foreach ($result[0] as $row) {
                 ?>
                 <td>
-                    <a href="home.php?delete=<?php echo $row['id'] ?>" style="color:red;"><i
+                    <a href="home.html?delete=<?php echo $row['id'] ?>" style="color:red;"><i
                             class="fa fa-trash-alt"></i></a>
                     <span class="small">
                         <?php echo $row['logDate'].' '.$row['logTime'];?>

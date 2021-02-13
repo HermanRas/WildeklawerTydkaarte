@@ -43,26 +43,26 @@
     <!-- font-awesome 5.10.2 // not needed for theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
     <!-- end of font-awesome  -->
-
-    <!-- include libraries(for login CSS  & jQuery) -->
-    <link href="CSS/login.css" rel="stylesheet">
 </head>
 
-<body onload="setup()">
+<body onload="updateDB()">
+    <!-- NAV BAR -->
+    <script type="text/JavaScript">
+        loadData('_nav.html');
+    </script>
 
-    <div class="center">
-        <div style="margin:0 auto; text-align:center; ">
-            <h1>Tydkaarte</h1>
-        </div>
+
+    <!-- Page Title -->
+
+    <!-- Main Content -->
+    <div id="main">
+        Loading... Online Data
     </div>
+    <script type="text/JavaScript">
+        loadData('_home.php','main');
+    </script>
 
-    <h1 style="text-align: center;color: #fff;"></h1>
-    <form method="POST" action="_login.php" id="frm_login">
-        <div class="numpad"></div>
-        <script src="js\login.js"></script>
-    </form>
-
-    <!-- footer -->
+    <!-- Footer -->
     <script type="text/JavaScript">
         loadData('_footer.html');
     </script>

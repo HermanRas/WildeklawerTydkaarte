@@ -100,7 +100,7 @@ function login(pin) {
 
         if (sessionStorage.getItem("acl")) {
             //default guest
-            let myPage = 'home.php';
+            let myPage = 'home.html';
 
             // // if admin
             // if (sessionStorage.getItem("acl") == 7) {
@@ -114,7 +114,7 @@ function login(pin) {
 
             // // if user
             // if (sessionStorage.getItem("acl") == 1) {
-            //     myPage = 'home.php';
+            //     myPage = 'home.html';
             // }
 
             //send logged in user to his page
