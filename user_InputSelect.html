@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Custom Headers -->
+    <?php include_once('_header.html'); ?>
+</head>
+
+<body>
+    <!-- NAV BAR -->
+    <script type="text/JavaScript">
+        loadData('_nav.html');
+    </script>
+
+
+    <!-- Page Title -->
+    <!-- Main Content -->
+
+    <!-- 
+    #################################################################
+    ## show camera and Code if found
+    #################################################################
+    -->
+    <h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Invoer
+    </h1>
+    <div class="container">
+        <h3>Lees QR Kode</h3>
+        <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
+        <span id="cam-qr-result">scanning...</span>
+    </div>
+
+    <!-- Page Level Scripts -->
+    <script type="module">
+        //import plugins
+        import QrScanner from "./js/qr-scanner.min.js";
+        QrScanner.WORKER_PATH = './js/qr-scanner-worker.min.js';
+
+        //set defaults
+        const video = document.getElementById('qr-video');
+        const camQrResult = document.getElementById('cam-qr-result');
+
+        //run scan
+        function setResult(label, result) {
+            var cn = result.split("(");
+            label.innerHTML = '<h4> Werker: ' + result +
+                ' gekies</h4><a href="user_InputData.php?User=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
+            document.getElementById('memberName').value = result;
+
+            label.style.color = 'orange';
+            clearTimeout(label.highlightTimeout);
+            label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+        }
+
+        // ####### Web Cam Scanning #######
+        const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+        scanner.start();
+        scanner.setInversionMode('original');
+    </script>
+
+    <!-- Footer -->
+    <script type="text/JavaScript">
+        loadData('_footer.html');
+    </script>
+</body>
+
+</html>

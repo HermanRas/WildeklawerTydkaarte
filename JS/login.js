@@ -109,7 +109,7 @@ function login(pin) {
 
             // // if user admin
             // if (sessionStorage.getItem("acl") == 4) {
-            //     $myPage = 'user_InputSelect.php';
+            //     $myPage = 'user_InputSelect.html';
             // }
 
             // // if user

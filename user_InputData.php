@@ -29,7 +29,7 @@ if (isset($_POST['Plaas'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Custom Headers -->
-    <?php include_once('_header.php'); ?>
+    <?php include_once('_header.html'); ?>
 </head>
 
 <body>

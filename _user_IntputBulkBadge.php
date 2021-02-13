@@ -17,7 +17,7 @@ if(isset($_GET['qr'])){
 <!-- section-block -->
 <div class="container">
     <div class="card">
-        <form action="user_InputSelect.php">
+        <form action="user_InputSelect.html">
             <div class="card-body">
                 <h2>QR vir Werker Nommer: <span class="text-inline"
                         id="QrID"><?php echo $qr . " (".$res[0][0]['naam']." ".$res[0][0]['van'].")"; ?></span>

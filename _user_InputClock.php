@@ -29,7 +29,7 @@ if (isset($_POST['Plaas'])){
             '<div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             Tyd rooster Opgedateer !</div>'.
-            '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+            '<a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>';
 }
 ?>
 

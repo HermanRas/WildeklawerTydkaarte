@@ -27,12 +27,12 @@ if (isset($_POST['Plaas'])){
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);
     
-    $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },3000);</script>' .
+    $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>' .
             '<div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             Taak Bygevoeg !</div>'.
             '<h1 class="text-success text-center" style="font-size:10rem;">'. $kratte.'</h1>'.
-            '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+            '<a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>';
 }
 ?>
 
@@ -55,14 +55,14 @@ if (isset($_POST['Plaas'])){
             '<div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             Werker is nie op tyd kaart nie, teken eers in!</div>'.
-            '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+            '<a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>';
     }else{
         if ($res[0][0]['task_id'] == 1 || $res[0][0]['task_id'] == 4 || $res[0][0]['clockType']){ //for Algemeen or skoffel
-            $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.php"; },10000);</script>' .
+            $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },10000);</script>' .
                 '<div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 Die Werker is in geklok op \'n Taak wat geen invoer nodig het nie, soos skoffel of algemeen, klok uit en weer in met \'n nuwe taak wat invoer bevat.!</div>'.
-                '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+                '<a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>';
         }
     }
 
