@@ -116,12 +116,9 @@ function logout() {
 }
 
 
-if (sessionStorage.getItem('acl') === 'undefined') {
-    debugger;
-    console.log('undefined');
+if (!sessionStorage.getItem('acl')) {
     let url = (window.location.href);
     if (!url.includes("index.html")) {
-        console.log('not logged in');
-        // window.location.replace("index.html");
+        window.location.replace("index.html");
     }
 }

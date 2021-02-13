@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark  bg-dark p-1">
+<nav id="admin_menu" class="navbar navbar-expand-md navbar-dark  bg-dark p-1">
 
 
     <a class="btn btn-outline-secondary m-2 p-0 px-1" href="home.php">
@@ -33,11 +33,13 @@
         <span class="text-xxs">TekenUit</span>
     </a>
 
-    <?php 
+    <script>
         // you are a admin or higher acl
-        if($_SESSION['acl'] > 6){
-    ?>
-    <ul class="navbar-nav mr-auto">
+        if (sessionStorage.getItem('acl') > 6) {
+            let admin_menu = document.getElementById('admin_menu');
+            let user_menu = admin_menu.innerHTML;
+            admin_menu.innerHTML = user_menu +
+                `<ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
             <a class="btn btn-outline-secondary m-2 p-0 px-1  dropdown-toggle" href="#" id="navbarDropdown"
                 role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,8 +74,7 @@
                 <a class="dropdown-item" href="admin_Verslae.php">???</a>
             </div>
         </li>
-    </ul>
-    <?php
+    </ul>`;
         }
-    ?>
+    </script>
 </nav>

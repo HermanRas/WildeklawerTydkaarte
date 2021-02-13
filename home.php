@@ -13,7 +13,7 @@
 
 <body onload="updateDB()">
     <!-- NAV BAR -->
-    <?php include_once('_nav.php'); ?>
+    <?php include_once('_nav.html'); ?>
 
 
     <!-- Page Title -->
