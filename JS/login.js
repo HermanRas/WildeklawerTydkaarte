@@ -52,7 +52,7 @@ addNumber = function (field) {
     } else if (!$("#4").val()) {
         $("#4").val(field.name).addClass("dot");
         $pin = $("#1").val() + $("#2").val() + $("#3").val() + $("#4").val();
-        document.getElementById("frm_login").submit();
+        login($pin);
     };
 }
 
@@ -80,3 +80,49 @@ $(document).keyup(function (e) {
         removeNumber();
     }
 });
+
+function login(pin) {
+    //open db
+    let users = JSON.parse(localStorage.getItem("user"));
+
+    let userPin = users.filter(function (user) {
+        return user.pwd == pin;
+    })
+
+    console.log(userPin);
+
+    users.forEach(user => {
+        if (user['pwd'] === pin) {
+            sessionStorage.setItem("uid", user['id']);
+            sessionStorage.setItem("acl", user['accesslevel']);
+            sessionStorage.setItem("farm_id", user['id']);
+        }
+
+        if (sessionStorage.getItem("acl")) {
+            //default guest
+            let myPage = 'home.php';
+
+            // // if admin
+            // if (sessionStorage.getItem("acl") == 7) {
+            //     myPage = 'admin_Summary.php';
+            // }
+
+            // // if user admin
+            // if (sessionStorage.getItem("acl") == 4) {
+            //     $myPage = 'user_InputSelect.php';
+            // }
+
+            // // if user
+            // if (sessionStorage.getItem("acl") == 1) {
+            //     myPage = 'home.php';
+            // }
+
+            //send logged in user to his page
+            window.location.replace(myPage)
+        } else {
+            //user not in db
+            window.location.replace("index.html");
+            return;
+        }
+    });
+}

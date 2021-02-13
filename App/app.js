@@ -109,3 +109,19 @@ window.addEventListener('offline', function (event) {
 window.addEventListener('online', function (event) {
     updateAppStatus('online');
 });
+
+
+function logout() {
+    localStorage.clear();
+}
+
+
+if (sessionStorage.getItem('acl') === 'undefined') {
+    debugger;
+    console.log('undefined');
+    let url = (window.location.href);
+    if (!url.includes("index.html")) {
+        console.log('not logged in');
+        // window.location.replace("index.html");
+    }
+}

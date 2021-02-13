@@ -11,6 +11,8 @@ if (isset($_GET['KEY'])){
                 users.van,
                 users.CN,
                 users.pwd,
+                users.accesslevel,
+                users.farm_id,
                 plaas.naam As plaas_naam,
                 plaas.afkorting As plaas_afk,
                 access.naam As acc_naam,
