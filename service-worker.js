@@ -8,11 +8,16 @@ const OFFLINE_URL = '/web_dev/Projects/WildeklawerTydkaarte/indexOffline.html';
 // list of urls to cache
 const filesToCache = [
     '/web_dev/Projects/WildeklawerTydkaarte/',
+    '/web_dev/Projects/WildeklawerTydkaarte/index.html',
+    '/web_dev/Projects/WildeklawerTydkaarte/_nav.html',
+    '/web_dev/Projects/WildeklawerTydkaarte/_footer.html',
+    '/web_dev/Projects/WildeklawerTydkaarte/site_Privacy.html',
+    '/web_dev/Projects/WildeklawerTydkaarte/site_Terms.html',
+
     '/web_dev/Projects/WildeklawerTydkaarte/CSS/app.css',
     '/web_dev/Projects/WildeklawerTydkaarte/CSS/login.css',
     '/web_dev/Projects/WildeklawerTydkaarte/CSS/bootstrap.min.css',
-    '/web_dev/Projects/WildeklawerTydkaarte/site_Privacy.html',
-    '/web_dev/Projects/WildeklawerTydkaarte/site_Terms.html',
+
     '/web_dev/Projects/WildeklawerTydkaarte/js/bootstrap.bundle.min.js',
     '/web_dev/Projects/WildeklawerTydkaarte/Img/icon-192x192.png'
 ];
