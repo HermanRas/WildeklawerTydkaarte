@@ -27,7 +27,7 @@
     <h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Invoer
     </h1>
     <div id="main" class="container">
-        <form action="" method="POST" id="frm1" class="needs-validation was-validated" novalidate>
+        <form action="" id="frm1" class="needs-validation was-validated" novalidate>
             <br>
             <div class="form-group">
                 <label>Plaas: </label>
@@ -66,7 +66,7 @@
                 <label>Kratte:</label>
                 <input type="number" class="form-control" placeholder="" id="kratte" name="kratte" required>
             </div>
-            <button class="btn btn-primary" id="Stuur">Stoor</button>
+            <button type="button" class="btn btn-primary" id="Stuur" onclick="saveData();">Stoor</button>
 
             <br>
             <div class="form-group">

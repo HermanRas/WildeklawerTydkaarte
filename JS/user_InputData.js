@@ -45,12 +45,11 @@ function getTask() {
             }
             // return worker.cn == CN;
         });
-        console.log(worker);
         // if there is clockings
         if (worker.length > 0) {
             // if the work type is not 1 & 4
-            if (worker[0]['clockType'] == 0) {
-                return worker[0]['task_id'];
+            if (worker[worker.length - 1]['clockType'] == 0) {
+                return worker[worker.length - 1]['task_id'];
             } else {
                 // you last clocked out
                 console.log('you last clocked out');
@@ -71,21 +70,21 @@ function getTask() {
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
-function formPost() {
+function saveData() {
+    // get from data
+    let farm_id = document.getElementById('Plaas');
+    let Gewas_id = document.getElementById('Gewas');
+    let spulpunt_id = document.getElementById('spulpunt');
 
     // if user save, set cookies
+    var now = new Date();
+    var time = now.getTime();
+    var expireTime = time + 1000 * 36000;
 
-    // if (!isset($_COOKIE['bestemming_id'])) {
-    //     setcookie('bestemming_id', 999, time() + (86400 * 30), "/"); // 86400 = 1 day
-    // }
+    document.cookie = 'farm_id=' + farm_id + ';expires=' + expireTime + ';path=/';
+    document.cookie = 'Gewas=' + Gewas_id + ';expires=' + expireTime + ';path=/';
+    document.cookie = 'spulpunt=' + spulpunt_id + ';expires=' + expireTime + ';path=/';
 
-    // if (!isset($_COOKIE['farm_id'])) {
-    //     setcookie('farm_id', $_SESSION['farm_id'], time() + (86400 * 30), "/"); // 86400 = 1 day
-    // }
-
-    // if (!isset($_COOKIE['Gewas'])) {
-    //     setcookie('Gewas', 999, time() + (86400 * 30), "/"); // 86400 = 1 day
-    // }
 
     // if (isset($_POST['Plaas'])) {
     //     $Plaas = $_POST["Plaas"];
