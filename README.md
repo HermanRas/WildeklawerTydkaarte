@@ -41,6 +41,21 @@
 - 2021/01/23 scanner add name and surname of worker
 - 2021/01/23 error page gee meer info
 - 2021/01/23 Mass check-in added
+- 2021/01/28 updated bugs and typo's
+- 2021/02/02 installed base framework for api's
+- 2021/02/02 added api's
+- 2021/02/02 added js db for offline use
+- 2021/02/05 fixed typo
+- 2021/02/08 working db sync
+- 2021/02/08 added offline indecator
+- 2021/02/08 working offline record indecator
+- 2021/02/09 add offline page update
+- 2021/02/09 working android WPA installer
+- 2021/02/09 added service worker
+- 2021/02/13 added offline footer
+- 2021/02/13 added offline header
+- 2021/02/13 added offline nav bar
+- 2021/02/13 added offline login
 
 ### TO DO
 - mass check in direction not working
