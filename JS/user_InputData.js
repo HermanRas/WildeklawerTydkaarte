@@ -13,7 +13,7 @@ function updateData() {
         } else {
             // all good let them caputer
             getlist(document.getElementById('Plaas'));
-            getPryList(document.getElementById('spulpunt'));
+            getPryList(document.getElementById('spilpunt'));
             getGewasList(document.getElementById('Gewas'));
             getLoginUser();
             setTaskValue(taskID);
@@ -71,52 +71,42 @@ function getTask() {
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
 function saveData() {
-    // get from data
-    let farm_id = document.getElementById('Plaas');
-    let Gewas_id = document.getElementById('Gewas');
-    let spulpunt_id = document.getElementById('spulpunt');
+    // if form ready to save
+    if (document.getElementById("frm1").checkValidity()) {
 
-    // if user save, set cookies
-    var now = new Date();
-    var time = now.getTime();
-    var expireTime = time + 1000 * 36000;
-
-    document.cookie = 'farm_id=' + farm_id + ';expires=' + expireTime + ';path=/';
-    document.cookie = 'Gewas=' + Gewas_id + ';expires=' + expireTime + ';path=/';
-    document.cookie = 'spulpunt=' + spulpunt_id + ';expires=' + expireTime + ';path=/';
-
-
-    // if (isset($_POST['Plaas'])) {
-    //     $Plaas = $_POST["Plaas"];
-    //     $spilpunt = $_POST["spilpunt"];
-    //     $Gewas = $_POST["Gewas"];
-    //     setcookie('spilpunt_id', $spilpunt, time() + (86400 * 30), "/"); // 86400 = 1 day
-    //     setcookie('farm_id', $Plaas, time() + (86400 * 30), "/"); // 86400 = 1 day
-    //     setcookie('Gewas', $Gewas, time() + (86400 * 30), "/"); // 86400 = 1 day
-    // }
+        // get from data
+        let farm_id = document.getElementById('Plaas').value;
+        let Gewas_id = document.getElementById('Gewas').value;
+        let spilpunt_id = document.getElementById('spilpunt').value;
+        let uid = sessionStorage.getItem("uid").value;
+        let CN = document.getElementById('CN').value;
+        let kratte = document.getElementById('kratte').value;
+        let task = document.getElementById('Taak').value;
+        let date = document.getElementById('date').value;
+        let time = document.getElementById('time').value;
 
 
-    // Add to sql
-    //     $uid = $_SESSION["uid"];
-    //     $Plaas = $_POST["Plaas"];
-    //     $CN = $_POST["CN"];
-    //     $spilpunt = $_POST["spilpunt"];
-    //     $Gewas = $_POST["Gewas"];
-    //     $Spry = $_POST["spilpunt"];
-    //     $kratte = $_POST["kratte"];
-    //     $task = $_POST["Taak"];
-    //     $date = $_POST["Date"];
-    //     $time = $_POST["time"];
+        // if user save, set cookies
+        var now = new Date();
+        var Ctime = now.getTime();
+        var expireTime = Ctime + 1000 * 36000;
+
+        document.cookie = 'farm_id=' + farm_id + ';expires=' + expireTime + ';path=/';
+        document.cookie = 'Gewas=' + Gewas_id + ';expires=' + expireTime + ';path=/';
+        document.cookie = 'spilpunt=' + spilpunt_id + ';expires=' + expireTime + ';path=/';
 
 
-    //     $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
-    //     values('$uid', '$CN', '$Plaas', '$Gewas', '$Spry', '$task', '$kratte', '$date', '$time'); ";
 
-    //     msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
-    //             <div class="alert alert-success alert-dismissible" role="alert">
-    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    //             Taak Bygevoeg!</div ><h1 class="text-success text-center" style="font-size:10rem;">$kratte</h1>
-    //             <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
+
+        //     $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
+        //     values('$uid', '$CN', '$Plaas', '$Gewas', '$Spry', '$task', '$kratte', '$date', '$time'); ";
+
+        //     msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
+        //             <div class="alert alert-success alert-dismissible" role="alert">
+        //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        //             Taak Bygevoeg!</div ><h1 class="text-success text-center" style="font-size:10rem;">$kratte</h1>
+        //             <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
+    }
 }
 
 
@@ -139,7 +129,7 @@ function getlist(Element) {
 function getPryList(Element) {
     let dropdown = Element.innerHTML;
     let list = '';
-    let cookie = getCookie("spilpunt_id");
+    let cookie = getCookie("spilpunt");
     let results = JSON.parse(localStorage.getItem("spilpunt"));
     results.forEach(item => {
         if (item['id'] == cookie) {

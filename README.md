@@ -38,7 +38,7 @@
 - 2021/01/23 taak dropdown moved to sql query, lookup from clock in
 - 2021/01/23 completely reworked menu
 - 2021/01/23 add all pages banner
-- 2021/01/23 scanner add name and surname of worker
+- 20121/02/01/01/23 scanner add name and surname of worker
 - 2021/01/23 error page gee meer info
 - 2021/01/23 Mass check-in added
 - 2021/01/28 updated bugs and typo's
@@ -56,6 +56,12 @@
 - 2021/02/13 added offline header
 - 2021/02/13 added offline nav bar
 - 2021/02/13 added offline login
+- 2021/02/13 added offline logout
+- 2021/02/13 working offline home page
+- 2021/02/13 fixed page headers for offline
+- 2021/02/13 working offline input page
+- 2021/02/13 added clock api
+- 2021/02/13 working user inputData JS added
 
 ### TO DO
 - mass check in direction not working
