@@ -15,9 +15,9 @@ if (isset($_GET['KEY'])){
                 vworktimecalc.van,
                 vworktimecalc.CN,
                 vworktimecalc.managerNaam,
-                vworktimecalc.managerVen,
+                vworktimecalc.managerVan,
                 vworktimecalc.plaasNaam,
-                vworktimecalc.sipluntNaam,
+                vworktimecalc.spilpuntNaam,
                 vworktimecalc.taakNaam
                 From
                 vworktimecalc";
@@ -42,7 +42,7 @@ if (isset($_GET['KEY'])){
             echo '            <th style="border:1px solid black;">managerNaam</th>';
             echo '            <th style="border:1px solid black;">managerVan</th>';
             echo '            <th style="border:1px solid black;">plaasNaam</th>';
-            echo '            <th style="border:1px solid black;">sipluntNaam</th>';
+            echo '            <th style="border:1px solid black;">spilpuntNaam</th>';
             echo '            <th style="border:1px solid black;">taakNaam</th>';
             echo '        </tr>';
             echo '    </thead>';
@@ -60,9 +60,9 @@ if (isset($_GET['KEY'])){
                 echo "            <td style=\"border:1px solid black;\">".$row['van']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['CN']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['managerNaam']."</td>";
-                echo "            <td style=\"border:1px solid black;\">".$row['managerVen']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['managerVan']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['plaasNaam']."</td>";
-                echo "            <td style=\"border:1px solid black;\">".$row['sipluntNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['spilpuntNaam']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['taakNaam']."</td>";
                 echo "        </tr>";
             }
@@ -75,12 +75,10 @@ if (isset($_GET['KEY'])){
         }
 
     }else{
-        http_response_code(403);
         $err = array('error'=>'API AUTH KEY FAILED');
         echo   json_encode($err);
     }
 }else{
-    http_response_code(403);
     $err = array('error'=>'NO API KEY');
     echo   json_encode($err);
 }

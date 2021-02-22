@@ -17,8 +17,8 @@ if (isset($_GET['KEY'])){
             echo '    <thead>';
             echo '        <tr style="border:1px solid black;">';
             echo '            <th style="border:1px solid black;">ID</th>';
-            echo '            <th style="border:1px solid black;">naam</th>';
-            echo '            <th style="border:1px solid black;">beskrywing</th>';
+            echo '            <th style="border:1px solid black;">Naam</th>';
+            echo '            <th style="border:1px solid black;">Beskrywing</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';

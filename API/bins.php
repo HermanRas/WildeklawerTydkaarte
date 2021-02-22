@@ -28,12 +28,12 @@ if (isset($_GET['KEY'])){
             echo '<table style="border:1px solid black;width:100%">';
             echo '    <thead>';
             echo '        <tr style="border:1px solid black;">';
-            echo '            <th style="border:1px solid black;">logDate</th>';
-            echo '            <th style="border:1px solid black;">naam</th>';
-            echo '            <th style="border:1px solid black;">van</th>';
+            echo '            <th style="border:1px solid black;">Datum</th>';
+            echo '            <th style="border:1px solid black;">Naam</th>';
+            echo '            <th style="border:1px solid black;">Van</th>';
             echo '            <th style="border:1px solid black;">CN</th>';
-            echo '            <th style="border:1px solid black;">Crates</th>';
-            echo '            <th style="border:1px solid black;">task_naam</th>';
+            echo '            <th style="border:1px solid black;">Kratte</th>';
+            echo '            <th style="border:1px solid black;">Taak</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';

@@ -10,7 +10,6 @@ if (isset($_GET['KEY'])){
                 users.naam,
                 users.van,
                 users.CN,
-                users.pwd,
                 plaas.naam As plaas_naam,
                 plaas.afkorting As plaas_afk,
                 access.naam As acc_naam,
@@ -29,14 +28,14 @@ if (isset($_GET['KEY'])){
             echo '<table style="border:1px solid black;width:100%">';
             echo '    <thead>';
             echo '        <tr style="border:1px solid black;">';
-            echo '            <th style="border:1px solid black;">id</th>';
-            echo '            <th style="border:1px solid black;">naam</th>';
-            echo '            <th style="border:1px solid black;">van</th>';
+            echo '            <th style="border:1px solid black;">ID</th>';
+            echo '            <th style="border:1px solid black;">Naam</th>';
+            echo '            <th style="border:1px solid black;">Van</th>';
             echo '            <th style="border:1px solid black;">CN</th>';
-            echo '            <th style="border:1px solid black;">plaas_naam</th>';
-            echo '            <th style="border:1px solid black;">plaas_afk</th>';
-            echo '            <th style="border:1px solid black;">acc_naam</th>';
-            echo '            <th style="border:1px solid black;">acc_afk</th>';
+            echo '            <th style="border:1px solid black;">Plaas Naam</th>';
+            echo '            <th style="border:1px solid black;">Plaas Afkorting</th>';
+            echo '            <th style="border:1px solid black;">Volle Naam</th>';
+            echo '            <th style="border:1px solid black;">Naam Afkorting</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';
@@ -63,12 +62,10 @@ if (isset($_GET['KEY'])){
         }
 
     }else{
-        http_response_code(403);
         $err = array('error'=>'API AUTH KEY FAILED');
         echo   json_encode($err);
     }
 }else{
-    http_response_code(403);
     $err = array('error'=>'NO API KEY');
     echo   json_encode($err);
 }
