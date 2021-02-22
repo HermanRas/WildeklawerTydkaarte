@@ -10,9 +10,11 @@ if (isset($_POST['action'])){
         $naam = $_POST['Naam'];
         $van = $_POST['Van'];
         $CN = $_POST['CN'];
+        $img = $_POST['img_data'];
+        $Area = $_POST['Area'];
+        $skof = $_POST['Skof'];
 
-        
-        $sql = "update workers set naam='$naam',van='$van',CN='$CN' where id = '$uid'";
+        $sql = "update workers set naam='$naam',van='$van',CN='$CN',img_data='$img',skof='$skof',area='$Area' where id = '$uid'";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -24,8 +26,11 @@ if (isset($_POST['action'])){
         $naam = $_POST['Naam'];
         $van = $_POST['Van'];
         $CN = $_POST['CN'];
+        $img = $_POST['img_data'];
+        $Area = $_POST['Area'];
+        $skof = $_POST['Skof'];
 
-        $sql = "insert into workers (naam,van,CN) values('$naam','$van','$CN');";
+        $sql = "insert into workers (naam,van,CN,img_data,area,skof) values('$naam','$van','$CN','$img','$Area','$skof');";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -111,14 +116,54 @@ if (isset($_GET['delete'])){
     if (isset($_GET['add'])){
     ?>
     <form method="POST" id="frmAdd">
+
+        <div id="my_camera"></div>
+        <input class="btn btn-primary" type="button" value="Stoor Foto" onClick="take_snapshot()">
+        <!-- Webcam.min.js -->
+        <script type="text/javascript" src="js/webcam.min.js"></script>
+        <!-- Configure a few settings and attach camera -->
+        <script language="JavaScript">
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+        // Code to handle taking the snapshot and displaying it locally
+        function take_snapshot() {
+            // take snapshot and get image data
+            Webcam.snap(function(data_uri) {
+                // display results in page
+                document.getElementById('img_pic').src = data_uri;
+                document.getElementById('img_data').value = data_uri;
+            });
+        }
+        </script>
+
         <div class="form-group">
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="" name="Naam" id="farmName" placeholder="Naam">
             <label for="van">Van:</label>
             <input type="text" class="form-control" value="" name="Van" id="van" placeholder="Van">
+
+            <label for="Area">Woon Area:</label>
+            <input type="text" class="form-control" value="" name="Area" id="Area" placeholder="Woon Area">
+            <label for="Skof">Werker Skof:</label>
+            <select class="form-control" name="Skof" id="Skof">
+                <option value="">Kies Skof</option>
+                <option value="Dag">Dag</option>
+                <option value="Nag">Nag</option>
+            </select>
+
             <label for="CN">Werker Nommer:</label>
             <input type="number" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
             <input type="hidden" name="action" value="add">
+        </div>
+        <label for="img_data">Werker foto:</label>
+        <div class="bg-white p-1 border rounded">
+            <img width="320px" height="240px" id="img_pic" src="img/favicon.png" />
+            <input type="hidden" name="img_data" id="img_data" value="img/favicon.png" />
         </div>
         <button type="button" class="btn btn-success" onclick="frmAdd.submit()">Voeg By</button>
         <button type="button" class="btn btn-warning"
@@ -136,33 +181,78 @@ if (isset($_GET['delete'])){
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
+        $img_data = 'img/favicon.png';
         foreach ($result[0] as $row) {
             $naam = $row['naam'];
             $van = $row['van'];
             $CN = $row['CN'];
+            $img_data = $row['img_data'];
+            $Area = $row['area'];
+            $skof = $row['skof'];
         }
     ?>
     <form method="POST" id="frmUpdate">
+
+        <div id="my_camera"></div>
+        <input class="btn btn-primary" type="button" value="Stoor Foto" onClick="take_snapshot()">
+        <!-- Webcam.min.js -->
+        <script type="text/javascript" src="js/webcam.min.js"></script>
+        <!-- Configure a few settings and attach camera -->
+        <script language="JavaScript">
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+        // Code to handle taking the snapshot and displaying it locally
+        function take_snapshot() {
+            // take snapshot and get image data
+            Webcam.snap(function(data_uri) {
+                // display results in page
+                document.getElementById('img_pic').src = data_uri;
+                document.getElementById('img_data').value = data_uri;
+            });
+        }
+        </script>
+
         <div class="form-group">
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="<?php echo $naam; ?>" name="Naam" id="farmName"
                 placeholder="Naam">
             <label for="van">Van:</label>
             <input type="text" class="form-control" value="<?php echo $van; ?>" name="Van" id="van" placeholder="Van">
+
+            <label for="Area">Woon Area:</label>
+            <input type="text" class="form-control" value="<?php echo $Area; ?>" name="Area" id="Area"
+                placeholder="Woon Area">
+            <label for="Skof">Werker Skof:</label>
+            <select class="form-control" name="Skof" id="Skof">
+                <option value="<?php echo $skof; ?>"><?php echo $skof; ?></option>
+                <option value="Dag">Dag</option>
+                <option value="Nag">Nag</option>
+            </select>
+
             <label for="CN">Werker Nommer:</label>
             <input type="number" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
                 placeholder="Werker Nommer">
             <input type="hidden" name="action" value="add">
             <input type="hidden" value="<?php echo $uid; ?>" name="uid" id="uid">
             <input type="hidden" name="action" value="update">
+            <label for="img_data">Werker foto:</label>
+            <div class="bg-white p-1 border rounded">
+                <img width="320px" height="240px" id="img_pic" src="<?php echo $img_data; ?>" />
+                <input type="hidden" name="img_data" id="img_data" value="<?php echo $img_data; ?>" />
+            </div>
         </div>
-        <button type="button" class="btn btn-success" onclick="frmUpdate.submit()">Verander</button>
-        <button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
-        <button type="button" class="btn btn-warning"
-            onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
-        <a class="btn btn-info" href="user_InputSelect.php?qr=<?php echo $CN ;?>">QR KODE</a>
-    </form>
-    <?php
+</div>
+<button type="button" class="btn btn-success" onclick="frmUpdate.submit()">Verander</button>
+<button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
+<button type="button" class="btn btn-warning" onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
+<a class="btn btn-info" href="user_InputSelect.php?qr=<?php echo $CN ;?>">QR KODE</a>
+</form>
+<?php
     }
     ?>
 
