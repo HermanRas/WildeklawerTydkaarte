@@ -42,44 +42,6 @@ $qr = '';
     </div>
 </div>
 
-<!-- script to open picture in print window -->
-<script>
-function PrintElem() {
-    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-
-    mywindow.document.write('<html><head><title>' + document.title + '</title>');
-    mywindow.document.write('</head><body >');
-    var canvas = document.getElementById('YourQRCode');
-    var img = canvas.toDataURL("image/png");
-    mywindow.document.write('<img src="' + img + '"/>');
-    mywindow.document.write('</body></html>');
-
-    var now = new Date().getTime();
-    while (new Date().getTime() < now + 2000) {
-        /* do nothing */
-    }
-    mywindow.focus(); // necessary for IE >= 10*/
-    mywindow.print();
-    return true;
-}
-</script>
-
-<!-- Load QR Code rendering Module -->
-<script type="module">
-import QrCode from './js/qr-code.min.js';
-
-function readSettings() {
-    let settings = {};
-    settings.radius = '0';
-    settings.ecLevel = 'H';
-    settings.fill = '#000000';
-    settings.background = null;
-    settings.size = 250;
-    settings.text = document.getElementById('QrID').innerText;
-    return settings;
-}
-</script>
-
 <?php
 }else{
 ?>

@@ -16,7 +16,7 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = 'offline';
 // Customize this with a different URL if needed.
-const OFFLINE_URL = '/tydkaarte/indexOffline.html';
+const OFFLINE_URL = '/web_dev/Projects/WildeklawerTydkaarte_temp/indexOffline.html';
 
 self.addEventListener('install', (event) => {
     event.waitUntil((async () => {

@@ -31,6 +31,7 @@ if (isset($_POST['action'])){
         $skof = $_POST['Skof'];
 
         $sql = "insert into workers (naam,van,CN,img_data,area,skof) values('$naam','$van','$CN','$img','$Area','$skof');";
+
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -162,8 +163,8 @@ if (isset($_GET['delete'])){
         </div>
         <label for="img_data">Werker foto:</label>
         <div class="bg-white p-1 border rounded">
-            <img width="320px" height="240px" id="img_pic" src="img/favicon.png" />
-            <input type="hidden" name="img_data" id="img_data" value="img/favicon.png" />
+            <img width="320px" height="240px" id="img_pic" src="Img/favicon.png" />
+            <input type="hidden" name="img_data" id="img_data" value="Img/favicon.png" />
         </div>
         <button type="button" class="btn btn-success" onclick="frmAdd.submit()">Voeg By</button>
         <button type="button" class="btn btn-warning"
@@ -181,7 +182,7 @@ if (isset($_GET['delete'])){
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
-        $img_data = 'img/favicon.png';
+        $img_data = 'Img/favicon.png';
         foreach ($result[0] as $row) {
             $naam = $row['naam'];
             $van = $row['van'];
