@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['ALL'])){
-        $sql = "SELECT * from Workers";
+        $sql = "SELECT * from workers";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -8,7 +8,7 @@ if (isset($_GET['ALL'])){
 
 if (isset($_GET['CN'])){
     $CN = $_GET['CN'];
-    $sql = "SELECT * from Workers
+    $sql = "SELECT * from workers
             WHERE CN = $CN;";
     require_once 'config/db_query.php';
     $sqlargs = array();
@@ -35,7 +35,7 @@ if (isset($_GET['CN'])){
 
     <!-- Load QR Code rendering Module -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
-    <script src="JS/jquery-qrcode-0.18.0.min.js"></script>
+    <script src="js/jquery-qrcode-0.18.0.min.js"></script>
     <!-- <script src="JS/jquery.qrcode.js"></script> -->
     <!-- <script src="JS/qrcode.js"></script> -->
     <?php 
