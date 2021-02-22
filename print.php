@@ -34,33 +34,10 @@ if (isset($_GET['CN'])){
 
 
     <!-- Load QR Code rendering Module -->
-    <script type="module">
-    import QrCode from './js/qr-code.min.js';
-
-    function readSettings() {
-        let settings = {};
-        settings.radius = '0';
-        settings.ecLevel = 'H';
-        settings.fill = '#000000';
-        settings.background = null;
-        settings.size = 250;
-        settings.text = document.getElementById('QrID').innerText;
-        return settings;
-    }
-
-    function renderQrCode() {
-        let time = new Date(),
-            container = document.querySelector('#qr-code'),
-            settings = readSettings();
-        container.innerHTML = '';
-        QrCode.render(settings, container);
-    }
-    for (let input of document.querySelectorAll('input, select')) {
-        input.addEventListener('change', renderQrCode);
-    }
-    renderQrCode();
-    </script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
+    <script src="JS/jquery-qrcode-0.18.0.min.js"></script>
+    <!-- <script src="JS/jquery.qrcode.js"></script> -->
+    <!-- <script src="JS/qrcode.js"></script> -->
     <?php 
     if (isset($result)){
         $i = 0;
@@ -85,8 +62,9 @@ if (isset($_GET['CN'])){
                 <b>WK:</b><?php echo $row['CN']?><br>
                 <b>Skof:</b><?php echo $row['skof']?><br>
                 <br>
-                <div class="img-box-qr">
-                    <img src="Img/qr-temp.png">
+                <div class="img-box-qr" id="<?php echo $row['CN']?>">
+                    <?php //echo "<script>jQuery  ('#".$row['CN']."').qrcode({mode: 3,image: '../Img/admin.png',text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']."'});</script>"; ?>
+                    <?php echo "<script>jQuery  ('#".$row['CN']."').qrcode({label: 'WK',fontname: 'arial',fontcolor: '#00AB93',mode: 0,text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']."'});</script>"; ?>
                 </div>
             </div>
             <?php

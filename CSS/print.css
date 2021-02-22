@@ -5,6 +5,7 @@ body{
 
 .page{
     border: 1px solid #999;
+    padding-top: 20px;
     max-height: 21cm;
     min-height: 21cm;
     max-width: 29.7cm;
@@ -48,8 +49,9 @@ body{
     height: 2cm;
 }
 
-.img-box-qr>img{
+.img-box-qr>canvas{
     border: 1px solid;
+    padding: 2px;
     width: 3cm;
     height: 3cm;
 }

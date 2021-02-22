@@ -107,6 +107,9 @@ if (isset($_GET['delete'])){
             ?>
             <option value="addWorker">+Nuwe Werker</option>
         </select>
+        <br>
+        <br>
+        <a class="btn btn-info" target="_blank" href="print.php?ALL">QR KODE VIR ALMAL</a>
     </div>
     <?php
     }
@@ -251,7 +254,7 @@ if (isset($_GET['delete'])){
 <button type="button" class="btn btn-success" onclick="frmUpdate.submit()">Verander</button>
 <button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
 <button type="button" class="btn btn-warning" onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
-<a class="btn btn-info" href="user_InputSelect.php?qr=<?php echo $CN ;?>">QR KODE</a>
+<a class="btn btn-info" target="_blank" href="print.php?CN=<?php echo $CN ;?>">QR KODE</a>
 </form>
 <?php
     }
