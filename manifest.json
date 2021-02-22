@@ -5,7 +5,7 @@
     "scope": "./",
     "start_url": "./",
     "name": "WK Tydkaart",
-    "short_name": "WKT",
+    "short_name": "Tydkaart",
     "icons": [
         {
             "src": "Img/icon-192x192.png",
