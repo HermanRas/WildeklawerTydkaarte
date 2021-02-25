@@ -201,7 +201,7 @@ Where
 DROP VIEW IF EXISTS vclocklogNotOut;
 CREATE VIEW vclocklogNotOut AS
 Select
-  Max(clocklog.id) As Max_id,
+  clocklog.id As Max_id,
   workers.naam,
   workers.van,
   workers.CN,
@@ -219,7 +219,9 @@ From
   spilpunt On clocklog.spry_id = spilpunt.id Left Join
   task On clocklog.task_id = task.id Left Join
   users On clocklog.user_id = users.id Left Join
-  workers On clocklog.worker_id = workers.id;
+  workers On clocklog.worker_id = workers.id
+Order by clocklog.id DESC
+limit 1;
 
 DROP VIEW IF EXISTS vclocklogInOut;
 CREATE VIEW vclocklogInOut AS
@@ -281,4 +283,5 @@ Select
   vworktimecalc.managerNaam,
   vworktimecalc.managerVan
 From
-  vworktimecalc;
+  vworktimecalc
+GROUP BY vworktimecalc.outDate,vworktimecalc.naam,vworktimecalc.van,vworktimecalc.CN;

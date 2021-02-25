@@ -5,25 +5,10 @@ if (isset($_GET['KEY'])){
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
         // All good do some work
-        $sql = "SELECT
-                vworktimecalc.MinutesOnClock,
-                vworktimecalc.inDate,
-                vworktimecalc.inTime,
-                vworktimecalc.outDate,
-                vworktimecalc.outTime,
-                vworktimecalc.naam,
-                vworktimecalc.van,
-                vworktimecalc.CN,
-                vworktimecalc.managerNaam,
-                vworktimecalc.managerVan,
-                vworktimecalc.plaasNaam,
-                vworktimecalc.spilpuntNaam,
-                vworktimecalc.taakNaam
-                From
-                vworktimecalc";
+        $sql = "SELECT * FROM vworktimecalc;";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
+        $result = sqlQueryEmulate($sql, $sqlargs);
 
         //is results for excel or Offline app?
         if (isset($_GET['EXCEL'])){
