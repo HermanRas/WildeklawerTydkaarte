@@ -63,6 +63,7 @@ CREATE TABLE workers(
 	area VARCHAR(254),
 	skof VARCHAR(254) NOT NULL,
   img_data LONGTEXT,
+  contract_end DATE NOT NULL,
 	CN INT UNSIGNED NOT NULL);
 
 DROP TABLE IF EXISTS access;

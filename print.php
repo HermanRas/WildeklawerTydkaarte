@@ -57,11 +57,13 @@ if (isset($_GET['CN'])){
                 <div class="img-box-pic">
                     <img src="<?php echo $row['img_data']?>">
                 </div>
-                <br>
-                <b>Naam:</b><?php echo $row['naam'] . " ".$row['van'];?><br>
-                <b>WK:</b><?php echo $row['CN']?><br>
-                <b>Skof:</b><?php echo $row['skof']?><br>
-                <br>
+                <div style="line-height: 1!important;">
+                    <b>Naam & van:</b><?php echo $row['naam'] . " ".$row['van'];?><br>
+                    <b>Werker Nommer:</b><?php echo $row['CN']?><br>
+                    <b>Skof:</b><?php echo $row['skof']?><br>
+                    <b>Verblyf:</b><br><?php echo $row['area']?><br>
+                    <b>Kontrak eindig datum:</b><br><?php echo $row['contract_end']?><br>
+                </div>
                 <div class="img-box-qr" id="<?php echo $row['CN']?>">
                     <?php //echo "<script>jQuery  ('#".$row['CN']."').qrcode({mode: 3,image: '../Img/admin.png',text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']."'});</script>"; ?>
                     <?php echo "<script>jQuery  ('#".$row['CN']."').qrcode({label: 'WK',fontname: 'arial',fontcolor: '#00AB93',mode: 0,text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']."'});</script>"; ?>

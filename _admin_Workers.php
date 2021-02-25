@@ -13,8 +13,8 @@ if (isset($_POST['action'])){
         $img = $_POST['img_data'];
         $Area = $_POST['Area'];
         $skof = $_POST['Skof'];
-
-        $sql = "update workers set naam='$naam',van='$van',CN='$CN',img_data='$img',skof='$skof',area='$Area' where id = '$uid'";
+        $KDatum = $_POST['KDatum'];
+        $sql = "update workers set naam='$naam',van='$van',CN='$CN',img_data='$img',skof='$skof',area='$Area',contract_end='$KDatum' where id = '$uid'";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -29,8 +29,8 @@ if (isset($_POST['action'])){
         $img = $_POST['img_data'];
         $Area = $_POST['Area'];
         $skof = $_POST['Skof'];
-
-        $sql = "insert into workers (naam,van,CN,img_data,area,skof) values('$naam','$van','$CN','$img','$Area','$skof');";
+        $KDatum = $_POST['KDatum'];
+        $sql = "insert into workers (naam,van,CN,img_data,area,skof,contract_end) values('$naam','$van','$CN','$img','$Area','$skof','$KDatum');";
 
         require_once 'config/db_query.php';
         $sqlargs = array();
@@ -160,6 +160,12 @@ if (isset($_GET['delete'])){
                 <option value="Nag">Nag</option>
             </select>
 
+            <label for="KDatum">Kontrak Datum:</label>
+            <input type="date" class="form-control" value="<?php echo $KDatum; ?>" name="KDatum" id="KDatum">
+            <script>
+            document.getElementById('KDatum').valueAsDate = new Date();
+            </script>
+
             <label for="CN">Werker Nommer:</label>
             <input type="number" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
             <input type="hidden" name="action" value="add">
@@ -193,6 +199,7 @@ if (isset($_GET['delete'])){
             $img_data = $row['img_data'];
             $Area = $row['area'];
             $skof = $row['skof'];
+            $KDatum = $row['contract_end'];
         }
     ?>
     <form method="POST" id="frmUpdate">
@@ -237,6 +244,9 @@ if (isset($_GET['delete'])){
                 <option value="Dag">Dag</option>
                 <option value="Nag">Nag</option>
             </select>
+
+            <label for="KDatum">Kontrak Datum:</label>
+            <input type="date" class="form-control" value="<?php echo $KDatum; ?>" name="KDatum" id="KDatum">
 
             <label for="CN">Werker Nommer:</label>
             <input type="number" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
