@@ -2,9 +2,9 @@ function updateData() {
     // all good let them caputer
     getlist(document.getElementById('Plaas'));
     getPryList(document.getElementById('spilpunt'));
-    getTaskList(document.getElementById('task'));
     let CN = getWorkers(document.getElementById('workers'));
-    getClockDir('clockType', CN);
+    let ClockDir = getClockDir('clockType', CN);
+    getTaskList(document.getElementById('task'), ClockDir);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -93,18 +93,22 @@ function getPryList(Element) {
     Element.innerHTML = dropdown + list;
 }
 
-function getTaskList(Element) {
+function getTaskList(Element, clockDir) {
     let dropdown = Element.innerHTML;
     let list = '';
     let cookie = getCookie("task");
-    let results = JSON.parse(localStorage.getItem("task"));
-    results.forEach(item => {
-        if (item['id'] == cookie) {
-            list += '<option value="' + item['id'] + '" selected>' + item['naam'] + '</option>';
-        } else {
-            list += '<option value="' + item['id'] + '">' + item['naam'] + '</option>';
-        }
-    });
+    if (clockDir == 1) {
+        list += '<option value="0" selected>Teken UIT</option>';
+    } else {
+        let results = JSON.parse(localStorage.getItem("task"));
+        results.forEach(item => {
+            if (item['id'] == cookie) {
+                list += '<option value="' + item['id'] + '" selected>' + item['naam'] + '</option>';
+            } else {
+                list += '<option value="' + item['id'] + '">' + item['naam'] + '</option>';
+            }
+        });
+    }
     Element.innerHTML = dropdown + list;
 }
 
@@ -121,7 +125,6 @@ function getWorkers(Element) {
         if (CNs.includes(item['CN'].toString())) {
             list += '<input type="text" class="form-control mt-1" value="' + item['naam'] + ' ' + item['naam'] + '" readonly>' +
                 '<input type="hidden" name="CN[]" value="' + item['CN'] + '">';
-
         }
         Element.innerHTML = list;
     });
@@ -129,13 +132,29 @@ function getWorkers(Element) {
 }
 
 function getClockDir(Element, CN) {
-    clockVal = document.getElementById(Element);
-    clockText = document.getElementById(Element + 'Text');
+    let clockVal = document.getElementById(Element);
+    let clockText = document.getElementById(Element + 'Text');
+    let clockDir = 0;
 
 
-    let results = JSON.parse(localStorage.getItem("clock"));
-    let toUP = JSON.parse(localStorage.getItem("clock"));
+    let results = JSON.parse(localStorage.getItem("clockings"));
+    let toUP = JSON.parse(localStorage.getItem("clockingsUP"));
+    results.concat(toUP);
+    console.log(results);
+    results.forEach(item => {
+        if (item['cn'].toString() == CN) {
+            clockDir = item['clockType'];
+        }
+    });
 
-    clockText.value = 'IN'
-    clockVal.value = '1'
+    console.log(clockDir);
+    if (clockDir == 1) {
+        clockVal.value = 0;
+        clockText.value = 'IN';
+        return 0;
+    } else {
+        clockVal.value = 1;
+        clockText.value = 'OUT';
+        return 1;
+    }
 }
