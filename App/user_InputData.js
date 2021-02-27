@@ -96,16 +96,28 @@ function saveData() {
         document.cookie = 'spilpunt=' + spilpunt_id + ';expires=' + expireTime + ';path=/';
 
 
+        let worklogUP = JSON.parse(window.localStorage.getItem('worklogUP'));
+        let work_rec = {
+            "user_id": uid,
+            "worker_id": CN,
+            "farm_id": farm_id,
+            "produce_id": Gewas_id,
+            "spry_id": spilpunt_id,
+            "task_id": task,
+            "crates": kratte,
+            "logDate": date,
+            "logTime": time,
+        };
+        worklogUP.push(work_rec);
+        window.localStorage.setItem('worklogUP', JSON.stringify(worklogUP));
 
+        msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    Taak Bygevoeg!</div ><h1 class="text-success text-center" style="font-size:10rem;">`+ kratte + `</h1>
+                    <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
 
-        //     $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
-        //     values('$uid', '$CN', '$Plaas', '$Gewas', '$Spry', '$task', '$kratte', '$date', '$time'); ";
-
-        //     msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
-        //             <div class="alert alert-success alert-dismissible" role="alert">
-        //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        //             Taak Bygevoeg!</div ><h1 class="text-success text-center" style="font-size:10rem;">$kratte</h1>
-        //             <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
+        document.getElementById('main').innerHTML = msg;
     }
 }
 

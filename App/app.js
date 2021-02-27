@@ -28,6 +28,14 @@ function setup() {
     if (localStorage.getItem('access') === null) {
         window.localStorage.setItem('access', JSON.stringify([]));
     }
+    // for worklog
+    if (localStorage.getItem('worklog') === null) {
+        window.localStorage.setItem('worklog', JSON.stringify([]));
+    }
+    // for worklog
+    if (localStorage.getItem('worklogUP') === null) {
+        window.localStorage.setItem('worklogUP', JSON.stringify([]));
+    }
     // for db_details
     if (localStorage.getItem('db_details') === null) {
         window.localStorage.setItem('db_details', JSON.stringify({}));
@@ -58,6 +66,7 @@ function updateDB() {
         getDBUpdate(baseURL + '/API/task.php' + '?KEY=' + apiKey, 'task');
         getDBUpdate(baseURL + '/API/access.php' + '?KEY=' + apiKey, 'access');
         getDBUpdate(baseURL + '/API/clocklog.php' + '?KEY=' + apiKey, 'clockings');
+        getDBUpdate(baseURL + '/API/worklog.php' + '?KEY=' + apiKey, 'worklog');
 
         var now = new Date();
         window.localStorage.setItem('db_details', JSON.stringify({ 'version': 1, 'last_update': now }));
@@ -99,7 +108,7 @@ function updateAppStatus(status) {
         notice.id = 'notice';
         notice.classList.add("AppOffline");
         notice.innerHTML = '<i class="fas fa-wifi"></i> ' + cLength + "/" + bLength;
-        // body.insertBefore(notice, firstItem);
+        body.insertBefore(notice, firstItem);
         body.appendChild(notice);
     }
 }
