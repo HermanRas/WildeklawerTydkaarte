@@ -32,7 +32,7 @@ function setup() {
     if (localStorage.getItem('worklog') === null) {
         window.localStorage.setItem('worklog', JSON.stringify([]));
     }
-    // for worklog
+    // for worklogUP
     if (localStorage.getItem('worklogUP') === null) {
         window.localStorage.setItem('worklogUP', JSON.stringify([]));
     }
@@ -44,10 +44,11 @@ function setup() {
     if (localStorage.getItem('clockings') === null) {
         window.localStorage.setItem('clockings', JSON.stringify([]));
     }
-    // for Bins
-    if (localStorage.getItem('bins') === null) {
-        window.localStorage.setItem('bins', JSON.stringify([{ 'test': 1 }, { 'test': 2 }, { 'test': 3 },]));
+    // for ClockingsUP
+    if (localStorage.getItem('clockingsUP') === null) {
+        window.localStorage.setItem('clockingsUP', JSON.stringify([]));
     }
+
     updateDB();
 }
 

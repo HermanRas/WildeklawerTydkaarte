@@ -24,10 +24,9 @@
     <!-- Page Title -->
 
     <!-- Main Content -->
-    <h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Invoer
-    </h1>
+    <h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Klok</h1>
     <div id="main" class="container">
-        <form action="" id="frm1" class="needs-validation was-validated" novalidate>
+        <form action="" method="POST" id="frm1" class="needs-validation was-validated" novalidate>
             <br>
             <div class="form-group">
                 <label>Plaas: </label>
@@ -44,28 +43,24 @@
             </div>
 
             <div class="form-group">
-                <label>Gewas:</label>
-                <select id="Gewas" name="Gewas" class="form-control" required>
-                    <option value="" selected>Kies Gewas</option>
-                </select>
+                <label>Werkers:</label>
+                <div id="workers"></div>
             </div>
 
             <div class="form-group">
-                <label>Werker:</label>
-                <input id="werkver_value" type="text" class="form-control" value="loading" readonly>
-                <input type="hidden" id="CN" name="CN" value="">
+                <label>IN / UIT:</label>
+                <input type="text" id="clockTypeText" class="form-control" value="" readonly>
+                <input type="hidden" id="clockType" name="clockType" value="">
             </div>
+
 
             <div class="form-group">
                 <label>Taak:</label>
-                <input id="Taak_name" type="text" class="form-control" value="" readonly>
-                <input id="Taak" type="hidden" value="" name="Taak">
+                <select id="task" name="Taak" class="form-control" required>
+                    <option value="" selected>Kies Taak</option>
+                </select>
             </div>
 
-            <div class="form-group">
-                <label>Kratte:</label>
-                <input type="number" class="form-control" placeholder="" id="kratte" name="kratte" required>
-            </div>
             <button type="button" class="btn btn-primary" id="Stuur" onclick="saveData();">Stoor</button>
 
             <br>
@@ -73,7 +68,7 @@
                 <label>Datum:</label>
                 <script>
                     // Use of Date.now() function 
-                    var date = new Date().toISOString().substring(0, 10);
+                    var date = new Date().toISOString().substring(0, 10)
                     // Printing the current date
                     document.write('<input type="date" value="' + date +
                         '" class="form-control" id="date"  name="Date" required>');
@@ -82,6 +77,7 @@
 
             <div class="form-group">
                 <label>Tyd:</label>
+
                 <script>
                     // Use of Date.now() function 
                     var date = new Date();
@@ -140,7 +136,7 @@
     </script>
 
     <!-- script User input -->
-    <script src="App/user_InputData.js">
+    <script src="App/user_InputClock.js">
     </script>
 </body>
 
