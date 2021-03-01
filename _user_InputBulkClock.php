@@ -2,6 +2,16 @@
 // Set Global Vars
 $msg = '';
 
+
+// Load list of workers
+    $today = date('Y-m-d');
+    $sql = "SELECT id
+            FROM `workers`
+            WHERE contract_end < '$today' ";
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $terminated = sqlQuery($sql, $sqlargs);
+
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
@@ -18,30 +28,44 @@ if (isset($_POST['Plaas'])){
     $date = $_POST["Date"];
     $time = $_POST["time"];
 
+    $Terminated_CNs = [] ;
     foreach ($CNs as $CN ) {
     // Lookup user_id
-    $sql = "select id from `workers` where CN = '$CN' limit 1;";
+    $sql = "select id,naam,van from `workers` where CN = '$CN' limit 1;";
 
     require_once 'config/db_query.php';
     $sqlargs = array();
     $worker_id = sqlQuery($sql, $sqlargs);
     $worker_id = $worker_id[0][0]['id'];
 
-    // add worker to clock log
-    $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime) 
-            values('$uid','$worker_id',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
+    
+    $key = array_search($worker_id, array_column($terminated[0], 'id'));
 
-    require_once 'config/db_query.php';
-    $sqlargs = array();
-    $res = sqlQuery($sql, $sqlargs);
+    if ($key !== false){
+        array_push($Terminated_CNs,$CN);
+    }else{
+        // add worker to clock log
+        $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime) 
+                values('$uid','$worker_id',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
+
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $res = sqlQuery($sql, $sqlargs);
+        }
+        
+        $msg =  '<div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Tyd rooster Opgedateer !</div>'.
+                '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a><br>';
     }
-
-
-    $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },3000);</script>' .
-            '<div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            Tyd rooster Opgedateer !</div>'.
-            '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+    if(count($Terminated_CNs) > 0){
+        $CN_Mgs= '';
+        foreach ($Terminated_CNs as $CN) {
+            $CN_Mgs = $CN_Mgs . $CN . '<br>';
+        }
+        $msg = $msg .'<br> Die volgende Werker se kontrak het verval en kan nie klok nie :'.
+        '<div class="alert alert-danger alert-dismissible" role="alert">'. $CN_Mgs .'</div>';
+    }
 }
 ?>
 

@@ -2,6 +2,15 @@
 // Set Global Vars
 $msg = '';
 
+// Load list of workers
+    $today = date('Y-m-d');
+    $sql = "SELECT id
+            FROM `workers`
+            WHERE contract_end < '$today' ";
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $terminated = sqlQuery($sql, $sqlargs);
+
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
@@ -18,18 +27,28 @@ if (isset($_POST['Plaas'])){
     $date = $_POST["Date"];
     $time = $_POST["time"];
 
-    $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime)
-    values('$uid','$CN',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
 
-    require_once 'config/db_query.php';
-    $sqlargs = array();
-    $res = sqlQuery($sql, $sqlargs);
+    $key = array_search($CN, array_column($terminated[0], 'id'));
+    if ($key !== false){
+        $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },3000);</script>' .
+        '<div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        Kontrak het verval !</div>'.
+        '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+    }else{
+        $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime)
+        values('$uid','$CN',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
 
-    $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },3000);</script>' .
-            '<div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            Tyd rooster Opgedateer !</div>'.
-            '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $res = sqlQuery($sql, $sqlargs);
+
+        $msg =  '<script>window.setTimeout(function(){ window.location = "user_InputBadge.php"; },3000);</script>' .
+                '<div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Tyd rooster Opgedateer !</div>'.
+                '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a>';
+    }
 }
 ?>
 
