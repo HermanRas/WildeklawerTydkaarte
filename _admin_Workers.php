@@ -91,7 +91,7 @@ if (isset($_GET['delete'])){
 
     //if no add or update show form
     if ((!isset($_GET['add']))&&(!isset($_GET['name']))){
-        $sql = "select * from workers limit 0,1000";
+        $sql = "select * from workers order by naam;";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -100,12 +100,12 @@ if (isset($_GET['delete'])){
         <label for="worker">Werker:</label>
         <select class="form-control" id="worker" onchange="updateAction()">
             <option value="">Kies Werker</option>
+            <option value="addWorker">+Nuwe Werker</option>
             <?php
                 foreach ($result[0] as $row) {
                     echo '<option value="'. $row['id'] .'">'. $row['naam'] .' '. $row['van'] .'</option>';
                 }
             ?>
-            <option value="addWorker">+Nuwe Werker</option>
         </select>
         <br>
         <br>
