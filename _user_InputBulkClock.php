@@ -40,7 +40,6 @@ if (isset($_POST['Plaas'])){
 
     
     $key = array_search($worker_id, array_column($terminated[0], 'id'));
-
     if ($key !== false){
         array_push($Terminated_CNs,$CN);
     }else{

@@ -167,7 +167,7 @@ if (isset($_GET['delete'])){
             </script>
 
             <label for="CN">Werker Nommer:</label>
-            <input type="number" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
+            <input type="text" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
             <input type="hidden" name="action" value="add">
         </div>
         <label for="img_data">Werker foto:</label>
@@ -249,7 +249,7 @@ if (isset($_GET['delete'])){
             <input type="date" class="form-control" value="<?php echo $KDatum; ?>" name="KDatum" id="KDatum">
 
             <label for="CN">Werker Nommer:</label>
-            <input type="number" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
+            <input type="test" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
                 placeholder="Werker Nommer">
             <input type="hidden" name="action" value="add">
             <input type="hidden" value="<?php echo $uid; ?>" name="uid" id="uid">

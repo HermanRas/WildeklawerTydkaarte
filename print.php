@@ -9,7 +9,7 @@ if (isset($_GET['ALL'])){
 if (isset($_GET['CN'])){
     $CN = $_GET['CN'];
     $sql = "SELECT * from workers
-            WHERE CN = $CN;";
+            WHERE CN = '$CN';";
     require_once 'config/db_query.php';
     $sqlargs = array();
     $result = sqlQuery($sql, $sqlargs);

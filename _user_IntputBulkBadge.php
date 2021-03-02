@@ -74,7 +74,7 @@ function setResult(label, result) {
         scanner.start();
     } else {
         lastResult = result;
-        var cn = result.split("(");
+        var cn = result.split(":");
         label.innerHTML =
             '<li>' +
             '<input type="hidden" name="CN[]" value="' + cn[0] + '">' +
