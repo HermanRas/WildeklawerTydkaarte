@@ -42,6 +42,7 @@ if(isset($_GET['qr'])){
 <form action="user_InputBulkClock.php" method="post">
     <h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Massa Klok</h1>
     <div class="container">
+        <script src="JS/sweetalert2.10.js"></script>
         <h3>Lees al die QR Kodes</h3>
         <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
         <br>
@@ -75,20 +76,31 @@ function setResult(label, result) {
     } else {
         lastResult = result;
         var cn = result.split(":");
-        label.innerHTML =
-            '<li>' +
-            '<input type="hidden" name="CN[]" value="' + cn[0] + '">' +
-            '<input type="hidden" name="name[]" value="' + result + '">' +
-            result +
-            '<input type="button" class="btn-sm btn-close" onclick="clearItem(this);" >' +
-            '</li>' +
-            label.innerHTML;
-        document.getElementById('butDiv').innerHTML = '<button href="user_InputClock.php?User=' + cn[0] +
-            '" class="btn btn-secondary">Stuur</button>';
+        var contract_end = new Date(cn[2])
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (contract_end < today) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Die Kontrak het verval!'
+            })
+        } else {
+            label.innerHTML =
+                '<li>' +
+                '<input type="hidden" name="CN[]" value="' + cn[0] + '">' +
+                '<input type="hidden" name="name[]" value="' + result + '">' +
+                result +
+                '<input type="button" class="btn-sm btn-close" onclick="clearItem(this);" >' +
+                '</li>' +
+                label.innerHTML;
+            document.getElementById('butDiv').innerHTML = '<button href="user_InputClock.php?User=' + cn[0] +
+                '" class="btn btn-secondary">Stuur</button>';
 
-        label.style.color = 'orange';
-        clearTimeout(label.highlightTimeout);
-        label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+            label.style.color = 'orange';
+            clearTimeout(label.highlightTimeout);
+            label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+        }
         scanner.start();
     }
 }

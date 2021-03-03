@@ -66,7 +66,7 @@ if (isset($_GET['CN'])){
                 </div>
                 <div class=" img-box-qr" id="<?php echo $row['CN']?>">
                     <?php //echo "<script>jQuery  ('#".$row['CN']."').qrcode({mode: 3,image: '../Img/admin.png',text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']."'});</script>"; ?>
-                    <?php echo "<script>jQuery  ('#".$row['CN']."').qrcode({label: 'WK',fontname: 'arial',fontcolor: '#00AB93',mode: 0,text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']."'});</script>"; ?>
+                    <?php echo "<script>jQuery  ('#".$row['CN']."').qrcode({label: 'WK',fontname: 'arial',fontcolor: '#00AB93',mode: 0,text:'". $row['CN'] ." : ".$row['naam'] . " ".$row['van']." : ".$row['contract_end'] ."'});</script>"; ?>
                 </div>
             </div>
             <?php
