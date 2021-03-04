@@ -16,6 +16,7 @@ if (isset($_GET['KEY'])){
                 workers Left Join
                 worklog On workers.id = worklog.worker_id Left Join
                 task On worklog.task_id = task.id
+                where crates > 0
                 Group By
                 worklog.logDate, workers.naam, workers.van, workers.CN, task.naam";
         require_once 'config/db_query.php';

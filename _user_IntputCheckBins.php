@@ -71,7 +71,7 @@ const camQrResult = document.getElementById('cam-qr-result');
 
 //run scan
 function setResult(label, result) {
-    var cn = result.split("(");
+    var cn = result.split(":");
     label.innerHTML = '<h4> Werker: ' + result +
         ' gekies</h4><a href="user_InputCheckBins.php?CN=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
     document.getElementById('memberName').value = result;

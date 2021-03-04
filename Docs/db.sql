@@ -181,12 +181,13 @@ Select
   workers.van,
   workers.CN,
   users.naam As managerNaam,
-  workers.van As managerVan,
+  users.van As managerVan,
   clocklog.logDate,
   clocklog.logTime,
   plaas.naam As plaasNaam,
   spilpunt.naam As spilpuntNaam,
   task.naam As taakNaam,
+  gewas.naam as gewas,
   'IN' As clockType
 From
   clocklog left Join
@@ -194,7 +195,8 @@ From
   spilpunt On clocklog.spry_id = spilpunt.id left Join
   task On clocklog.task_id = task.id left Join
   users On clocklog.user_id = users.id left Join
-  workers On clocklog.worker_id = workers.id
+  workers On clocklog.worker_id = workers.id left Join
+  gewas on clocklog.produce_id = gewas.id
 Where
   clocklog.clockType = 0;
 
@@ -206,7 +208,7 @@ Select
   workers.van,
   workers.CN,
   users.naam As managerNaam,
-  workers.van As managerVan,
+  users.van As managerVan,
   clocklog.logDate,
   clocklog.logTime,
   plaas.naam As plaasNaam,
@@ -249,14 +251,15 @@ Select
   vclocklogIn.managerVan,
   vclocklogIn.plaasNaam,
   vclocklogIn.spilpuntNaam,
-  vclocklogIn.taakNaam
+  vclocklogIn.taakNaam,
+  vclocklogIn.gewas
 From
   vclocklogIn;
 
 DROP VIEW IF EXISTS vworktimecalc;
 CREATE VIEW vworktimecalc AS
 Select
-  TimeDiff(vclocklogInOut.inTime, vclocklogInOut.outTime) As MinutesOnClock,
+  TimeDiff(vclocklogInOut.outTime,vclocklogInOut.inTime) As MinutesOnClock,
   vclocklogInOut.inDate,
   vclocklogInOut.inTime,
   vclocklogInOut.outDate,
@@ -268,7 +271,8 @@ Select
   vclocklogInOut.managerVan,
   vclocklogInOut.plaasNaam,
   vclocklogInOut.spilpuntNaam,
-  vclocklogInOut.taakNaam
+  vclocklogInOut.taakNaam,
+  vclocklogInOut.gewas
 From
   vclocklogInOut;
 

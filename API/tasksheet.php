@@ -29,6 +29,7 @@ if (isset($_GET['KEY'])){
             echo '            <th style="border:1px solid black;">plaasNaam</th>';
             echo '            <th style="border:1px solid black;">spilpuntNaam</th>';
             echo '            <th style="border:1px solid black;">taakNaam</th>';
+            echo '            <th style="border:1px solid black;">gewas</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';
@@ -49,6 +50,7 @@ if (isset($_GET['KEY'])){
                 echo "            <td style=\"border:1px solid black;\">".$row['plaasNaam']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['spilpuntNaam']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['taakNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['gewas']."</td>";
                 echo "        </tr>";
             }
 

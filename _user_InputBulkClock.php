@@ -24,6 +24,7 @@ if (isset($_POST['Plaas'])){
     $spilpunt = $_POST["spilpunt"];
     $Spry = $_POST["spilpunt"];
     $clockType = $_POST["clockType"];
+    $Gewas = $_POST["Gewas"];
     $task = $_POST["Taak"];
     $date = $_POST["Date"];
     $time = $_POST["time"];
@@ -44,8 +45,8 @@ if (isset($_POST['Plaas'])){
         array_push($Terminated_CNs,$CN);
     }else{
         // add worker to clock log
-        $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,task_id,clockType,logDate,logTime) 
-                values('$uid','$worker_id',     '$Plaas',    '$Spry',   '$task', $clockType,'$date', '$time');";
+        $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,produce_id,task_id,clockType,logDate,logTime) 
+                values('$uid','$worker_id',     '$Plaas',    '$Spry','$Gewas',   '$task', $clockType,'$date', '$time');";
 
         require_once 'config/db_query.php';
         $sqlargs = array();
@@ -184,6 +185,31 @@ if (isset($_POST['Plaas'])){
                         }
                     }else{
                                 echo '<option value="0" selected>Teken Uit</option>';
+                    }
+                      ?>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Gewas:</label>
+            <select id="Gewas" name="Gewas" class="form-control" required>
+                <option value="" selected>Kies Gewas</option>
+                <?php
+                    $sql = "select * from gewas limit 0,1000";
+                    require_once 'config/db_query.php';
+                    $sqlargs = array();
+                    $result = sqlQuery($sql, $sqlargs);
+                    // Options
+                    if ( $direction == 0){
+                        foreach ($result[0] as $row) {
+                            if ($row['id']==$_COOKIE['Gewas']){
+                                echo '<option value="'.$row['id'].'" selected>'.$row['naam'].'</option>';
+                            }else{
+                                echo '<option value="'.$row['id'].'">'.$row['naam'].'</option>';
+                            }
+                        }
+                    }else{
+                        echo '<option value="0" selected>Teken Uit</option>';
                     }
                       ?>
             </select>

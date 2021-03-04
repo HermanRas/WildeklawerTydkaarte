@@ -7,11 +7,17 @@ if(!isset($_COOKIE['farm_id'])){
     setcookie('farm_id', $_SESSION['farm_id'] , time() + (86400 * 30), "/"); // 86400 = 1 day
 }
 
+
+if(!isset($_COOKIE['Gewas'])){
+    setcookie('Gewas', 999, time() + (86400 * 30), "/"); // 86400 = 1 day
+}
+
 if (isset($_POST['Plaas'])){
     $Plaas = $_POST["Plaas"];
     $spilpunt = $_POST["spilpunt"];
     setcookie('spilpunt_id', $spilpunt, time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('farm_id', $Plaas, time() + (86400 * 30), "/"); // 86400 = 1 day
+    setcookie('Gewas', $Gewas, time() + (86400 * 30), "/"); // 86400 = 1 day
 }
 ?>
 <!DOCTYPE html>
