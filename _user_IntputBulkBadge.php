@@ -42,7 +42,7 @@ if(isset($_GET['qr'])){
 <form action="user_InputBulkClock.php" method="post">
     <h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Massa Klok</h1>
     <div class="container">
-        <script src="JS/sweetalert2.10.js"></script>
+        <script src="js/sweetalert2.10.js"></script>
         <h3>Lees al die QR Kodes</h3>
         <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
         <br>
