@@ -231,20 +231,29 @@ CREATE VIEW vclocklogInOut AS
 Select
   vclocklogIn.logDate As inDate,
   vclocklogIn.logTime As inTime,
+  
   (Select
     vclocklogOut.logDate
   From
     vclocklogOut
   Where
     vclocklogOut.id > vclocklogIn.id
+    and vclocklogIn.CN = vclocklogOut.CN
+    and vclocklogIn.logDate = vclocklogOut.logDate
+  order by vclocklogOut.logTime ASC
   Limit 1) As outDate,
+  
   (Select
     vclocklogOut.logTime
   From
     vclocklogOut
   Where
     vclocklogOut.id > vclocklogIn.id
+    and vclocklogIn.CN = vclocklogOut.CN
+    and vclocklogIn.logDate = vclocklogOut.logDate
+     order by vclocklogOut.logTime ASC
   Limit 1) As outTime,
+  
   vclocklogIn.naam,
   vclocklogIn.van,
   vclocklogIn.CN,
