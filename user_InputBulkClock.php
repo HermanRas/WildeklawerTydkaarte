@@ -15,6 +15,7 @@ if(!isset($_COOKIE['Gewas'])){
 if (isset($_POST['Plaas'])){
     $Plaas = $_POST["Plaas"];
     $spilpunt = $_POST["spilpunt"];
+    $Gewas = $_POST["Gewas"];
     setcookie('spilpunt_id', $spilpunt, time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('farm_id', $Plaas, time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('Gewas', $Gewas, time() + (86400 * 30), "/"); // 86400 = 1 day

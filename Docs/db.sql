@@ -115,6 +115,7 @@ CREATE TABLE clocklog(
 	task_id INT UNSIGNED,
 	farm_id INT UNSIGNED NOT NULL,
 	spry_id INT UNSIGNED NOT NULL,
+  produce_id INT UNSIGNED NOT NULL,
 	clockType BIT NOT NULL,
 	logDate DATE NOT NULL,
 	logTime TIME NOT NULL,

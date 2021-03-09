@@ -56,7 +56,7 @@ if (isset($_POST['Plaas'])){
         $msg =  '<div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 Tyd rooster Opgedateer !</div>'.
-                '<a href="user_InputSelect.php" class="btn btn-primary">Tuis</a><br>';
+                '<a href="home.php" class="btn btn-primary">Tuis</a><br>';
     }
     if(count($Terminated_CNs) > 0){
         $CN_Mgs= '';

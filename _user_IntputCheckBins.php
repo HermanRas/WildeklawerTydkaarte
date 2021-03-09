@@ -28,11 +28,14 @@ $qr = '';
 ?>
 
 <!-- section-block -->
+<h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Bins vir
+    Vandag
+</h1>
 <div class="container">
     <div class="card">
         <form action="user_InputCheckBins.php">
             <div class="card-body">
-                <h2>QR vir Werker Nommer: <span class="text-inline"
+                <h2>Bins vir Werker Nommer: <span class="text-inline"
                         id="QrID"><?php echo $qr . " (".$res[0][0]['naam']." ".$res[0][0]['van'].")"; ?></span>
                 </h2>
                 <h1 class="text-success text-center" style="font-size:10rem;"><?php echo $kratte; ?></h1>
