@@ -1,0 +1,57 @@
+body{
+ margin: 0;
+ padding: 0;
+}
+
+.page{
+    border: 1px solid #999;
+    padding-top: 20px;
+    max-height: 21cm;
+    min-height: 21cm;
+    max-width: 29.7cm;
+    min-width: 29.7cm;
+    display: block;
+    margin: auto;
+}
+
+.bCard{
+    margin: 5px;
+    border: solid 1px;
+    min-width:5.2cm;
+    max-width:5.2cm;
+    min-height:8.5cm;
+    max-height:8.5cm;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.page-break{
+    page-break-after: always;
+}
+
+.img-box-pic{
+    text-align: center;
+    display: block;
+    overflow: hidden;
+}
+
+.img-box-qr{
+    text-align: center;
+    display: block;
+    overflow: hidden;
+}
+
+.img-box-pic>img{
+    margin-top: 5px;
+    /* border: 1px solid; */
+    width: 2.5cm;
+    height: 2cm;
+}
+
+.img-box-qr>canvas{
+    border: 1px solid;
+    padding: 2px;
+    width: 3cm;
+    height: 3cm;
+}
