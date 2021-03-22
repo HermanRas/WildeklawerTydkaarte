@@ -10,15 +10,18 @@
     <script src="App/dbAPI.js"></script>
     <script src="App/app.js"></script>
     <!-- End Of App JS -->
-    <script type="text/JavaScript">
-        loadData('_header.html');
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        loadData('_header.html', '', 'HEAD');
     </script>
 </head>
 
 <body>
     <!-- NAV BAR -->
+    <div id="nav">Loading... Menu Data</div>
     <script type="text/JavaScript">
-        loadData('_nav.html');
+        loadData('_nav.html','nav'); //load user nav
+        $.getScript("app/navAdmin.js"); //load admin buttons if admin
     </script>
 
 
@@ -109,8 +112,8 @@
     </script>
 
     <!-- Footer -->
-    <script type="text/JavaScript">
-        loadData('_footer.html');
+    <script>
+        loadData('_footer.html', '', 'BODY');
     </script>
 </body>
 
