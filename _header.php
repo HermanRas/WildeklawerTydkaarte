@@ -2,9 +2,9 @@
 <title>Wildeklawer Tydkaarte</title>
 
 <!-- Add Manifest -->
-<link rel="manifest" href="./manifest.json">
-<script src="./service-worker-install.js"></script>
-<script src="./service-worker.js"></script>
+<!-- <link rel="manifest" href="./manifest.json"> -->
+<!-- <script src="./service-worker-install.js"></script> -->
+<!-- <script src="./service-worker.js"></script> -->
 <!-- End Manifest -->
 
 <!-- Chrome/android APP settings -->
