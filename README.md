@@ -64,8 +64,8 @@
 - 2021/02/13 working user inputData JS added
 
 ### TO DO
-- mass check in direction not working
 - data table css is ge F&$#.. update
+- data table on main page not loading becouse of data layze loading
 - Add Daai Reports
 
 - confirm page banner color to match icons

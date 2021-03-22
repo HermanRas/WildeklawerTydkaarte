@@ -135,20 +135,26 @@ if (!sessionStorage.getItem('acl')) {
     }
 }
 
-function loadData(URI, TAG) {
-    function httpGet(theUrl) {
-        var xmlHttp = null;
-
-        xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", theUrl, false);
-        xmlHttp.send(null);
-        return xmlHttp.responseText;
-    }
-    if (TAG) {
-        document.getElementById(TAG).innerHTML = httpGet(URI);
-    } else {
-        document.write(httpGet(URI));
-    }
+function loadData(URI, TAG, POS) {
+    jQuery.get(URI).done(
+        function (data) {
+            if (TAG !== '') {
+                document.getElementById(TAG).innerHTML = data;
+            } else {
+                if (POS == 'HEAD') {
+                    var pageHead = document.head;
+                    pageHead.innerHTML = data + pageHead.innerHTML;
+                }
+                if (POS == 'BODY') {
+                    var pageBody = document.body;
+                    pageBody.innerHTML += data;
+                }
+                if (POS == 'BODY' && POS == 'HEAD') {
+                    console.log('loadData(' + URI + ') ERROR don\'t know where to write');
+                }
+            }
+        }
+    );
 }
 
 function getCookie(cname) {
