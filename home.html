@@ -20,8 +20,9 @@
     <!-- NAV BAR -->
     <div id="nav">Loading... Menu Data</div>
     <script type="text/JavaScript">
-        loadData('_nav.html','nav'); //load user nav
-        $.getScript("app/navAdmin.js"); //load admin buttons if admin
+        loadData('_nav.html','nav').then(() => { //load user nav
+           loadScript("app/navAdmin.js"); //load admin buttons if admin
+        }); 
     </script>
 
 
@@ -32,12 +33,43 @@
         Loading... Page Data
     </div>
     <script type="text/JavaScript">
-        loadData('_home.php','main');
+        loadData('_home.php','main').then(() => { 
+            loadScript("https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js").then(() => {
+                // add fancy search and filter to table
+                // var table = $('#example').DataTable({
+                //     "order": [
+                //         [0, "desc"]
+                //     ],
+                //     "scrollY": "500px",
+                //     "scrollX": true,
+                //     "paging": false
+                // });
+
+                // $('a.toggle-vis').on('click', function (e) {
+                //     e.preventDefault();
+                //     if (this.classList.contains('btn-info')) {
+                //         this.classList.add('btn-danger');
+                //         this.classList.remove('btn-info');
+                //     } else {
+                //         this.classList.add('btn-info');
+                //         this.classList.remove('btn-danger');
+                //     }
+
+                //     // Get the column API object
+                //     var column = table.column($(this).attr('data-column'));
+
+                //     // Toggle the visibility
+                //     column.visible(!column.visible());
+                // });
+            });
+        });
+        
     </script>
 
     <!-- Footer -->
     <script>
         loadData('_footer.html', '', 'BODY');
+        loadScript("js/bootstrap.bundle.min.js");
     </script>
 </body>
 

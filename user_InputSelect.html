@@ -20,9 +20,10 @@
     <!-- NAV BAR -->
     <div id="nav">Loading... Menu Data</div>
     <script type="text/JavaScript">
-            loadData('_nav.html','nav'); //load user nav
-            $.getScript("app/navAdmin.js"); //load admin buttons if admin
-        </script>
+        loadData('_nav.html','nav').then(() => { //load user nav
+            loadScript("app/navAdmin.js"); //load admin buttons if admin
+        }); 
+    </script>
 
     <!-- Page Title -->
     <!-- Main Content -->
@@ -52,9 +53,11 @@
 
         //run scan
         function setResult(label, result) {
-            var cn = result.split("(");
-            label.innerHTML = '<h4> Werker: <hr>' + result +
-                ' gekies</h4><a href="user_InputData.html?User=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
+            if (label) {
+                var cn = result.split(":");
+                label.innerHTML = '<h4> Werker: <hr>' + result +
+                    ' gekies</h4><a href="user_InputData.html?User=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
+            }
         }
 
         // ####### Web Cam Scanning #######

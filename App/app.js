@@ -135,7 +135,7 @@ if (!sessionStorage.getItem('acl')) {
     }
 }
 
-function loadData(URI, TAG, POS) {
+async function loadData(URI, TAG, POS) {
     jQuery.get(URI).done(
         function (data) {
             if (TAG !== '') {
@@ -155,6 +155,11 @@ function loadData(URI, TAG, POS) {
             }
         }
     );
+    return Promise.resolve("Success");
+}
+async function loadScript(URI, TAG, POS) {
+    jQuery.getScript(URI);
+    return Promise.resolve("Success");
 }
 
 function getCookie(cname) {
