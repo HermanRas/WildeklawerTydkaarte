@@ -36,7 +36,7 @@ function saveData() {
         document.cookie = 'spilpunt=' + spilpunt_id + ';expires=' + expireTime + ';path=/';
         document.cookie = 'task=' + task_id + ';expires=' + expireTime + ';path=/';
 
-
+        // Store data to browser store to push to server when online
         let worklogUP = JSON.parse(window.localStorage.getItem('worklogUP'));
         let work_rec = {
             "user_id": uid,
@@ -52,6 +52,7 @@ function saveData() {
         worklogUP.push(work_rec);
         window.localStorage.setItem('worklogUP', JSON.stringify(worklogUP));
 
+        // Give user feedback on save transaction
         msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
                     <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -62,7 +63,7 @@ function saveData() {
     }
 }
 
-
+// Fetch farm names
 function getlist(Element) {
     let dropdown = Element.innerHTML;
     let list = '';
@@ -78,6 +79,7 @@ function getlist(Element) {
     Element.innerHTML = dropdown + list;
 }
 
+// Fetch Spry names
 function getPryList(Element) {
     let dropdown = Element.innerHTML;
     let list = '';
@@ -93,6 +95,7 @@ function getPryList(Element) {
     Element.innerHTML = dropdown + list;
 }
 
+// Fetch Task names
 function getTaskList(Element, clockDir) {
     let dropdown = Element.innerHTML;
     let list = '';
@@ -112,6 +115,7 @@ function getTaskList(Element, clockDir) {
     Element.innerHTML = dropdown + list;
 }
 
+// Fetch Workers names
 function getWorkers(Element) {
     // Get CNs from URL 
     let url = window.location.href.split('?');
@@ -131,11 +135,11 @@ function getWorkers(Element) {
     return CNs[0];
 }
 
+// Fetch Last Clocking names
 function getClockDir(Element, CN) {
     let clockVal = document.getElementById(Element);
     let clockText = document.getElementById(Element + 'Text');
     let clockDir = 0;
-
 
     let results = JSON.parse(localStorage.getItem("clockings"));
     let toUP = JSON.parse(localStorage.getItem("clockingsUP"));
@@ -147,7 +151,8 @@ function getClockDir(Element, CN) {
         }
     });
 
-    console.log(clockDir);
+    ////DEBUG Direction////
+    // console.log(clockDir);
     if (clockDir == 1) {
         clockVal.value = 0;
         clockText.value = 'IN';

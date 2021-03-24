@@ -114,6 +114,7 @@ function updateAppStatus(status) {
     }
 }
 
+// PWA Status change listener (Lost Connection go Offline)
 window.addEventListener('offline', function (event) {
     updateAppStatus('offline');
 });
@@ -121,13 +122,13 @@ window.addEventListener('online', function (event) {
     updateAppStatus('online');
 });
 
-
+// PWA Logout
 function logout() {
     sessionStorage.clear();
     window.location.replace("index.html");
 }
 
-
+// PWA Session management (No Auth)
 if (!sessionStorage.getItem('acl')) {
     let url = (window.location.href);
     if (!url.includes("index.html")) {
@@ -135,6 +136,7 @@ if (!sessionStorage.getItem('acl')) {
     }
 }
 
+// PWA Fetch Data from URI
 async function loadData(URI, TAG, POS) {
     jQuery.get(URI).done(
         function (data) {
@@ -162,6 +164,7 @@ async function loadScript(URI, TAG, POS) {
     return Promise.resolve("Success");
 }
 
+// Offline Cookie Loader
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);

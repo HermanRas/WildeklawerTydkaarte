@@ -95,7 +95,7 @@ function saveData() {
         document.cookie = 'Gewas=' + Gewas_id + ';expires=' + expireTime + ';path=/';
         document.cookie = 'spilpunt=' + spilpunt_id + ';expires=' + expireTime + ';path=/';
 
-
+        // Store data to browser store to push to server when online
         let worklogUP = JSON.parse(window.localStorage.getItem('worklogUP'));
         let work_rec = {
             "user_id": uid,
@@ -111,6 +111,7 @@ function saveData() {
         worklogUP.push(work_rec);
         window.localStorage.setItem('worklogUP', JSON.stringify(worklogUP));
 
+        // Give user feedback on save transaction
         msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
                     <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -121,7 +122,7 @@ function saveData() {
     }
 }
 
-
+// Fetch farm default value from user clocking
 function getlist(Element) {
     let dropdown = Element.innerHTML;
     let list = '';
@@ -137,7 +138,7 @@ function getlist(Element) {
     Element.innerHTML = dropdown + list;
 }
 
-
+// Fetch Spry names
 function getPryList(Element) {
     let dropdown = Element.innerHTML;
     let list = '';
@@ -153,7 +154,7 @@ function getPryList(Element) {
     Element.innerHTML = dropdown + list;
 }
 
-
+// Fetch produce names
 function getGewasList(Element) {
     let dropdown = Element.innerHTML;
     let list = '';
@@ -169,6 +170,7 @@ function getGewasList(Element) {
     Element.innerHTML = dropdown + list;
 }
 
+// Fetch Set Default task value from clock
 function setTaskValue(taskID) {
     const task = document.getElementById('Taak_name');
     const task_id = document.getElementById('Taak');
@@ -180,6 +182,7 @@ function setTaskValue(taskID) {
     task_id.value = taskVal[0]['id'];
 }
 
+// Fetch current user data
 function getLoginUser() {
     const worker = document.getElementById('werkver_value');
     const cn = document.getElementById('CN');
