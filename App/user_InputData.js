@@ -112,11 +112,11 @@ function saveData() {
         window.localStorage.setItem('worklogUP', JSON.stringify(worklogUP));
 
         // Give user feedback on save transaction
-        msg = `<script>window.setTimeout(function(){ window.location = "user_InputSelect.html"; },3000);</script>
+        msg = `<script>window.setTimeout(function(){ window.location = "home.html"; },3000);</script>
                     <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     Taak Bygevoeg!</div ><h1 class="text-success text-center" style="font-size:10rem;">`+ kratte + `</h1>
-                    <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
+                    <a href="home.html" class="btn btn-primary">Tuis</a>`;
 
         document.getElementById('main').innerHTML = msg;
     }
