@@ -89,14 +89,14 @@ function updateAppStatus(status) {
         }
 
         // load offline Clocks
-        let clockings = JSON.parse(localStorage.getItem('clockings'));
+        let clockings = JSON.parse(localStorage.getItem('clockingsUP'));
         let cLength = 0;
         if (clockings.length !== 0) {
             cLength = clockings.length;
         }
 
         // load offline bins
-        let bins = JSON.parse(localStorage.getItem('bins'));
+        let bins = JSON.parse(localStorage.getItem('worklogUP'));
         let bLength = 0;
         if (bins.length !== 0) {
             bLength = bins.length;
