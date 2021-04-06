@@ -8,6 +8,17 @@ body{
     width: 100%;
 }
 
+.AppOnline{
+    position: absolute;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    bottom: 0px;
+    right: 0px;
+    background-color :rgb(0, 255, 42);
+    border-radius: 25px;
+}
+
 .AppOffline{
     position: absolute;
     margin-bottom: 0.5rem;
