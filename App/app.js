@@ -149,6 +149,7 @@ window.addEventListener('online', function (event) {
     updateAppStatus('online');
 });
 
+
 // PWA Logout
 function logout() {
     sessionStorage.clear();
