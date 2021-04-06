@@ -159,7 +159,7 @@ async function loadData(URI, TAG, POS) {
     );
     return Promise.resolve("Success");
 }
-async function loadScript(URI, TAG, POS) {
+async function loadScript(URI) {
     jQuery.getScript(URI);
     return Promise.resolve("Success");
 }
