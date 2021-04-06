@@ -144,7 +144,7 @@ function getClockDir(Element, CN) {
     let results = JSON.parse(localStorage.getItem("clockings"));
     let toUP = JSON.parse(localStorage.getItem("clockingsUP"));
     results.concat(toUP);
-    console.log(results);
+    // console.log(results);
     results.forEach(item => {
         if (item['cn'].toString() == CN) {
             clockDir = item['clockType'];
