@@ -113,7 +113,6 @@ self.addEventListener('fetch', (event) => {
                 const networkResponse = await fetch(event.request);
                 return networkResponse;
             } catch (error) {
-                console.log(event.request.url);
                 // the 4xx or 5xx range, the catch() will NOT be called.
                 // load cache
                 const cache = await caches.open(CACHE_NAME);
