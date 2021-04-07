@@ -41,7 +41,7 @@ function saveData() {
         CNs.forEach(CN => {
             let work_rec = {
                 "user_id": uid,
-                "worker_id": CN.value,
+                "cn": CN.value,
                 "farm_id": farm_id,
                 "clockType": clockType,
                 "spry_id": spilpunt_id,
@@ -160,10 +160,10 @@ function getClockDir(Element, CN) {
     let clockText = document.getElementById(Element + 'Text');
     let clockDir = 0;
 
-    let results = JSON.parse(localStorage.getItem("clockings"));
-    let toUP = JSON.parse(localStorage.getItem("clockingsUP"));
-    results.concat(toUP);
-    // console.log(results);
+    let onServer = JSON.parse(localStorage.getItem("clockings"));
+    let onDevice = JSON.parse(localStorage.getItem("clockingsUP"));
+    results = onServer.concat(onDevice);
+
     results.forEach(item => {
         if (item['cn'].toString() == CN) {
             clockDir = item['clockType'];
@@ -171,7 +171,6 @@ function getClockDir(Element, CN) {
     });
 
     ////DEBUG Direction////
-    // console.log(clockDir);
     if (clockDir == 1) {
         clockVal.value = 0;
         clockText.value = 'IN';

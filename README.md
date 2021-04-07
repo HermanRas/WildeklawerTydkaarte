@@ -64,8 +64,8 @@
 - 2021/02/13 working user inputData JS added
 
 ### TO DO
-- data table css is ge F&$#.. update
-- data table on main page not loading becouse of data layze loading
+- multi user cloking url encoded bug, only shows last clocker
+- menu size does not update after layse load
 - Add Daai Reports
 
 - confirm page banner color to match icons

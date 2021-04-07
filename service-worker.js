@@ -48,6 +48,7 @@ const filesToCache = [
     // // // JS APP
     '/web_dev/Projects/WildeklawerTydkaarte/App/app.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/dbAPI.js',
+    '/web_dev/Projects/WildeklawerTydkaarte/App/navAdmin.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/user_inputClock.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/user_inputData.js',
 
@@ -102,33 +103,32 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     // We only want to call event.respondWith() if this is a navigation request
-    if (event.request.mode === 'navigate') {
-        event.respondWith((async () => {
-            try {
-                // First, try to use the network preload response if it's supported.
-                const preloadResponse = await event.preloadResponse;
-                if (preloadResponse) {
-                    return preloadResponse;
-                }
-                const networkResponse = await fetch(event.request);
-                return networkResponse;
-            } catch (error) {
-                // the 4xx or 5xx range, the catch() will NOT be called.
-                // load cache
-                const cache = await caches.open(CACHE_NAME);
-                // load standard reponse for anything not in cache
-                const offlineResponse = await cache.match(OFFLINE_URL);
-                // load if url is cached
-                const eventRequest = await cache.match(event.request.url);
-                // check to see if we send offline or cache
-                if (eventRequest) {
-                    cachedResponse = eventRequest;
-                } else {
-                    cachedResponse = offlineResponse;
-                }
-                // send response
-                return cachedResponse;
+    event.respondWith((async () => {
+        try {
+            // First, try to use the network preload response if it's supported.
+            const preloadResponse = await event.preloadResponse;
+            if (preloadResponse) {
+                return preloadResponse;
             }
-        })());
-    }
+            const networkResponse = await fetch(event.request);
+            return networkResponse;
+        } catch (error) {
+            // the 4xx or 5xx range, the catch() will NOT be called.
+            // load cache
+            const cache = await caches.open(CACHE_NAME);
+            // load standard reponse for anything not in cache
+            const offlineResponse = await cache.match(OFFLINE_URL);
+            // load if url is cached
+            const eventRequest = await cache.match(event.request.url);
+            // check to see if we send offline or cache
+            if (eventRequest) {
+                cachedResponse = eventRequest;
+            } else {
+                console.log(event.request.url);
+                cachedResponse = offlineResponse;
+            }
+            // send response
+            return cachedResponse;
+        }
+    })());
 });

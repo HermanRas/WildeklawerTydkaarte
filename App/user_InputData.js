@@ -33,7 +33,9 @@ function getTask() {
     url = url[1].split('=')
     CN = url[1];
 
-    let results = JSON.parse(localStorage.getItem("clockings"));
+    let onServer = JSON.parse(localStorage.getItem("clockings"));
+    let onDevice = JSON.parse(localStorage.getItem("clockingsUP"));
+    let results = onServer.concat(onDevice);
 
     // if there is any clockings
     if (results.length > 0) {
