@@ -38,7 +38,7 @@
         ## show camera and Code if found
         #################################################################
      -->
-    <form action="user_InputClock.html" method="post">
+    <form action="#" method="POST">
         <h1 class="bg-wk"><img style="height:1.5em;" src="Img/klok.png" class="rounded m-1 p-1" alt="Klok">Klok</h1>
         <div class="container">
             <script src="js/sweetalert2.10.js"></script>
@@ -93,8 +93,8 @@
                         '<input type="button" class="btn-sm btn-close" onclick="clearItem(this);" >' +
                         '</li>' +
                         label.innerHTML;
-                    document.getElementById('butDiv').innerHTML = '<button href="user_InputClock.html?User=' + cn[0] +
-                        '" class="btn btn-secondary">Stuur</button>';
+                    document.getElementById('butDiv').innerHTML = '<a href="user_InputClock.html?User=' + cn[0] +
+                        '" class="btn btn-secondary">Stuur</a>';
 
                     label.style.color = 'orange';
                     clearTimeout(label.highlightTimeout);
