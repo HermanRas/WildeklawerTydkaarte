@@ -13,6 +13,8 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script>
         loadData('_header.html', '', 'HEAD');
+        // loadScript("./service-worker-install.js");
+        // loadScript("./service-worker.js");
     </script>
 </head>
 
@@ -24,7 +26,15 @@
             loadScript("app/navAdmin.js"); //load admin buttons if admin
         }); 
     </script>
-
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js');
+            });
+        }
+    </script>
     <!-- Page Title -->
 
     <!-- Main Content -->

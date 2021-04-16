@@ -89,8 +89,6 @@ function login(pin) {
         return user.pwd == pin;
     })
 
-    //console.log(userPin);
-
     users.forEach(user => {
         if (user['pwd'] === pin) {
             sessionStorage.setItem("uid", user['id']);

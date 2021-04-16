@@ -131,7 +131,10 @@ if (isset($_GET['delete'])){
             width: 320,
             height: 240,
             image_format: 'jpeg',
-            jpeg_quality: 90
+            jpeg_quality: 90,
+            deviceId: {
+                exact: [e2fc402b621403eab5ca4b92cf42b71b113c8c4e272c66fe4451d2ae444e6c91]
+            }
         });
         Webcam.attach('#my_camera');
         // Code to handle taking the snapshot and displaying it locally
