@@ -52,7 +52,7 @@ if (isset($_GET['delete'])){
 }
 ?>
 
-<script src="js/workerAction.js">
+<script src="JS/workerAction.js">
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do onchange Actions
 ///////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ if (isset($_GET['delete'])){
         <div id="my_camera"></div>
         <input class="btn btn-primary" type="button" value="Stoor Foto" onClick="take_snapshot()">
         <!-- Webcam.min.js -->
-        <script type="text/javascript" src="js/webcam.min.js"></script>
+        <script type="text/javascript" src="JS/webcam.min.js"></script>
         <!-- Configure a few settings and attach camera -->
         <script language="JavaScript">
         Webcam.set({
@@ -210,7 +210,7 @@ if (isset($_GET['delete'])){
         <div id="my_camera"></div>
         <input class="btn btn-primary" type="button" value="Stoor Foto" onClick="take_snapshot()">
         <!-- Webcam.min.js -->
-        <script type="text/javascript" src="js/webcam.min.js"></script>
+        <script type="text/javascript" src="JS/webcam.min.js"></script>
         <!-- Configure a few settings and attach camera -->
         <script language="JavaScript">
         Webcam.set({

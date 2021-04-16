@@ -35,7 +35,7 @@ if (isset($_GET['CN'])){
 
     <!-- Load QR Code rendering Module -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
-    <script src="js/jquery-qrcode-0.18.0.min.js"></script>
+    <script src="JS/jquery-qrcode-0.18.0.min.js"></script>
     <!-- <script src="JS/jquery.qrcode.js"></script> -->
     <!-- <script src="JS/qrcode.js"></script> -->
     <?php 
