@@ -66,7 +66,7 @@ function PrintElem() {
 
 <!-- Load QR Code rendering Module -->
 <script type="module">
-import QrCode from './js/qr-code.min.js';
+import QrCode from './JS/qr-code.min.js';
 
 function readSettings() {
     let settings = {};
@@ -100,8 +100,8 @@ function readSettings() {
 <!-- Page Level Scripts -->
 <script type="module">
 //import plugins
-import QrScanner from "./js/qr-scanner.min.js";
-QrScanner.WORKER_PATH = './js/qr-scanner-worker.min.js';
+import QrScanner from "./JS/qr-scanner.min.js";
+QrScanner.WORKER_PATH = './JS/qr-scanner-worker.min.js';
 
 //set defaults
 const video = document.getElementById('qr-video');
