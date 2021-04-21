@@ -2,6 +2,7 @@ function updateData() {
     let taskID = getTask();
     // id = 0 is not clocked
     if (taskID !== 0) {
+
         // id 1 || 4 is no input type job
         if (taskID == 1 || taskID == 4) {
             document.getElementById('main').innerHTML =
@@ -186,12 +187,17 @@ function setTaskValue(taskID) {
 
 // Fetch current user data
 function getLoginUser() {
+    let url = window.location.href.split('?');
+    url = url[1].split('=')
+    CN = url[1];
+
     const worker = document.getElementById('werkver_value');
     const cn = document.getElementById('CN');
     const uid = sessionStorage.getItem("uid");
+
     const users = JSON.parse(localStorage.getItem("worker"));
     const user = users.filter(function (user) {
-        return user.id == uid;
+        return user.CN == CN;
     })
     worker.value = user[0]['naam'] + ' ' + user[0]['van'];
     cn.value = user[0]['CN'];

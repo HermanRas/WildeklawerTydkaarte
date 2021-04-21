@@ -59,7 +59,7 @@ function saveData() {
         msg = `<script>window.setTimeout(function(){ window.location = "home.html"; },3000);</script>
                     <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    Klock kaarte opgedateer!</div >
+                    Klok kaarte opgedateer!</div >
                     <a href="home.html" class="btn btn-primary">Tuis</a>`;
 
         document.getElementById('main').innerHTML = msg;
@@ -165,8 +165,10 @@ function getClockDir(Element, CN) {
     results = onServer.concat(onDevice);
 
     results.forEach(item => {
-        if (item['cn'].toString() == CN) {
-            clockDir = item['clockType'];
+        if (item['cn']) {
+            if (item['cn'].toString() == CN) {
+                clockDir = item['clockType'];
+            }
         }
     });
 
