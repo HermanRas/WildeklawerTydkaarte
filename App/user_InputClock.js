@@ -157,7 +157,7 @@ function getWorkers(Element) {
 // Fetch Last Clocking names
 function getClockDir(Element, CN) {
     let clockVal = document.getElementById(Element);
-    let clockText = document.getElementById(Element + 'Text');
+    // let clockText = document.getElementById(Element + 'Text');
     let clockDir = 0;
 
     let onServer = JSON.parse(localStorage.getItem("clockings"));
@@ -175,11 +175,11 @@ function getClockDir(Element, CN) {
     ////DEBUG Direction////
     if (clockDir == 1) {
         clockVal.value = 0;
-        clockText.value = 'IN';
+        // clockText.value = 'IN';
         return 0;
     } else {
         clockVal.value = 1;
-        clockText.value = 'OUT';
+        // clockText.value = 'OUT';
         return 1;
     }
 }
