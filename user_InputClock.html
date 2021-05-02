@@ -22,7 +22,7 @@
     <div id="nav">Loading... Menu Data</div>
     <script type="text/JavaScript">
         loadData('_nav.html','nav').then(() => { //load user nav
-            loadScript("App/navAdmin.js"); //load admin buttons if admin
+            // loadScript("App/navAdmin.js"); //load admin buttons if admin
         }); 
     </script>
     <script>
@@ -67,11 +67,7 @@
                 <div id="workers"></div>
             </div>
 
-            <div class="form-group">
-                <label>IN / UIT:</label>
-                <input type="text" id="clockTypeText" class="form-control" value="" readonly>
-                <input type="hidden" id="clockType" name="clockType" value="">
-            </div>
+            <input type="hidden" id="clockType" name="clockType" value="">
 
 
             <div class="form-group">
