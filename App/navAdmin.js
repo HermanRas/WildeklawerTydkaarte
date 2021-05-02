@@ -20,23 +20,5 @@ if (parseInt(sessionStorage.getItem('acl')) > 6) {
                                 <a class="dropdown-item" href="admin_Task.php">Take</a>
                             </div>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-outline-secondary m-2 p-0 px-1  dropdown-toggle" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img style="max-height:40px;" src="Img/verslae.png" class="rounded" alt="verslae">
-                                <br>
-                                <span class="text-xxs">Verslae</span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="admin_Verslae.php">Tyd PerDag</a>
-                                <a class="dropdown-item" href="admin_Verslae.php">Tyd PerTaak</a>
-                                <a class="dropdown-item" href="admin_Verslae.php">Tyd Staat</a>
-                                <a class="dropdown-item" href="admin_Verslae.php">Gem TydPerTaak</a>
-                                <a class="dropdown-item" href="admin_Verslae.php">Gem TydPerGewas</a>
-                                <a class="dropdown-item" href="admin_Verslae.php">???</a>
-                            </div>
-                        </li>
-                    </ul>`;
+                    </ul>;`
 }
