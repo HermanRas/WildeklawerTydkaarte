@@ -1,8 +1,13 @@
-function updateData() {
+function updateData(newState) {
+    setTimeout(function () {
+        updateTheData();
+    }, 1000);
+}
+
+function updateTheData() {
     let taskID = getTask();
     // id = 0 is not clocked
     if (taskID !== 0) {
-
         // id 1 || 4 is no input type job
         if (taskID == 1 || taskID == 4) {
             document.getElementById('main').innerHTML =
@@ -81,7 +86,7 @@ function saveData() {
         let farm_id = document.getElementById('Plaas').value;
         let Gewas_id = document.getElementById('Gewas').value;
         let spilpunt_id = document.getElementById('spilpunt').value;
-        let uid = sessionStorage.getItem("uid").value;
+        let uid = sessionStorage.getItem("uid");
         let CN = document.getElementById('CN').value;
         let kratte = document.getElementById('kratte').value;
         let task = document.getElementById('Taak').value;
@@ -100,6 +105,7 @@ function saveData() {
 
         // Store data to browser store to push to server when online
         let worklogUP = JSON.parse(window.localStorage.getItem('worklogUP'));
+
         let work_rec = {
             "user_id": uid,
             "worker_id": CN,
@@ -175,13 +181,19 @@ function getGewasList(Element) {
 
 // Fetch Set Default task value from clock
 function setTaskValue(taskID) {
+    console.log('setting task id');
+    console.log('TaskID:', taskID);
     const task = document.getElementById('Taak_name');
+    console.log('task elevment:', task);
     const task_id = document.getElementById('Taak');
+    console.log('Taak elevment:', task_id);
     const tasks = JSON.parse(localStorage.getItem("task"));
     const taskVal = tasks.filter(function (taskVal) {
         return taskVal.id == taskID;
     })
+    console.log('setting task to', taskVal[0]['naam']);
     task.value = taskVal[0]['naam'];
+    console.log('setting taak to', taskVal[0]['id']);
     task_id.value = taskVal[0]['id'];
 }
 
@@ -199,6 +211,9 @@ function getLoginUser() {
     const user = users.filter(function (user) {
         return user.CN == CN;
     })
+
+    console.log('setting worker to', user[0]['naam'] + ' ' + user[0]['van']);
     worker.value = user[0]['naam'] + ' ' + user[0]['van'];
+    console.log('setting cn to', user[0]['CN']);
     cn.value = user[0]['CN'];
 }
