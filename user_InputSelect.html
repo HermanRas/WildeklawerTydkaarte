@@ -89,7 +89,7 @@
         <script src="JS/sweetalert2.10.js"></script>
         <h3>Lees QR Kode</h3>
         <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
-        <div id="cam-qr-result">scanning...</div>
+        <div id="cam-qr-result">Scanning ...</div>
     </div>
 
     <!-- Page Level Scripts -->
@@ -131,7 +131,7 @@
         }
 
         // ####### Web Cam Scanning #######
-        const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+        var scanner = new QrScanner(video, result => setResult(camQrResult, result));
         scanner.start();
         scanner.setInversionMode('original');
     </script>

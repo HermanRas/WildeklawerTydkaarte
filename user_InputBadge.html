@@ -156,8 +156,11 @@
 
         // ####### Web Cam Scanning #######
         const scanner = new QrScanner(video, result => setResult(camQrResult, result));
-        scanner.start();
-        scanner.setInversionMode('original');
+        setTimeout(function () {
+            scanner.start();
+            camQrResult.innerHTML = 'Scanning';
+            scanner.setInversionMode('original');
+        }, 1000);
     </script>
 
     <!-- Footer -->

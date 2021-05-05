@@ -55,7 +55,7 @@ function setup() {
 function updateDB() {
     if (window.navigator.onLine) {
         // set api stuff
-        let baseURL = 'https://phq-7hxllh2.petragroup.local/web_dev/Projects/WildeklawerTydkaarte';
+        let baseURL = 'https://wildeklawerapps.co.za/WildeklawerTydkaarte';
         let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
 
         // update tables system is online
@@ -76,7 +76,6 @@ function updateDB() {
 
 function updateAppStatus(status) {
     if (status == 'online') {
-
         // remove old notice if it was set
         let old_notice = document.getElementById('notice');
         if (old_notice) {
@@ -99,14 +98,16 @@ function updateAppStatus(status) {
 
         if (bLength > 0 || cLength > 0) {
             // set new notice
-            let body = document.body;
-            let firstItem = document.body.children[0];
-            let notice = document.createElement("div");
-            notice.id = 'notice';
-            notice.classList.add("AppOnline");
-            notice.innerHTML = '<i class="fas fa-sync-alt"></i> ' + cLength + "/" + bLength;
-            body.insertBefore(notice, firstItem);
-            body.appendChild(notice);
+            setTimeout(function () {
+                let body = document.body;
+                let firstItem = document.body.children[0];
+                let notice = document.createElement("div");
+                notice.id = 'notice';
+                notice.classList.add("AppOnline");
+                notice.innerHTML = '<i class="fas fa-sync-alt"></i> ' + cLength + "/" + bLength;
+                body.insertBefore(notice, firstItem);
+                body.appendChild(notice);
+            }, 2000);
         }
     } else {
         // remove old notice if it was set
@@ -149,6 +150,11 @@ window.addEventListener('online', function (event) {
     updateAppStatus('online');
 });
 
+if (window.navigator.onLine) {
+    updateAppStatus('online');
+} else {
+    updateAppStatus('offline');
+}
 
 // PWA Logout
 function logout() {

@@ -25,6 +25,10 @@ $qr = '';
     $sqlargs = array();
     $res = sqlQuery($sql, $sqlargs);
     $kratte = $res[0][0]['crates'];
+
+    if (!is_int($kratte)){
+        $kratte = 0;
+    }
 ?>
 
 <!-- section-block -->
@@ -32,8 +36,8 @@ $qr = '';
     <div class="card">
         <form action="user_InputCheckBins.php">
             <div class="card-body">
-                <h2>QR vir Werker Nommer: <span class="text-inline"
-                        id="QrID"><?php echo $qr . " (".$res[0][0]['naam']." ".$res[0][0]['van'].")"; ?></span>
+                <h2>Kratte vir Werker Nommer: <span class="text-inline"
+                        id="QrID"><?php echo $qr . $res[0][0]['naam']." ".$res[0][0]['van']; ?></span>
                 </h2>
                 <h1 class="text-success text-center" style="font-size:10rem;"><?php echo $kratte; ?></h1>
                 <input class="btn btn-primary" type="submit" value="Soek Weer">
@@ -93,8 +97,10 @@ function readSettings() {
 </h1>
 <div class="container">
     <h3>Lees QR Kode</h3>
-    <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video"></video>
-    <span id="cam-qr-result">scanning...</span>
+    <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video">
+        Loading Camera
+    </video>
+    <span id="cam-qr-result">Loading Camera...</span>
 </div>
 
 <!-- Page Level Scripts -->
@@ -109,7 +115,7 @@ const camQrResult = document.getElementById('cam-qr-result');
 
 //run scan
 function setResult(label, result) {
-    var cn = result.split("(");
+    var cn = result.split(":");
     label.innerHTML = '<h4> Werker: ' + result +
         ' gekies</h4><a href="user_InputCheckBins.php?CN=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
     document.getElementById('memberName').value = result;
@@ -121,9 +127,14 @@ function setResult(label, result) {
 
 // ####### Web Cam Scanning #######
 const scanner = new QrScanner(video, result => setResult(camQrResult, result));
-scanner.start();
-scanner.setInversionMode('original');
+setTimeout(function() {
+    scanner.start();
+    camQrResult.innerHTML = 'Scanning';
+    scanner.setInversionMode('original');
+}, 1000);
 </script>
+
 <?php
 }
 ?>
+<script scr="JS/bootstrap.bundle.min.js"></script>
