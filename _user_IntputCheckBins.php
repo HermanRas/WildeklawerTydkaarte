@@ -87,51 +87,91 @@ function readSettings() {
 <?php
 }else{
 ?>
+
 <!-- 
     #################################################################
     ## show camera and Code if found
     #################################################################
- -->
+    -->
 <h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Bins vir
     Vandag
 </h1>
 <div class="container">
+    <script src="JS/sweetalert2.10.js"></script>
     <h3>Lees QR Kode</h3>
-    <video style="max-width:300px; max-height:180px;display: block; margin: 0 auto;" id="qr-video">
-        Loading Camera
-    </video>
-    <span id="cam-qr-result">Loading Camera...</span>
+
+    <div id="reader" style="margin: auto; max-width: 75%; text-align: center; position: relative;">
+    </div>
+
+    <div id="result">Scanning ...</div>
 </div>
 
+
 <!-- Page Level Scripts -->
-<script type="module">
-//import plugins
-import QrScanner from "./JS/qr-scanner.min.js";
-QrScanner.WORKER_PATH = './JS/qr-scanner-worker.min.js';
-
-//set defaults
-const video = document.getElementById('qr-video');
-const camQrResult = document.getElementById('cam-qr-result');
-
+<script src="JS/html5-qrcode.min.js"></script>
+<script>
 //run scan
-function setResult(label, result) {
-    var cn = result.split(":");
-    label.innerHTML = '<h4> Werker: ' + result +
-        ' gekies</h4><a href="user_InputCheckBins.php?CN=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
-    document.getElementById('memberName').value = result;
+function onScanSuccess(result) {
+    //set defaults
+    const camQrResult = document.getElementById('result');
 
-    label.style.color = 'orange';
-    clearTimeout(label.highlightTimeout);
-    label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+    lastResult = result;
+    var cn = result.split(":");
+    var contract_end = new Date(cn[2])
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (contract_end < today) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Die Kontrak het verval!'
+        })
+    } else {
+        if (camQrResult) {
+            var cn = result.split(":");
+            camQrResult.innerHTML = '<h4> Werker: <hr>' + result +
+                ' gekies</h4><a href="user_InputCheckBins.php?CN=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
+        }
+    }
 }
 
-// ####### Web Cam Scanning #######
-const scanner = new QrScanner(video, result => setResult(camQrResult, result));
-setTimeout(function() {
-    scanner.start();
-    camQrResult.innerHTML = 'Scanning';
-    scanner.setInversionMode('original');
-}, 1000);
+//import plugins
+const html5QrCode = new Html5Qrcode("reader");
+Html5Qrcode.getCameras().then(devices => {
+    /**
+     * devices would be an array of objects of type:
+     * { id: "id", label: "label" }
+     */
+    if (devices && devices.length) {
+        if (devices[2]) {
+            cameraId = devices[2].id
+        } else {
+            cameraId = devices[0].id;
+        }
+        html5QrCode.start(
+                cameraId, // retreived in the previous step.
+                {
+                    fps: 10, // sets the framerate to 10 frame per second
+                    qrbox: 250 // sets only 250 X 250 region of viewfinder to
+                    // scannable, rest shaded.
+                },
+                qrCodeMessage => {
+                    // do something when code is read. For example:
+                    console.log(`QR Code detected: ${qrCodeMessage}`);
+                    onScanSuccess(qrCodeMessage)
+                },
+                errorMessage => {
+                    // parse error, ideally ignore it. For example:
+                    // console.log(`QR Code no longer in front of camera.`);
+                })
+            .catch(err => {
+                // Start failed, handle it. For example,
+                console.log(`Unable to start scanning, error: ${err}`);
+            });
+    }
+}).catch(err => {
+    // handle err
+});
 </script>
 
 <?php
