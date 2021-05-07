@@ -1,1 +1,81 @@
-//Offline
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wildeklawer Tydkaarte</title>
+
+    <!-- Add Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <!-- End Manifest -->
+
+    <!-- Chrome/android APP settings -->
+    <meta name="theme-color" content="#00AB93">
+    <link rel="icon" href="Img/icon.jpeg" sizes="192x192">
+    <!-- end of Chrome/Android App Settings  -->
+
+    <!-- Bootstrap // you can use hosted CDN here-->
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/app.css">
+    <!-- end of bootstrap -->
+
+    <!-- Import Custom Font -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <!-- end of Custom Font -->
+
+    <!-- start dataTables.net -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <!-- end of dataTables -->
+
+    <!-- font-awesome 5.10.2 // not needed for theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <!-- end of font-awesome  -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Start of App JS -->
+    <script src="App/dbAPI.js"></script>
+    <script src="App/app.js"></script>
+    <!-- End Of App JS -->
+    <script src="JS/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="./service-worker-install.js"></script>
+    <script src="./service-worker.js"></script>
+</head>
+
+<body onload="updateDB()">
+    <!-- NAV BAR -->
+    <div id="nav">Loading... Menu Data</div>
+    <script type="text/JavaScript">
+        loadData('_nav.html','nav').then(() => { //load user nav
+           loadScript("App/navAdmin.js"); //load admin buttons if admin
+        }); 
+    </script>
+
+
+    <!-- Page Title -->
+    <!-- Main Content -->
+    <!-- section-block -->
+    <div class="container">
+        <div class="card">
+            <form action="user_InputCheckBins.php">
+                <div class="card-body">
+                    <h2 class="text-danger">Die Funksie is nie biskikbaar sonder 'n internet koppeling nie!</h2>
+                    <div class="text-center">
+                        <i class="fa fa-exclamation-triangle" style="font-size: 72px; color:orange;"></i>
+                    </div>
+                    <br><a class="btn btn-primary" href="index.html">Tuis</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <script>
+        loadData('_footer.html', '', 'BODY');
+    </script>
+    <script scr="JS/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
