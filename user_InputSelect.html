@@ -87,10 +87,9 @@
     </h1>
     <div class="container">
         <script src="JS/sweetalert2.10.js"></script>
-        <h3>Lees QR Kode1</h3>
+        <h3>Lees QR Kode</h3>
 
-        <div id="reader"
-            style="margin: auto; min-width: 300px; max-width: 600px; min-height: 100px; text-align: center; position: relative;">
+        <div id="reader" style="margin: auto; max-width: 75%; text-align: center; position: relative;">
         </div>
 
         <div id="result">Scanning ...</div>
@@ -141,12 +140,12 @@
                     cameraId,     // retreived in the previous step.
                     {
                         fps: 10,    // sets the framerate to 10 frame per second
-                        qrbox: 150  // sets only 250 X 250 region of viewfinder to
+                        qrbox: 250  // sets only 250 X 250 region of viewfinder to
                         // scannable, rest shaded.
                     },
                     qrCodeMessage => {
                         // do something when code is read. For example:
-                        // console.log(`QR Code detected: ${qrCodeMessage}`);
+                        console.log(`QR Code detected: ${qrCodeMessage}`);
                         onScanSuccess(qrCodeMessage)
                     },
                     errorMessage => {
