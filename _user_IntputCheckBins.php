@@ -100,7 +100,7 @@ function readSettings() {
     <script src="JS/sweetalert2.10.js"></script>
     <h3>Lees QR Kode</h3>
 
-    <div id="reader" style="margin: auto; max-width: 75%; text-align: center; position: relative;">
+    <div id="reader" style="margin: auto; max-width: 80%; text-align: center; position: relative;">
     </div>
 
     <div id="result">Scanning ...</div>
@@ -152,7 +152,7 @@ Html5Qrcode.getCameras().then(devices => {
                 cameraId, // retreived in the previous step.
                 {
                     fps: 10, // sets the framerate to 10 frame per second
-                    qrbox: 250 // sets only 250 X 250 region of viewfinder to
+                    qrbox: 200 // sets only 250 X 250 region of viewfinder to
                     // scannable, rest shaded.
                 },
                 qrCodeMessage => {

@@ -45,31 +45,29 @@
 <body>
     <!-- NAV BAR -->
     <!-- FROM NAV.HTML -->
-    <nav id="admin_menu" class="navbar navbar-expand-md navbar-dark  bg-dark p-1">
-
-        <a class="btn btn-outline-secondary m-2 p-0 px-1" href="home.html">
-            <img style="max-height:40px;" src="Img/tuis.png" class="rounded" alt="Tuis">
+    <nav id="admin_menu" class="navbar navbar-expand-md navbar-dark bg-dark p-0">
+        <a class="btn btn-outline-secondary m-2 p-0 px-1" href="home.html" style="min-height: 100%;">
+            <img style="width:40px; height:40px;" src="Img/tuis.png" class="rounded" alt="Tuis">
             <br>
             <span class="text-xxs">Tuis</span>
         </a>
-
-        <a href="user_InputSelect.html" class="btn btn-outline-secondary m-2 p-0 px-1">
-            <img style="max-height:40px;" src="Img/invoere.png" class="rounded" alt="Invoer">
+        <a href="user_InputSelect.html" class="btn btn-outline-secondary m-2 p-0 px-1" style="min-height:100%;">
+            <img style="width:40px; height:40px;" src="Img/invoere.png" class="rounded" alt="Invoer">
             <br>
             <span class="text-xxs">Invoer</span>
         </a>
-        <a href="user_InputCheckBins.php" class="btn btn-outline-secondary m-2 p-0 px-1">
-            <img style="max-height:40px;" src="Img/bins.png" class="rounded" alt="Invoer">
+        <a href="user_InputCheckBins.php" class="btn btn-outline-secondary m-2 p-0 px-1" style="min-height:100%;">
+            <img style="width:40px; height:40px;" src="Img/bins.png" class="rounded" alt="Invoer">
             <br>
             <span class="text-xxs">Bins?</span>
         </a>
-        <a href="user_InputBadge.html" class="btn btn-outline-secondary m-2 p-0 px-1">
-            <img style="max-height:40px;" src="Img/klok.png" class="rounded" alt="Klok">
+        <a href="user_InputBadge.html" class="btn btn-outline-secondary m-2 p-0 px-1" style="min-height:100%;">
+            <img style="width:40px; height:40px;" src="Img/klok.png" class="rounded" alt="Klok">
             <br>
             <span class="text-xxs">Klok</span>
         </a>
         <a href="#" onclick="logout()" class="btn btn-outline-secondary m-2 p-0 px-1">
-            <img style="max-height:40px;" src="Img/teken_uit.png" class="rounded" alt="TekenUit">
+            <img style="width:40px; height:40px;" src="Img/teken_uit.png" class="rounded" alt="TekenUit">
             <br>
             <span class="text-xxs">TekenUit</span>
         </a>
@@ -89,7 +87,7 @@
         <script src="JS/sweetalert2.10.js"></script>
         <h3>Lees QR Kode</h3>
 
-        <div id="reader" style="margin: auto; max-width: 75%; text-align: center; position: relative;">
+        <div id="reader" style="margin: auto; max-width: 80%; text-align: center; position: relative;">
         </div>
 
         <div id="result">Scanning ...</div>
@@ -140,7 +138,7 @@
                     cameraId,     // retreived in the previous step.
                     {
                         fps: 10,    // sets the framerate to 10 frame per second
-                        qrbox: 250  // sets only 250 X 250 region of viewfinder to
+                        qrbox: 200  // sets only 250 X 250 region of viewfinder to
                         // scannable, rest shaded.
                     },
                     qrCodeMessage => {

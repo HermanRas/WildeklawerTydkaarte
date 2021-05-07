@@ -20,5 +20,5 @@ if (parseInt(sessionStorage.getItem('acl')) > 6) {
                                 <a class="dropdown-item" href="admin_Task.php">Take</a>
                             </div>
                         </li>
-                    </ul>;`
+                    </ul>`
 }
