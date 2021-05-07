@@ -97,6 +97,10 @@ function readSettings() {
     Vandag
 </h1>
 <div class="container">
+    <audio id="beep" preload="auto">
+        <source src="Audio/beep.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
     <script src="JS/sweetalert2.10.js"></script>
 
     <div id="reader" style="margin: auto; max-width: 80%; text-align: center; position: relative;">
@@ -115,6 +119,7 @@ function onScanSuccess(result) {
     const camQrResult = document.getElementById('result');
 
     lastResult = result;
+    const beep = document.getElementById('beep');
     var cn = result.split(":");
     var contract_end = new Date(cn[2])
     var today = new Date();
@@ -127,6 +132,7 @@ function onScanSuccess(result) {
         })
     } else {
         if (camQrResult) {
+            beep.play();
             var cn = result.split(":");
             camQrResult.innerHTML = '<h4> Werker: <hr>' + result +
                 ' gekies</h4><a href="user_InputCheckBins.php?CN=' + cn[0] + '" class="btn btn-secondary">Stuur</a>';
