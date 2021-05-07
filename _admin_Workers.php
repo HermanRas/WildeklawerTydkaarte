@@ -119,35 +119,49 @@ if (isset($_GET['delete'])){
     //if add new
     if (isset($_GET['add'])){
     ?>
-    <form method="POST" id="frmAdd">
 
-        <div id="my_camera"></div>
-        <input class="btn btn-primary" type="button" value="Stoor Foto" onClick="take_snapshot()">
-        <!-- Webcam.min.js -->
-        <script type="text/javascript" src="JS/webcam.min.js"></script>
-        <!-- Configure a few settings and attach camera -->
-        <script language="JavaScript">
-        Webcam.set({
-            width: 320,
-            height: 240,
-            image_format: 'jpeg',
-            jpeg_quality: 90,
-            deviceId: {
-                exact: [e2fc402b621403eab5ca4b92cf42b71b113c8c4e272c66fe4451d2ae444e6c91]
+    <video id="player" width=320 height=240 autoplay></video>
+    <br>
+    <button class="btn btn-primary" id="capture">Stoor Foto</button>
+    <button class="btn btn-secondary" id="flip">↻</button>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <script>
+    const player = document.getElementById('player');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const captureButton = document.getElementById('capture');
+
+    const constraints = {
+        video: {
+            facingMode: {
+                exact: "environment"
             }
-        });
-        Webcam.attach('#my_camera');
-        // Code to handle taking the snapshot and displaying it locally
-        function take_snapshot() {
-            // take snapshot and get image data
-            Webcam.snap(function(data_uri) {
-                // display results in page
-                document.getElementById('img_pic').src = data_uri;
-                document.getElementById('img_data').value = data_uri;
-            });
         }
-        </script>
+    };
+    const JustVConstraints = {
+        video: true,
+    };
 
+    captureButton.addEventListener('click', () => {
+        context.drawImage(player, 0, 0, canvas.width, canvas.height);
+        const dataURL = canvas.toDataURL();
+        document.getElementById('img_pic').src = dataURL;
+        document.getElementById('img_data').value = dataURL;
+    });
+
+    navigator.mediaDevices.getUserMedia(JustVConstraints)
+        .then((stream) => {
+            player.srcObject = stream;
+        });
+
+    navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+            // Attach the video stream to the video element and autoplay.
+            player.srcObject = stream;
+        });
+    </script>
+
+    <form method="POST" id="frmAdd">
         <div class="form-group">
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="" name="Naam" id="farmName" placeholder="Naam">
@@ -205,32 +219,67 @@ if (isset($_GET['delete'])){
             $KDatum = $row['contract_end'];
         }
     ?>
-    <form method="POST" id="frmUpdate">
 
-        <div id="my_camera"></div>
-        <input class="btn btn-primary" type="button" value="Stoor Foto" onClick="take_snapshot()">
-        <!-- Webcam.min.js -->
-        <script type="text/javascript" src="JS/webcam.min.js"></script>
-        <!-- Configure a few settings and attach camera -->
-        <script language="JavaScript">
-        Webcam.set({
-            width: 320,
-            height: 240,
-            image_format: 'jpeg',
-            jpeg_quality: 90
-        });
-        Webcam.attach('#my_camera');
-        // Code to handle taking the snapshot and displaying it locally
-        function take_snapshot() {
-            // take snapshot and get image data
-            Webcam.snap(function(data_uri) {
-                // display results in page
-                document.getElementById('img_pic').src = data_uri;
-                document.getElementById('img_data').value = data_uri;
-            });
+    <video id="player" width=320 height=240 autoplay></video>
+    <br>
+    <button class="btn btn-primary" id="capture">Stoor Foto</button>
+    <button class="btn btn-info" id="flip">↻</button>
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script>
+    const player = document.getElementById('player');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const captureButton = document.getElementById('capture');
+    const flipButton = document.getElementById('flip');
+
+    const constraints = {
+        video: {
+            facingMode: {
+                exact: "environment"
+            }
         }
-        </script>
+    };
+    const JustVConstraints = {
+        video: true,
+    };
 
+    let face = 0;
+    let stream1;
+    let stream2;
+
+    captureButton.addEventListener('click', () => {
+        context.drawImage(player, 0, 0, canvas.width, canvas.height);
+        const dataURL = canvas.toDataURL();
+        document.getElementById('img_pic').src = dataURL;
+        document.getElementById('img_data').value = dataURL;
+    });
+
+    flipButton.addEventListener('click', () => {
+        if (face === 0) {
+            face = 1;
+            player.srcObject = null;
+            navigator.mediaDevices.getUserMedia(JustVConstraints)
+                .then((stream) => {
+                    player.srcObject = stream;
+                }).catch(function(err) {});
+        } else {
+            face = 0;
+            player.srcObject = null;
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then((stream) => {
+                    // Attach the video stream to the video element and autoplay.
+                    player.srcObject = stream;
+                }).catch(function(err) {});
+        }
+    });
+
+    navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+            player.srcObject = stream;
+        }).catch(function(err) {});
+    </script>
+    <form method="POST" id="frmUpdate">
         <div class="form-group">
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="<?php echo $naam; ?>" name="Naam" id="farmName"
