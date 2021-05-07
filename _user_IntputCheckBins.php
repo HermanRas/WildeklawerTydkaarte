@@ -98,7 +98,6 @@ function readSettings() {
 </h1>
 <div class="container">
     <script src="JS/sweetalert2.10.js"></script>
-    <h3>Lees QR Kode</h3>
 
     <div id="reader" style="margin: auto; max-width: 80%; text-align: center; position: relative;">
     </div>
