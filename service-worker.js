@@ -1,3 +1,21 @@
+///////////////////////////////////////////////////////////////////////////
+// BACKGROUND SYNC CODE
+///////////////////////////////////////////////////////////////////////////
+self.addEventListener('sync', function (event) {
+    console.log('recieved event');
+    if (event.tag == 'DBSync') {
+        event.waitUntil(doDBSync());
+    }
+});
+
+async function doDBSync() {
+    console.log('SyncDB');
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+// OFFLINE PWA CODE
+///////////////////////////////////////////////////////////////////////////
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 const OFFLINE_VERSION = 1;
