@@ -14,7 +14,7 @@
 <body>
     <!-- NAV BAR -->
     <?php include_once('_nav.html'); ?>
-
+    <script src="App/navAdmin.js"> </script>
 
     <!-- Page Title -->
     <h1 class="bg-primary">
