@@ -118,8 +118,7 @@
                 </div>
 
                 <br>
-                <button class="btn btn-success">Force Sync</button>
-                <a class="btn btn-primary" href="index.html">Tuis</a>
+                <a class="btn btn-primary" href="home.html">Tuis</a>
             </div>
         </form>
     </div>
