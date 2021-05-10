@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video src=""></video>
+    <script>
+        async function CAM() {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: true
+            })
+
+            const video = document.querySelector('video');
+            video.srcObject = stream;
+            video.play();
+        }
+        CAM();
+
+        async function getConnectedDevices(type) {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            document.write(JSON.stringify(devices.filter(device => device.kind === type)));
+            return devices.filter(device => device.kind === type)
+        }
+
+        const videoCameras = getConnectedDevices('videoinput');
+        console.log('Cameras found:', videoCameras);
+
+
+        document.write(JSON.stringify(navigator.mediaDevices.getSupportedConstraints()));
+
+
+    </script>
+</body>
+
+</html>
