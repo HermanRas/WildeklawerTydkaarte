@@ -1,6 +1,12 @@
 # Wildeklawer Tydkaarte
 <img src="https://github.com/HermanRas/WildeklawerTydkaarte/blob/main/Img/splash.jpg" alt="#WildeklawerTydkaarte">
 
+- fix /config/db.php (MySql Connection Data)
+- fix /Api/config/db.php (SimLink - /config/db.php)
+- fix /App/app.js (Base Get API URI)
+- fix /App/backgroundSync.js  (Base POST API URI)
+- fix /service-worker.js (URL Location)
+
 ### Requirements
  - [!["PHP 7.2"](https://img.shields.io/badge/PHP-7.1%5E-blue.svg)](https://www.php.net/)
 [!["JavaScript"](https://img.shields.io/badge/JavaScript-1.8%5E-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
