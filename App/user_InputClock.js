@@ -19,7 +19,7 @@ function saveData() {
         let farm_id = document.getElementById('Plaas').value;
         let Gewas_id = document.getElementById('Gewas').value;
         let spilpunt_id = document.getElementById('spilpunt').value;
-        let uid = sessionStorage.getItem("uid").value;
+        let uid = sessionStorage.getItem("uid");
         let CNs = document.querySelectorAll('[id=CN]');
         let clockType = document.getElementById('clockType').value;
         let task = document.getElementById('task').value;
