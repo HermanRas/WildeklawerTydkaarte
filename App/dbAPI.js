@@ -34,6 +34,8 @@ function postDBUpdate(URL, table) {
         }
         i++;
     });
+    console.log(postData);
+    console.log(URL);
 
     var xhttpCalls = new XMLHttpRequest();
     xhttpCalls.onreadystatechange = function () {

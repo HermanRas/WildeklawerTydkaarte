@@ -2,9 +2,29 @@
 // TEST to see if API is present
 if (isset($_GET['KEY'])){
     // TEST to see if this is our key
-    // TEST to see if this is our key
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
-    // var_dump($_POST);
+    
+    for ($i=0; $i < count($_POST['worker_id']); $i++) {
+        $uid = $_POST["user_id"][$i];
+        $CN = $_POST["worker_id"][$i];
+        $Plaas = $_POST["farm_id"][$i];
+        $Gewas = $_POST["produce_id"][$i];
+        $Spry = $_POST["spry_id"][$i];
+        $kratte = $_POST["crates"][$i];
+        $task = $_POST["task_id"][$i];
+        $date = $_POST["logDate"][$i];
+        $time = $_POST["logTime"][$i];
+
+        
+        $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
+        values('$uid','$CN',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time');";
+        
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $res = sqlQuery($sql, $sqlargs);
+        
+    }
+    
     $info = array('success'=>'DataSaved');
     echo   json_encode($info);
     }else{
