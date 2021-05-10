@@ -65,6 +65,7 @@ const filesToCache = [
     '/web_dev/Projects/WildeklawerTydkaarte/App/app.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/dbAPI.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/navAdmin.js',
+    '/web_dev/Projects/WildeklawerTydkaarte/App/backgroundSync.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/user_InputClock.js',
     '/web_dev/Projects/WildeklawerTydkaarte/App/user_InputData.js',
 
