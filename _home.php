@@ -44,8 +44,9 @@ if (isset($_GET['delete'])){
         <tbody>
             <tr>
                 <?php
-                $sql = "select * from vWorkLog
-                        order by id desc;";
+                $sql = "SELECT * from vWorkLog
+                        order by id desc
+                        LIMIT 0, 20;";
                 require_once 'config/db_query.php';
                 $sqlargs = array();
                 $result = sqlQuery($sql, $sqlargs);
