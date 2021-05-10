@@ -35,17 +35,14 @@ function postDBUpdate(URL, table) {
         i++;
     });
 
-    console.log(postData);
     var xhttpCalls = new XMLHttpRequest();
     xhttpCalls.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
             let response = xhttpCalls.responseText;
-            console.log(response);
             let status = JSON.parse(response);
             if (status['success'] == 'DataSaved') {
-                console.log('Saved and Cleared')
-                //window.localStorage.setItem(table, JSON.stringify([]));
+                localStorage.setItem(table, JSON.stringify([]));
             }
         } else {
             if (this.readyState == 4) {

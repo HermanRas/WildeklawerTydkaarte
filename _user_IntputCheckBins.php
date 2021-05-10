@@ -162,7 +162,7 @@ Html5Qrcode.getCameras().then(devices => {
                 },
                 qrCodeMessage => {
                     // do something when code is read. For example:
-                    console.log(`QR Code detected: ${qrCodeMessage}`);
+                    //console.log(`QR Code detected: ${qrCodeMessage}`);
                     onScanSuccess(qrCodeMessage)
                 },
                 errorMessage => {

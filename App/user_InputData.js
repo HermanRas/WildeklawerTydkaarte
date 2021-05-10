@@ -60,17 +60,17 @@ function getTask() {
                 return worker[worker.length - 1]['task_id'];
             } else {
                 // you last clocked out
-                console.log('you last clocked out');
+                // console.log('you last clocked out');
                 return 0;
             }
         } else {
             // you have not clocked today
-            console.log('you have not clocked today');
+            // console.log('you have not clocked today');
             return 0;
         }
     } else {
         // nobody clocked today
-        console.log('nobody clocked today');
+        // console.log('nobody clocked today');
         return 0;
     }
 }
@@ -181,19 +181,19 @@ function getGewasList(Element) {
 
 // Fetch Set Default task value from clock
 function setTaskValue(taskID) {
-    console.log('setting task id');
-    console.log('TaskID:', taskID);
+    //console.log('setting task id');
+    //console.log('TaskID:', taskID);
     const task = document.getElementById('Taak_name');
-    console.log('task elevment:', task);
+    //console.log('task elevment:', task);
     const task_id = document.getElementById('Taak');
-    console.log('Taak elevment:', task_id);
+    //console.log('Taak elevment:', task_id);
     const tasks = JSON.parse(localStorage.getItem("task"));
     const taskVal = tasks.filter(function (taskVal) {
         return taskVal.id == taskID;
     })
-    console.log('setting task to', taskVal[0]['naam']);
+    //console.log('setting task to', taskVal[0]['naam']);
     task.value = taskVal[0]['naam'];
-    console.log('setting taak to', taskVal[0]['id']);
+    //console.log('setting taak to', taskVal[0]['id']);
     task_id.value = taskVal[0]['id'];
 }
 
@@ -212,8 +212,8 @@ function getLoginUser() {
         return user.CN == CN;
     })
 
-    console.log('setting worker to', user[0]['naam'] + ' ' + user[0]['van']);
+    //console.log('setting worker to', user[0]['naam'] + ' ' + user[0]['van']);
     worker.value = user[0]['naam'] + ' ' + user[0]['van'];
-    console.log('setting cn to', user[0]['CN']);
+    //console.log('setting cn to', user[0]['CN']);
     cn.value = user[0]['CN'];
 }

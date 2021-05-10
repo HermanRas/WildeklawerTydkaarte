@@ -2,7 +2,6 @@ function doDBSync() {
     // if we online
     if (window.navigator.onLine) {
         // set api stuff
-        console.log('Syncing');
         let baseURL = 'https://phq-7hxllh2.petragroup.local/web_dev/Projects/WildeklawerTydkaarte';
         let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
 
@@ -12,7 +11,7 @@ function doDBSync() {
             // Load Offline clockingsUP
             let records = JSON.parse(localStorage.getItem('clockingsUP'));
             if (records.length !== 0) {
-                console.log(records[0]);
+                //console.log(records[0]);
                 postDBUpdate(baseURL + '/API/clockUp.php' + '?KEY=' + apiKey, 'clockingsUP')
             }
         }
