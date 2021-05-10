@@ -61,7 +61,7 @@ if (isset($_GET['delete'])){
                 </td>
                 <td><?php echo $row['plaas'];?></td>
                 <td><?php echo $row['gewas'];?></td>
-                <td><?php echo $row['Spilpunt'];?></td>
+                <td><?php echo $row['spilpunt'];?></td>
                 <td><?php echo $row['naam'].' '.$row['van'];?></td>
                 <td><?php echo $row['Bestuurder_naam'].' '.$row['Bestuurder_Van'];?></td>
                 <td><?php echo $row['taak'];?></td>
