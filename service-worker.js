@@ -49,7 +49,6 @@ const filesToCache = [
     '/web_dev/Projects/WildeklawerTydkaarte/JS/destAction.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/farmAction.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/jquery-3.6.0.min.js',
-    '/web_dev/Projects/WildeklawerTydkaarte/JS/jquery-qrcode-0.18.0.min.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/login.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/produceAction.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/qr-code.min.js',
@@ -58,7 +57,6 @@ const filesToCache = [
     '/web_dev/Projects/WildeklawerTydkaarte/JS/sweetalert2.10.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/taskAction.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/userAction.js',
-    '/web_dev/Projects/WildeklawerTydkaarte/JS/webcam.min.js',
     '/web_dev/Projects/WildeklawerTydkaarte/JS/workerAction.js',
 
     // JS APP
