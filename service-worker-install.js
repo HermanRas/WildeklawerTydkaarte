@@ -9,6 +9,5 @@ if ('serviceWorker' in navigator) {
 
 // Setup Service Worker
 navigator.serviceWorker.ready.then(function (swRegistration) {
-    console.log('registerd sync');
     return swRegistration.sync.register('DBSync');
 });

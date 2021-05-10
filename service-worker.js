@@ -2,14 +2,13 @@
 // BACKGROUND SYNC CODE
 ///////////////////////////////////////////////////////////////////////////
 self.addEventListener('sync', function (event) {
-    console.log('recieved event');
     if (event.tag == 'DBSync') {
         event.waitUntil(doDBSync());
     }
 });
 
 async function doDBSync() {
-    console.log('SyncDB');
+    // 
 }
 
 
