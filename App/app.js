@@ -152,7 +152,8 @@ window.addEventListener('online', function (event) {
 
 if (window.navigator.onLine) {
     updateAppStatus('online');
-} else {
+}
+if (!window.navigator.onLine) {
     updateAppStatus('offline');
 }
 
