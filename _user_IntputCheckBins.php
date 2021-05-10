@@ -26,7 +26,7 @@ $qr = '';
     $res = sqlQuery($sql, $sqlargs);
     $kratte = $res[0][0]['crates'];
 
-    if (!is_int($kratte)){
+    if (!intval($kratte)){
         $kratte = 0;
     }
 ?>
