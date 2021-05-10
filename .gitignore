@@ -2,6 +2,8 @@
 vendor/
 #exclude Test folder
 test/
+db_emulate.php
+db.php
 
 ## IDE support
 .vscode/
