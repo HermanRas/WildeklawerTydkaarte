@@ -110,35 +110,38 @@ function updateAppStatus(status) {
             }, 2000);
         }
     } else {
-        // remove old notice if it was set
-        let old_notice = document.getElementById('notice');
-        if (old_notice) {
-            old_notice.parentElement.removeChild(old_notice);
-        }
-
-        // load offline Clocks
-        let clockings = JSON.parse(localStorage.getItem('clockingsUP'));
-        let cLength = 0;
-        if (clockings.length !== 0) {
-            cLength = clockings.length;
-        }
-
-        // load offline bins
-        let bins = JSON.parse(localStorage.getItem('worklogUP'));
-        let bLength = 0;
-        if (bins.length !== 0) {
-            bLength = bins.length;
-        }
-
         // set new notice
-        let body = document.body;
-        let firstItem = document.body.children[0];
-        let notice = document.createElement("div");
-        notice.id = 'notice';
-        notice.classList.add("AppOffline");
-        notice.innerHTML = '<i class="fas fa-wifi"></i> ' + cLength + "/" + bLength;
-        body.insertBefore(notice, firstItem);
-        body.appendChild(notice);
+        setTimeout(function () {
+            // remove old notice if it was set
+            let old_notice = document.getElementById('notice');
+            if (old_notice) {
+                old_notice.parentElement.removeChild(old_notice);
+            }
+
+            // load offline Clocks
+            let clockings = JSON.parse(localStorage.getItem('clockingsUP'));
+            let cLength = 0;
+            if (clockings.length !== 0) {
+                cLength = clockings.length;
+            }
+
+            // load offline bins
+            let bins = JSON.parse(localStorage.getItem('worklogUP'));
+            let bLength = 0;
+            if (bins.length !== 0) {
+                bLength = bins.length;
+            }
+
+            // set new notice
+            let body = document.body;
+            let firstItem = document.body.children[0];
+            let notice = document.createElement("div");
+            notice.id = 'notice';
+            notice.classList.add("AppOffline");
+            notice.innerHTML = '<i class="fas fa-wifi"></i> ' + cLength + "/" + bLength;
+            body.insertBefore(notice, firstItem);
+            body.appendChild(notice);
+        }, 2000);
     }
 }
 
