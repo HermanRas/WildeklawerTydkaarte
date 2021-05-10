@@ -15,9 +15,16 @@ if (isset($_GET['KEY'])){
         $date = $_POST["logDate"][$i];
         $time = $_POST["logTime"][$i];
 
+        // Lookup user_id
+        $sql = "select id,naam,van from `workers` where CN = '$CN' limit 1;";
+
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $worker_id = sqlQuery($sql, $sqlargs);
+        $worker_id = $worker_id[0][0]['id'];
         
         $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
-        values('$uid','$CN',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time');";
+        values('$uid','$worker_id',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time');";
         
         require_once 'config/db_query.php';
         $sqlargs = array();
