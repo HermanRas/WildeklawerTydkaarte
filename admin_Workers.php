@@ -24,6 +24,7 @@
 
     <!-- Footer -->
     <?php include_once('_footer.html'); ?>
+    <script src="JS/bootstrap.bundle.min.js"> </script>
 </body>
 
 </html>
