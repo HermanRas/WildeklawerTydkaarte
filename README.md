@@ -70,11 +70,8 @@
 - 2021/02/13 working user inputData JS added
 
 ### TO DO
-- multi user cloking url encoded bug, only shows last clocker
-- menu size does not update after layse load
-- Add Daai Reports
-
-- confirm page banner color to match icons
+-
 
 ### Look At
 - add sql injection protection using ARG passing for MySQL on all admin pages
+- jwt tokens
