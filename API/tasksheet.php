@@ -5,25 +5,10 @@ if (isset($_GET['KEY'])){
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
         // All good do some work
-        $sql = "SELECT
-                vworktimecalc.MinutesOnClock,
-                vworktimecalc.inDate,
-                vworktimecalc.inTime,
-                vworktimecalc.outDate,
-                vworktimecalc.outTime,
-                vworktimecalc.naam,
-                vworktimecalc.van,
-                vworktimecalc.CN,
-                vworktimecalc.managerNaam,
-                vworktimecalc.managerVen,
-                vworktimecalc.plaasNaam,
-                vworktimecalc.sipluntNaam,
-                vworktimecalc.taakNaam
-                From
-                vworktimecalc";
+        $sql = "SELECT * FROM vworktimecalc WHERE CN > '';";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
+        $result = sqlQueryEmulate($sql, $sqlargs);
 
         //is results for excel or Offline app?
         if (isset($_GET['EXCEL'])){
@@ -42,8 +27,9 @@ if (isset($_GET['KEY'])){
             echo '            <th style="border:1px solid black;">managerNaam</th>';
             echo '            <th style="border:1px solid black;">managerVan</th>';
             echo '            <th style="border:1px solid black;">plaasNaam</th>';
-            echo '            <th style="border:1px solid black;">sipluntNaam</th>';
+            echo '            <th style="border:1px solid black;">spilpuntNaam</th>';
             echo '            <th style="border:1px solid black;">taakNaam</th>';
+            echo '            <th style="border:1px solid black;">gewas</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';
@@ -60,10 +46,11 @@ if (isset($_GET['KEY'])){
                 echo "            <td style=\"border:1px solid black;\">".$row['van']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['CN']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['managerNaam']."</td>";
-                echo "            <td style=\"border:1px solid black;\">".$row['managerVen']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['managerVan']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['plaasNaam']."</td>";
-                echo "            <td style=\"border:1px solid black;\">".$row['sipluntNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['spilpuntNaam']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['taakNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['gewas']."</td>";
                 echo "        </tr>";
             }
 
