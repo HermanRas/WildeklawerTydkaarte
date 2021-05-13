@@ -42,6 +42,9 @@ function postDBUpdate(URL, table) {
             let response = xhttpCalls.responseText;
             let status = JSON.parse(response);
             if (status['success'] == 'DataSaved') {
+                var date = new Date().toISOString();
+                const tmpData = localStorage.getItem(table);
+                localStorage.setItem(table + date, tmpData);
                 localStorage.setItem(table, JSON.stringify([]));
             }
         } else {
