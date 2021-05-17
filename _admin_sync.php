@@ -5,8 +5,8 @@
         <form action="user_InputCheckBins.php">
             <div class="card-body">
                 <div>
-                    <h2 class="text-primary"> DB Version: v1</h2>
-                    <h3 class="bg-success"> Op Server </h3>
+                    <h2 class="text-primary">Databasis Weergawe: v1</h2>
+                    <h3 class="bg-success"> Op Bediener </h3>
                     <ul class="text-left">
                         <?php
                          $sql = "SELECT count(id) as total from clocklog";
@@ -79,12 +79,12 @@
                             $result = sqlQuery($sql, $sqlargs);
                             $result = $result[0][0]['total'];
                         ?>
-                        <li>AccessLevels: <?=$result?></li>
+                        <li>Toegangsvlakke: <?=$result?></li>
                     </ul>
 
                     <script>
                     let db = JSON.parse(localStorage.getItem('db_details'));
-                    document.write('<h2 class="text-primary">DB Version: v', db.version,
+                    document.write('<h2 class="text-primary">Databasis Weergawe: v', db.version,
                         '</h2><small class="text-black">Last Update: ', db
                         .last_update,
                         '</small>');
@@ -100,7 +100,7 @@
                         document.write('<li>Gebruikers: ', JSON.parse(localStorage.getItem('user')).length, '</li>');
                         document.write('<li>Plaas: ', JSON.parse(localStorage.getItem('plaas')).length, '</li>');
                         document.write('<li>Taak: ', JSON.parse(localStorage.getItem('task')).length, '</li>');
-                        document.write('<li>AccessLevels: ', JSON.parse(localStorage.getItem('access')).length,
+                        document.write('<li>Toegangsvlakke: ', JSON.parse(localStorage.getItem('access')).length,
                             '</li>');
                         </script>
                     </ul>
@@ -118,9 +118,9 @@
                 </div>
 
                 <br>
-                <input type="button" class="btn btn-info" onclick="fSync()" value="Force Sync">
+                <input type="button" class="btn btn-info" onclick="fSync()" value="Forseer Sinkroniseer">
                 <a class="btn btn-primary" href="home.html">Tuis</a>
-                <input type="button" class="btn btn-danger" onclick="clearCash('offline')" value="Hard Reset App">
+                <input type="button" class="btn btn-danger" onclick="clearCash('offline')" value="Dwing Herstel">
             </div>
         </form>
     </div>

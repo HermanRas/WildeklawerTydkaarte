@@ -94,5 +94,5 @@ if (isset($_GET['delete'])){
             ?>
         </tbody>
     </table>
-    <input type="button" class="btn btn-info" onclick="fSync()" value="Force Sync">
+    <input type="button" class="btn btn-info" onclick="fSync()" value="Forseer Sinkroniseer">
 </div>
