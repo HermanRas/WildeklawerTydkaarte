@@ -71,7 +71,7 @@ if (isset($_GET['delete'])){
                         LIMIT 0, 20;";
                 require_once 'config/db_query.php';
                 $sqlargs = array();
-                $result = sqlQueryEmulate($sql, $sqlargs);
+                $result = sqlQuery($sql, $sqlargs);
                 foreach ($result[0] as $row) {
                 ?>
                 <td>
@@ -94,4 +94,5 @@ if (isset($_GET['delete'])){
             ?>
         </tbody>
     </table>
+    <input type="button" class="btn btn-info" onclick="fSync()" value="Force Sync">
 </div>

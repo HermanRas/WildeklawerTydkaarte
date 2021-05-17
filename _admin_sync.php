@@ -118,7 +118,9 @@
                 </div>
 
                 <br>
+                <input type="button" class="btn btn-info" onclick="fSync()" value="Force Sync">
                 <a class="btn btn-primary" href="home.html">Tuis</a>
+                <input type="button" class="btn btn-danger" onclick="clearCash('offline')" value="Hard Reset App">
             </div>
         </form>
     </div>
