@@ -150,3 +150,8 @@ self.addEventListener('fetch', (event) => {
         }
     })());
 });
+
+function clearCash(CACHE_NAME) {
+    caches.delete(CACHE_NAME);
+    alert('Offline Data Cleared');
+}

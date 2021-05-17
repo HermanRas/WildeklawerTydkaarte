@@ -55,7 +55,7 @@ function setup() {
 function updateDB() {
     if (window.navigator.onLine) {
         // set api stuff
-        let baseURL = 'https://wildeklawerapps.co.za/WildeklawerTydkaarte';
+        let baseURL = 'https://phq-7hxllh2.petragroup.local/web_dev/Projects/WildeklawerTydkaarte/';
         let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
 
         // update tables system is online
