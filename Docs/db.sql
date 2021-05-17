@@ -218,7 +218,9 @@ From
   spilpunt On clocklog.spry_id = spilpunt.id Left Join
   task On clocklog.task_id = task.id Left Join
   users On clocklog.user_id = users.id Left Join
-  workers On clocklog.worker_id = workers.id;
+  workers On clocklog.worker_id = workers.id
+where clocklog.clockType = 0
+group by workers.naam
 
 DROP VIEW IF EXISTS vclocklogInOut;
 CREATE VIEW vclocklogInOut AS
