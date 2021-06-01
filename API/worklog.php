@@ -3,16 +3,15 @@
 if (isset($_GET['KEY'])){
     // TEST to see if this is our key
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
-
-        // All good do some work
-        $sql = "select * from `worklog`
-                ";//where logDate = curdate()
-        require_once 'config/db_query.php';
-        $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
-
         //is results for excel or Offline app?
         if (isset($_GET['EXCEL'])){
+            // All good do some work
+            $sql = "SELECT * from `worklog`
+                    where logDate > ''";
+            require_once 'config/db_query.php';
+            $sqlargs = array();
+            $result = sqlQuery($sql, $sqlargs);
+
             //for excel use
             echo '<table style="border:1px solid black;width:100%">';
             echo '    <thead>';
@@ -23,6 +22,12 @@ if (isset($_GET['KEY'])){
             echo '    </thead>';
             echo '</table>';
         }else{
+            // All good do some work
+            $sql = "SELECT * from `worklog`
+                    where logDate > '' and logDate > (CURDATE()-1) ";//where logDate = curdate()
+            require_once 'config/db_query.php';
+            $sqlargs = array();
+            $result = sqlQuery($sql, $sqlargs);
             //for application use
             echo json_encode($result[0]);
         }

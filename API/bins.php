@@ -3,28 +3,29 @@
 if (isset($_GET['KEY'])){
     // TEST to see if this is our key
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
-
-        // All good do some work
-        $sql = "SELECT
-                worklog.logDate,
-                workers.naam,
-                workers.van,
-                workers.CN,
-                Sum(worklog.crates) As 'crates',
-                task.naam As task_naam
-                From
-                workers Left Join
-                worklog On workers.id = worklog.worker_id Left Join
-                task On worklog.task_id = task.id
-                where logDate > ''
-                Group By
-                worklog.logDate, workers.naam, workers.van, workers.CN, task.naam";
-        require_once 'config/db_query.php';
-        $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
-
         //is results for excel or Offline app?
         if (isset($_GET['EXCEL'])){
+
+            // All good do some work
+            $sql = "SELECT
+                    worklog.logDate,
+                    workers.naam,
+                    workers.van,
+                    workers.CN,
+                    Sum(worklog.crates) As 'crates',
+                    task.naam As task_naam
+                    From
+                    workers Left Join
+                    worklog On workers.id = worklog.worker_id Left Join
+                    task On worklog.task_id = task.id
+                    where logDate > ''
+                    Group By
+                    worklog.logDate, workers.naam, workers.van, workers.CN, task.naam";
+
+            require_once 'config/db_query.php';
+            $sqlargs = array();
+            $result = sqlQuery($sql, $sqlargs);
+
             //for excel use
             echo '<table style="border:1px solid black;width:100%">';
             echo '    <thead>';
@@ -54,6 +55,25 @@ if (isset($_GET['KEY'])){
             echo '    </tbody>';
             echo '</table>';
         }else{
+            // All good do some work
+            $sql = "SELECT
+                    worklog.logDate,
+                    workers.naam,
+                    workers.van,
+                    workers.CN,
+                    Sum(worklog.crates) As 'crates',
+                    task.naam As task_naam
+                    From
+                    workers Left Join
+                    worklog On workers.id = worklog.worker_id Left Join
+                    task On worklog.task_id = task.id
+                    where logDate > '' and logDate > (CURDATE()-1)
+                    Group By
+                    worklog.logDate, workers.naam, workers.van, workers.CN, task.naam";
+
+            require_once 'config/db_query.php';
+            $sqlargs = array();
+            $result = sqlQuery($sql, $sqlargs);
             //for application use
             echo json_encode($result[0]);
         }
