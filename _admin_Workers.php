@@ -94,7 +94,7 @@ if (isset($_GET['delete'])){
         $sql = "select * from workers order by naam;";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
+        $result = sqlQueryEmulate($sql, $sqlargs);
     ?>
     <div class="form-group">
         <label for="worker">Werker:</label>
@@ -312,13 +312,14 @@ if (isset($_GET['delete'])){
                 <input type="hidden" name="img_data" id="img_data" value="<?php echo $img_data; ?>" />
             </div>
         </div>
-</div>
-<button type="button" class="btn btn-success" onclick="frmUpdate.submit()">Verander</button>
-<button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
-<button type="button" class="btn btn-warning" onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
-<a class="btn btn-info" target="_blank" href="print.php?CN=<?php echo $CN ;?>">QR KODE</a>
-</form>
-<?php
+
+        <button type="button" class="btn btn-success" onclick="frmUpdate.submit()">Verander</button>
+        <button type="button" class="btn btn-danger" onclick="deleteAction()">Verwyder</button>
+        <button type="button" class="btn btn-warning"
+            onclick="window.location.href='admin_Workers.php'">Kanselleer</button>
+        <a class="btn btn-info" target="_blank" href="print.php?CN=<?php echo $CN ;?>">QR KODE</a>
+    </form>
+    <?php
     }
     ?>
 
