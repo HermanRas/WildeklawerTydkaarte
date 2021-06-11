@@ -110,7 +110,7 @@ if (isset($_GET['delete'])){
         <br>
         <br>
         <a class="btn btn-info" target="_blank" href="print.php?ALL">QR KODE VIR ALMAL</a>
-        <a class="btn btn-info" target="_blank" href="print.php?ALL">QR KODE VIR SELEKSIE</a>
+        <a class="btn btn-info" target="_blank" href="admin_PrintSelect.php">QR KODE VIR SELEKSIE</a>
     </div>
     <?php
     }

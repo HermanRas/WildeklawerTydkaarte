@@ -39,7 +39,7 @@
 
     <!-- Page Title -->
     <h1 class="bg-warning">
-        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Werker">Admin - Werker Print Select
+        <img style="height:1.5em;" src="Img/admin.png" class="rounded m-1 p-1" alt="Werker">Admin - Werker Druk Seleksie
     </h1>
     <!-- Main Content -->
     <?php include_once('_admin_PrintSelect.php'); ?>
