@@ -15,7 +15,15 @@ if (isset($_GET['CN'])){
     $result = sqlQuery($sql, $sqlargs);
 }
 
-
+if (isset($_POST['CN'])){
+    $CN = $_POST['CN'];
+    $CN = implode("','",$CN);
+    $sql = "SELECT * from workers
+            WHERE CN IN ('$CN');";
+    require_once 'config/db_query.php';
+    $sqlargs = array();
+    $result = sqlQuery($sql, $sqlargs);
+}
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +39,6 @@ if (isset($_GET['CN'])){
 </head>
 
 <body>
-
 
     <!-- Load QR Code rendering Module -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
