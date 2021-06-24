@@ -158,7 +158,7 @@ function getWorkers(Element) {
 function getClockDir(Element, CN) {
     let clockVal = document.getElementById(Element);
     // let clockText = document.getElementById(Element + 'Text');
-    let clockDir = 0;
+    let clockDir = null;
 
     let onServer = JSON.parse(localStorage.getItem("clockings"));
     let onDevice = JSON.parse(localStorage.getItem("clockingsUP"));
@@ -173,7 +173,7 @@ function getClockDir(Element, CN) {
     });
 
     ////DEBUG Direction////
-    if (clockDir == 1) {
+    if (clockDir == 1 || clockDir == null) {
         clockVal.value = 0;
         // clockText.value = 'IN';
         return 0;

@@ -1,8 +1,8 @@
 <?php
-    $host = 'localhost';
-    $db   = 'wildefgf_WildeKlawerTydkaarte';
-    $user = 'wildefgf_root';
-    $pass = 'C%QvVKcjh?w2';
+    $host = '127.0.0.1';
+    $db   = 'WildeKlawerTydkaarte';
+    $user = 'root';
+    $pass = 'root00--';
     $charset = 'utf8';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
