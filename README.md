@@ -143,7 +143,11 @@
 - 2021/05/10 added sync page
 
 ### TO DO
--
+- Print per seleksie order by name (DONE)
+- Copy _admin_PrintSelect.php van die server af. (DONE)
+- Excel (Kratte) verander Spilpunt om Naam te wys en nie ID nie
+- https://wildeklawerapps.co.za/tydkaarte/API/bins.php?KEY=MucJIL1vkG6YJibwB7HINgvnT89gpK&EXCEL
+- Massa Terugklok select met tick box, soos Print
 
 ### Look At
 - add sql injection protection using ARG passing for MySQL on all admin pages
