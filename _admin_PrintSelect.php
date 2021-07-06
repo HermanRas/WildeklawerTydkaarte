@@ -1,9 +1,9 @@
 <?php
         $sql = "SELECT naam,van,CN from workers
-                Order By Id DESC";
+                Order By naam ASC";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
+        $result = sqlQueryEmulate($sql, $sqlargs);
 ?>
 
 <div class="container">
@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="col">
-                <?php echo $row['CN']?>
-                (<?php echo $row['naam'] . " ".$row['van'];?>)
+                <?php echo $row['naam'] . " ".$row['van'];?>
+                (<?php echo $row['CN']?>)
             </div>
         </div>
         <!--############################## END ############################-->
