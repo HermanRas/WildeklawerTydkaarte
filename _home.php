@@ -71,7 +71,7 @@ if (isset($_GET['delete'])){
                         LIMIT 0, 20;";
                 require_once 'config/db_query.php';
                 $sqlargs = array();
-                $result = sqlQuery($sql, $sqlargs);
+                $result = sqlQueryEmulate($sql, $sqlargs);
                 foreach ($result[0] as $row) {
                 ?>
                 <td>
