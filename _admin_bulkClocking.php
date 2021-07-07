@@ -1,23 +1,14 @@
 <?php
 
-if (isset($_GET['uit'])){
-    $uid = $_GET['uid'];
-    $date = $_GET['Date'];
-    $time = $_GET['time'];
-    $sql = "SELECT * from `vworktimecalc` 
-            where
-            (inDate = CURDATE()
-            or
-            inDate = CURDATE()-1)
-            and
-            outDate IS NULL
-            limit 0,1000";
-    require_once 'config/db_query.php';
-    $sqlargs = array();
-    $result = sqlQuery($sql, $sqlargs);
-    foreach ($result[0] as $row) {
+if (isset($_POST['uit'])){
+    $uid = $_POST['uid'];
+    $date = $_POST['Date'];
+    $time = $_POST['time'];
+    $CNs = $_POST['CN'];
+
+    foreach ($CNs as $cn) {
         // Lookup user_id
-        $sql = "select id from `workers` where CN = '".$row['CN']."' limit 1;";
+        $sql = "select id from `workers` where CN = '".$cn."' limit 1;";
 
         require_once 'config/db_query.php';
         $sqlargs = array();
@@ -28,7 +19,7 @@ if (isset($_GET['uit'])){
         // add worker to clock log
         $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,produce_id,task_id,clockType,logDate,logTime) 
                 values('$uid','$worker_id',0,0,0,0,1,'$date', '$time');";
-        // echo $sql;
+        // echo $sql."<br>";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $res = sqlQuery($sql, $sqlargs);
@@ -65,20 +56,20 @@ if (isset($_GET['uit'])){
     }
 ?>
 <div class="container">
-    <table id="example" class="display" style="width:95%">
-        <thead>
-            <tr>
-                <th>Naam</th>
-                <th>CN</th>
-                <th>Datum</th>
-                <th>Plaas</th>
-                <th>Spilpunt</th>
-                <th>Taak</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-
+    <form method="POST">
+        <table id="example" class="display" style="width:95%">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Naam</th>
+                    <th>CN</th>
+                    <th>Datum</th>
+                    <th>Plaas</th>
+                    <th>Spilpunt</th>
+                    <th>Taak</th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
                 $sql = "SELECT * from `vworktimecalc` 
                         where
@@ -91,21 +82,28 @@ if (isset($_GET['uit'])){
                 require_once 'config/db_query.php';
                 $sqlargs = array();
                 $result = sqlQuery($sql, $sqlargs);
+                
                 foreach ($result[0] as $row) {
                 ?>
-                <td><?php echo $row['naam'].' '.$row['van'];?></td>
-                <td><?php echo $row['CN'];?></td>
-                <td><?php echo $row['inDate'].' '.$row['inTime'];?></td>
-                <td><?php echo $row['plaasNaam'];?></td>
-                <td><?php echo $row['spilpuntNaam'];?></td>
-                <td><?php echo $row['taakNaam'];?></td>
-            </tr>
-            <?php
+                <tr>
+                    <td>
+                        <div class="text-end">
+                            <input type="checkbox" name="CN[]" value="<?php echo $row['CN']?>" checked>
+                        </div>
+                    </td>
+                    <td><?php echo $row['naam'].' '.$row['van'];?></td>
+                    <td><?php echo $row['CN'];?></td>
+                    <td><?php echo $row['inDate'].' '.$row['inTime'];?></td>
+                    <td><?php echo $row['plaasNaam'];?></td>
+                    <td><?php echo $row['spilpuntNaam'];?></td>
+                    <td><?php echo $row['taakNaam'];?></td>
+                </tr>
+                <?php
                 }
             ?>
-        </tbody>
-    </table>
-    <form>
+            </tbody>
+        </table>
+
         <input type="hidden" name="uid" id="uid" value="">
         <div class="form-group">
             <label>Datum:</label>
