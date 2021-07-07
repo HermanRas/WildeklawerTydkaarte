@@ -57,6 +57,8 @@ if (isset($_POST['uit'])){
 ?>
 <div class="container">
     <form method="POST">
+        <a class="btn btn-success" href="#" onclick="selectAll()">Merk Almal</a>
+        <a class="btn btn-info" href="#" onclick="UnSelectAll()">Merk Geen</a>
         <table id="example" class="display" style="width:95%">
             <thead>
                 <tr>
@@ -88,7 +90,7 @@ if (isset($_POST['uit'])){
                 <tr>
                     <td>
                         <div class="text-end">
-                            <input type="checkbox" name="CN[]" value="<?php echo $row['CN']?>" checked>
+                            <input class="checkBox" type="checkbox" name="CN[]" value="<?php echo $row['CN']?>" checked>
                         </div>
                     </td>
                     <td><?php echo $row['naam'].' '.$row['van'];?></td>
@@ -142,4 +144,22 @@ var table = $('#example').DataTable({
     "scrollX": true,
     "paging": false
 });
+</script>
+
+<script type="text/javascript">
+function selectAll() {
+    var items = document.querySelectorAll(".checkBox");
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].type == 'checkbox')
+            items[i].checked = true;
+    }
+}
+
+function UnSelectAll() {
+    var items = document.querySelectorAll(".checkBox");
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].type == 'checkbox')
+            items[i].checked = false;
+    }
+}
 </script>
