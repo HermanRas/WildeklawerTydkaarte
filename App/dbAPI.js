@@ -75,6 +75,7 @@ function postDBUpdate(URL, table) {
     };
     xhttpCalls.open("POST", URL, true);
     xhttpCalls.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttpCalls.timeout = 60000;
     changes = true;
     xhttpCalls.send(postData);
 
