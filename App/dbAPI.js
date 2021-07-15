@@ -23,6 +23,16 @@ function getDBUpdate(URL, table) {
 }
 
 function postDBUpdate(URL, table) {
+
+    var changes = false;
+    window.onbeforeunload = function () {
+        if (changes) {
+            var message = "Are you sure you want to navigate away the DB is still writing .\n\nPress OK to continue or Cancel to stay on the current page.";
+            if (confirm(message)) return true;
+            else return false;
+        }
+    }
+
     // load data from file
     let records = JSON.parse(localStorage.getItem(table));
     let postData = ''
@@ -46,6 +56,7 @@ function postDBUpdate(URL, table) {
                 const tmpData = localStorage.getItem(table);
                 localStorage.setItem(table + date, tmpData);
                 localStorage.setItem(table, JSON.stringify([]));
+                changes = false;
             }
         } else {
             if (this.readyState == 4) {
@@ -58,10 +69,13 @@ function postDBUpdate(URL, table) {
                     'data': xhttpCalls.responseText,
                 };
                 console.log('Error', err);
+                changes = false;
             }
         }
     };
     xhttpCalls.open("POST", URL, true);
     xhttpCalls.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    changes = true;
     xhttpCalls.send(postData);
+
 }
