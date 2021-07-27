@@ -45,8 +45,8 @@ if (isset($_GET['KEY'])){
             $worker_id = sqlQuery($sql, $sqlargs);
             $worker_id = $worker_id[0][0]['id'];
             
-            $sql = "insert into worklog (user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
-            values('$uid','$worker_id',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time');";
+            $sql = "insert into worklog (id,user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
+            Select max(id)+1 ,'$uid','$worker_id',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time' from worklog;";
             
             require_once 'config/db_query.php';
             $sqlargs = array();

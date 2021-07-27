@@ -48,8 +48,8 @@ if (isset($_GET['KEY'])){
 
 
             // add worker to clock log
-            $sql = "insert into clocklog (user_id,worker_id,farm_id,spry_id,produce_id,task_id,clockType,logDate,logTime) 
-                    values('$uid','$worker_id',     '$Plaas',    '$Spry','$Gewas',   '$task', $clockType,'$date', '$time');";
+            $sql = "insert into clocklog (id,user_id,worker_id,farm_id,spry_id,produce_id,task_id,clockType,logDate,logTime) 
+                    select MAX(id)+1,'$uid','$worker_id', '$Plaas',    '$Spry','$Gewas',   '$task', $clockType,'$date', '$time' from clocklog;";
             // echo $sql;
             require_once 'config/db_query.php';
             $sqlargs = array();
