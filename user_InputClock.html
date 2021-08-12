@@ -81,6 +81,16 @@
     <div id="main" class="container">
         <form action="" method="POST" id="frm1" class="needs-validation was-validated" novalidate>
             <br>
+
+            <div class="form-group">
+                <label>In/Uit: </label>
+                <select id="clockType" name="clockType" class="form-control" required>
+                    <option value="" selected>Kies?</option>
+                    <option value="0" selected>IN</option>
+                    <option value="1" selected>UIT</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label>Plaas: </label>
                 <select id="Plaas" name="Plaas" class="form-control" required>
@@ -106,9 +116,6 @@
                 <label>Werkers:</label>
                 <div id="workers"></div>
             </div>
-
-            <input type="hidden" id="clockType" name="clockType" value="">
-
 
             <div class="form-group">
                 <label>Taak:</label>
