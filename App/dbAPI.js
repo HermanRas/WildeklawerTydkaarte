@@ -54,7 +54,7 @@ function postDBUpdate(URL, table) {
             if (status['success'] == 'DataSaved') {
                 var date = new Date().toISOString();
                 const tmpData = localStorage.getItem(table);
-                localStorage.setItem(table + date, tmpData);
+                // localStorage.setItem(table + date, tmpData); //debug cash handling
                 localStorage.setItem(table, JSON.stringify([]));
                 changes = false;
             }

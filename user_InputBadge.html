@@ -106,6 +106,7 @@
     <!-- Page Level Scripts -->
     <script src="JS/html5-qrcode.min.js"></script>
     <script>
+        SCANNED_CNs = '';
         //run scan
         function onScanSuccess(result) {
             //set defaults
@@ -141,8 +142,8 @@
                             '<input type="button" class="btn-sm btn-close" onclick="clearItem(this);" >' +
                             '</li>' +
                             camQrResult.innerHTML;
-
-                        document.getElementById('butDiv').innerHTML = '<a href="user_InputClock.html?User=' + cn[0] +
+                        SCANNED_CNs = SCANNED_CNs + cn[0].trim() + ',';
+                        document.getElementById('butDiv').innerHTML = '<a href="user_InputClock.html?User=' + SCANNED_CNs +
                             '" class="btn btn-secondary">Stuur</a>';
 
                         camQrResult.style.color = 'orange';
