@@ -283,3 +283,54 @@ Select
   vworktimecalc.managerVan
 From
   vworktimecalc;
+
+CREATE TABLE `worklog_backup` SELECT * FROM `worklog`;
+
+DROP TABLE `worklog`;
+
+CREATE TABLE `worklog` (
+`id` int(10) unsigned,
+`user_id` int(10) unsigned NOT NULL,
+`worker_id` int(10) unsigned NOT NULL,
+`farm_id` int(10) unsigned NOT NULL,
+`produce_id` int(10) unsigned NOT NULL,
+`spry_id` int(10) unsigned NOT NULL,
+`task_id` int(10) unsigned NOT NULL,
+`crates` int(11) NOT NULL,
+`logDate` date NOT NULL,
+`logTime` time NOT NULL,
+`Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`worker_id`,`logDate`, `logTime`)
+);
+
+INSERT IGNORE INTO `worklog`
+SELECT * FROM `worklog_backup`;
+
+SELECT count(id),worker_id,logDate,logTime FROM worklog
+Group by worker_id,logDate, Logtime;
+
+CREATE TABLE `clocklog_backup` SELECT * FROM `clocklog`;
+
+DROP TABLE `clocklog`;
+
+CREATE TABLE `clocklog` (
+  `id` int(10) unsigned,
+  `user_id` int(10) unsigned NOT NULL,
+  `worker_id` int(10) unsigned NOT NULL,
+  `task_id` int(10) unsigned DEFAULT NULL,
+  `farm_id` int(10) unsigned NOT NULL,
+  `spry_id` int(10) unsigned NOT NULL,
+  `produce_id` int(10) unsigned NOT NULL,
+  `clockType` bit(1) NOT NULL,
+  `logDate` date NOT NULL,
+  `logTime` time NOT NULL,
+  `Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`worker_id`,`logDate`, `logTime`)
+);
+
+
+INSERT IGNORE INTO `clocklog`
+SELECT * FROM `clocklog_backup`;
+
+SELECT count(id),worker_id,logDate,logTime FROM clocklog
+Group by worker_id,logDate, Logtime;
