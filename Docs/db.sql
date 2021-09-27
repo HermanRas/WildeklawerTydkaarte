@@ -248,6 +248,7 @@ Select
   vclocklogIn.managerVan,
   vclocklogIn.plaasNaam,
   vclocklogIn.spilpuntNaam,
+  vclocklogIn.gewas,
   vclocklogIn.taakNaam
 From
   vclocklogIn;
@@ -267,9 +268,11 @@ Select
   vclocklogInOut.managerVan,
   vclocklogInOut.plaasNaam,
   vclocklogInOut.spilpuntNaam,
+  vclocklogInOut.gewas,
   vclocklogInOut.taakNaam
 From
-  vclocklogInOut;
+  vclocklogInOut
+WHERE   (inDate >= DATE_SUB(CURDATE(), INTERVAL 31 DAY));
 
 DROP VIEW IF EXISTS vshifttotal;
 CREATE VIEW vshifttotal AS
