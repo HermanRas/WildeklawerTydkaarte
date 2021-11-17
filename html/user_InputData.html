@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wildeklawer Tydkaarte</title>
+
+    <!-- Add Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <!-- End Manifest -->
+
+    <!-- Chrome/android APP settings -->
+    <meta name="theme-color" content="#00AB93">
+    <link rel="icon" href="Img/icon.jpeg" sizes="192x192">
+    <!-- end of Chrome/Android App Settings  -->
+
+    <!-- Bootstrap // you can use hosted CDN here-->
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/app.css">
+    <!-- end of bootstrap -->
+
+    <!-- Import Custom Font -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <!-- end of Custom Font -->
+
+    <!-- start dataTables.net -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <!-- end of dataTables -->
+
+    <!-- font-awesome 5.10.2 // not needed for theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <!-- end of font-awesome  -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Start of App JS -->
+    <script src="App/dbAPI.js"></script>
+    <script src="App/app.js"></script>
+    <script src="App\backgroundSync.js"></script>
+    <!-- End Of App JS -->
+    <script src="JS/jquery-3.6.0.min.js"></script>
+    <script src="./service-worker-install.js"></script>
+    <script src="./service-worker.js"></script>
+</head>
+
+<body onload="updateData();">
+    <!-- NAV BAR -->
+    <!-- FROM NAV.HTML -->
+    <nav id="admin_menu" class="navbar navbar-expand-md navbar-dark  bg-dark p-1">
+
+        <a class="btn btn-outline-secondary m-2 p-0 px-1" href="home.html">
+            <img style="max-height:40px;" src="Img/tuis.png" class="rounded" alt="Tuis">
+            <br>
+            <span class="text-xxs">Tuis</span>
+        </a>
+
+        <a href="user_InputSelect.html" class="btn btn-outline-secondary m-2 p-0 px-1">
+            <img style="max-height:40px;" src="Img/invoere.png" class="rounded" alt="Invoer">
+            <br>
+            <span class="text-xxs">Invoer</span>
+        </a>
+        <a href="user_InputCheckBins.php" class="btn btn-outline-secondary m-2 p-0 px-1">
+            <img style="max-height:40px;" src="Img/bins.png" class="rounded" alt="Invoer">
+            <br>
+            <span class="text-xxs">Bins?</span>
+        </a>
+        <a href="user_InputBadge.html" class="btn btn-outline-secondary m-2 p-0 px-1">
+            <img style="max-height:40px;" src="Img/klok.png" class="rounded" alt="Klok">
+            <br>
+            <span class="text-xxs">Klok</span>
+        </a>
+        <a href="#" onclick="logout()" class="btn btn-outline-secondary m-2 p-0 px-1">
+            <img style="max-height:40px;" src="Img/teken_uit.png" class="rounded" alt="TekenUit">
+            <br>
+            <span class="text-xxs">TekenUit</span>
+        </a>
+    </nav>
+    <!-- END NAV -->
+    <!-- Page Title -->
+
+    <!-- Main Content -->
+    <h1 class="bg-success"><img style="height:1.5em;" src="Img/invoere.png" class="rounded m-1 p-1" alt="Invoer">Invoer
+    </h1>
+    <div id="main" class="container">
+        <form action="" id="frm1" class="needs-validation was-validated" novalidate>
+            <br>
+            <div class="form-group">
+                <label>Plaas: </label>
+                <select id="Plaas" name="Plaas" class="form-control" required>
+                    <option value="" selected>Kies Plaas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Spilpunt: </label>
+                <select id="spilpunt" name="spilpunt" class="form-control" required>
+                    <option value="" selected>Kies Spilpunt</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Gewas:</label>
+                <select id="Gewas" name="Gewas" class="form-control" required>
+                    <option value="" selected>Kies Gewas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Werker:</label>
+                <input id="werkver_value" type="text" class="form-control" value="loading" readonly>
+                <input type="hidden" id="CN" name="CN" value="">
+            </div>
+
+            <div class="form-group">
+                <label>Taak:</label>
+                <input id="Taak_name" type="text" class="form-control" value="" readonly>
+                <input id="Taak" type="hidden" value="" name="Taak">
+            </div>
+
+            <div class="form-group">
+                <label>Kratte:</label>
+                <input type="number" class="form-control" placeholder="" id="kratte" name="kratte" required>
+            </div>
+            <button type="button" class="btn btn-primary" id="Stuur" onclick="saveData();">Stoor</button>
+
+            <br>
+            <div class="form-group">
+                <label>Datum:</label>
+                <script>
+                    // Use of Date.now() function 
+                    var date = new Date().toISOString().substring(0, 10);
+                    // Printing the current date
+                    document.write('<input type="date" value="' + date +
+                        '" class="form-control" id="date"  name="Date" required>');
+                </script>
+            </div>
+
+            <div class="form-group">
+                <label>Tyd:</label>
+                <script>
+                    // Use of Date.now() function 
+                    var date = new Date();
+                    date.setHours(date.getHours() + 2);
+                    date = date.toISOString().substring(11, 16);
+                    // Printing the current date
+                    document.write('<input type="text" value="' + date +
+                        '" class="form-control" id="time" name="time"  required>');
+                </script>
+            </div>
+        </form>
+        <!-- ADD Fancy Form Validation -->
+        <script>
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+            document.getElementById("frm1").checkValidity();
+        </script>
+    </div>
+
+
+    <!-- Page Level Scrip -->
+    <script>
+        // Fix crate listing for clearing field
+        function updateTask(taskID) {
+            let kratte = document.getElementById('kratte');
+            if (taskID == 1 || taskID == 4) {
+                kratte.readOnly = true;
+                kratte.value = 0;
+            } else {
+                kratte.readOnly = false;
+                kratte.value = '';
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <script>
+        loadData('_footer.html', '', 'BODY');
+    </script>
+    <script scr="JS/bootstrap.bundle.min.js"></script>
+
+    <!-- script User input -->
+    <script src="App/user_InputData.js">
+    </script>
+</body>
+
+</html>

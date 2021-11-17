@@ -1,5 +1,6 @@
 #exclude Dependincies folder
 vendor/
+
 #exclude Test folder
 test/
 db_emulate.php
