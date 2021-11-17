@@ -24,7 +24,7 @@ if (isset($_GET['KEY'])){
         }else{
             // All good do some work
             $sql = "SELECT * from `worklog`
-                    where logDate > '' and logDate > (CURDATE()-1) ";//where logDate = curdate()
+                    where logDate is not null and logDate > (CURDATE()-1) ";//where logDate = curdate()
             require_once 'config/db_query.php';
             $sqlargs = array();
             $result = sqlQuery($sql, $sqlargs);

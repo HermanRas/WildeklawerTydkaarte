@@ -8,7 +8,7 @@ if (isset($_GET['KEY'])){
             // All good do some work
             $sql = "SELECT  clocklog.*,workers.cn from `clocklog` 
                     left join workers on workers.id = worker_id
-                    where logDate > '' ";
+                    where logDate is not null ";
             require_once 'config/db_query.php';
             $sqlargs = array();
             $result = sqlQuery($sql, $sqlargs);
@@ -25,7 +25,7 @@ if (isset($_GET['KEY'])){
             // All good do some work
             $sql = "SELECT  clocklog.*,workers.cn from `clocklog` 
                     left join workers on workers.id = worker_id
-                    where logDate > '' and logDate > (CURDATE()-1) ";
+                    where logDate is not null and logDate > (CURDATE()-1) ";
             require_once 'config/db_query.php';
             $sqlargs = array();
             $result = sqlQuery($sql, $sqlargs);

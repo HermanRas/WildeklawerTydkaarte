@@ -8,7 +8,7 @@ function doDBSync() {
         if (window.navigator.onLine) {
 
             // set api stuff
-            let baseURL = 'https://wildeklawerapps.co.za/WildeklawerTydkaarte';
+            let baseURL = 'http://localhost:8080/';
             let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
 
             // if clockingsUP local DB is created
@@ -39,7 +39,7 @@ function fSync() {
 
         alert('Online - Sync Started');
         // set api stuff
-        let baseURL = 'https://wildeklawerapps.co.za/WildeklawerTydkaarte';
+        let baseURL = 'http://localhost:8080/';
         let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
 
         // if clockingsUP local DB is created
