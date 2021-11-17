@@ -151,7 +151,7 @@ Html5Qrcode.getCameras().then(devices => {
         if (devices[2]) {
             cameraId = devices[2].id
         } else {
-            cameraId = devices[0].id;
+            cameraId = devices[1].id;
         }
         html5QrCode.start(
                 cameraId, // retreived in the previous step.

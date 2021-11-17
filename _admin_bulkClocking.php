@@ -57,7 +57,7 @@ if (isset($_POST['uit'])){
 ?>
 <div class="container">
     <form method="POST">
-        <a class="btn btn-success" href="#" onclick="selectAll()">Merk Almal</a>
+		<a class="btn btn-success" href="#" onclick="selectAll()">Merk Almal</a>
         <a class="btn btn-info" href="#" onclick="UnSelectAll()">Merk Geen</a>
         <table id="example" class="display" style="width:95%">
             <thead>
@@ -83,7 +83,7 @@ if (isset($_POST['uit'])){
                         limit 0,1000";
                 require_once 'config/db_query.php';
                 $sqlargs = array();
-                $result = sqlQuery($sql, $sqlargs);
+                $result = sqlQueryEmulate($sql, $sqlargs);
                 
                 foreach ($result[0] as $row) {
                 ?>

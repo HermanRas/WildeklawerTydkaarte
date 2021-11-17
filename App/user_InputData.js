@@ -6,6 +6,7 @@ function updateData(newState) {
 
 function updateTheData() {
     let taskID = getTask();
+    console.log(taskID);
     // id = 0 is not clocked
     if (taskID !== 0) {
         // id 1 || 4 is no input type job
@@ -55,6 +56,7 @@ function getTask() {
         });
         // if there is clockings
         if (worker.length > 0) {
+            console.log(worker)
             // if the work type is not 1 & 4
             if (worker[worker.length - 1]['clockType'] == 0) {
                 return worker[worker.length - 1]['task_id'];

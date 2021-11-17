@@ -1,4 +1,6 @@
 <?PHP
+//ini_set('memory_limit','128M');
+//var_dump($_POST);
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +93,7 @@ if (isset($_GET['delete'])){
 
     //if no add or update show form
     if ((!isset($_GET['add']))&&(!isset($_GET['name']))){
-        $sql = "select * from workers order by naam;";
+        $sql = "select id,naam,van from workers order by naam;";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQueryEmulate($sql, $sqlargs);
@@ -162,7 +164,7 @@ if (isset($_GET['delete'])){
         });
     </script>
 
-    <form method="POST" id="frmAdd">
+    <form method="POST" id="frmAdd" enctype="multipart/form-data">
         <div class="form-group">
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="" name="Naam" id="farmName" placeholder="Naam">
@@ -185,7 +187,7 @@ if (isset($_GET['delete'])){
             </script>
 
             <label for="CN">Werker Nommer:</label>
-            <input type="text" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer">
+            <input type="text" class="form-control" value="" name="CN" id="CN" placeholder="Werker Nommer" required>
             <input type="hidden" name="action" value="add">
         </div>
         <label for="img_data">Werker foto:</label>
@@ -208,7 +210,7 @@ if (isset($_GET['delete'])){
         $sql = "select * from workers where id = '$uid' limit 1;";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQuery($sql, $sqlargs);
+        $result = sqlQueryEmulate($sql, $sqlargs);
         $img_data = 'Img/favicon.png';
         foreach ($result[0] as $row) {
             $naam = $row['naam'];
@@ -280,7 +282,7 @@ if (isset($_GET['delete'])){
             player.srcObject = stream;
         }).catch(function(err) {});
     </script>
-    <form method="POST" id="frmUpdate">
+    <form method="POST" id="frmUpdate" enctype="multipart/form-data">
         <div class="form-group">
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="<?php echo $naam; ?>" name="Naam" id="farmName"
@@ -303,8 +305,7 @@ if (isset($_GET['delete'])){
 
             <label for="CN">Werker Nommer:</label>
             <input type="test" class="form-control" value="<?php echo $CN; ?>" name="CN" id="CN"
-                placeholder="Werker Nommer">
-            <input type="hidden" name="action" value="add">
+                placeholder="Werker Nommer" required>
             <input type="hidden" value="<?php echo $uid; ?>" name="uid" id="uid">
             <input type="hidden" name="action" value="update">
             <label for="img_data">Werker foto:</label>

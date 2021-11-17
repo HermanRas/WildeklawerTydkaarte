@@ -103,6 +103,7 @@ function getTaskList(Element, clockDir) {
     let dropdown = Element.innerHTML;
     let list = '';
     let cookie = getCookie("task");
+    console.log(clockDir);
     if (clockDir == 1) {
         list += '<option value="0" selected>Teken UIT</option>';
     } else {
@@ -174,12 +175,29 @@ function getClockDir(Element, CN) {
 
     ////DEBUG Direction////
     if (clockDir == 1 || clockDir == null) {
-        clockVal.value = 0;
-        // clockText.value = 'IN';
+        setTimeout(function () {
+            clockVal.value = '0';
+            // console.log('IN');
+            // console.log('sleeped1');
+        }, 500);
+        setTimeout(function () {
+            clockVal.value = '0';
+            // console.log('IN');
+            // console.log('sleeped2');
+        }, 1000);
+
         return 0;
     } else {
-        clockVal.value = 1;
-        // clockText.value = 'OUT';
+        setTimeout(function () {
+            clockVal.value = '1';
+            // console.log('OUT');
+            // console.log('sleeped1');
+        }, 500);
+        setTimeout(function () {
+            clockVal.value = '1';
+            // console.log('OUT');
+            // console.log('sleeped2');
+        }, 1000);
         return 1;
     }
 }

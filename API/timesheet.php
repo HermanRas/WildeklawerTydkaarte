@@ -5,10 +5,24 @@ if (isset($_GET['KEY'])){
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
         // All good do some work
-        $sql = "SELECT * FROM `vshifttotal` WHERE CN > '';";
+        $sql = "SELECT
+                vclocklogout.id,
+                vclocklogout.naam,
+                vclocklogout.van,
+                vclocklogout.CN,
+                vclocklogout.managerNaam,
+                vclocklogout.managerVen,
+                vclocklogout.logDate,
+                vclocklogout.logTime,
+                vclocklogout.plaasNaam,
+                vclocklogout.sipluntNaam,
+                vclocklogout.taakNaam,
+                vclocklogout.clockType
+                From
+                vclocklogout";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQueryEmulate($sql, $sqlargs);
+        $result = sqlQuery($sql, $sqlargs);
 
         //is results for excel or Offline app?
         if (isset($_GET['EXCEL'])){
@@ -16,13 +30,18 @@ if (isset($_GET['KEY'])){
             echo '<table style="border:1px solid black;width:100%">';
             echo '    <thead>';
             echo '        <tr style="border:1px solid black;">';
-            echo '            <th style="border:1px solid black;">TimeWorked</th>';
-            echo '            <th style="border:1px solid black;">Date</th>';
+            echo '            <th style="border:1px solid black;">id</th>';
+            echo '            <th style="border:1px solid black;">TotalTime</th>';
             echo '            <th style="border:1px solid black;">naam</th>';
             echo '            <th style="border:1px solid black;">van</th>';
             echo '            <th style="border:1px solid black;">CN</th>';
-			echo '            <th style="border:1px solid black;">manager naam</th>';
-            echo '            <th style="border:1px solid black;">manager van</th>';
+            echo '            <th style="border:1px solid black;">managerNaam</th>';
+            echo '            <th style="border:1px solid black;">managerVan</th>';
+            echo '            <th style="border:1px solid black;">logDate</th>';
+            echo '            <th style="border:1px solid black;">plaasNaam</th>';
+            echo '            <th style="border:1px solid black;">sipluntNaam</th>';
+            echo '            <th style="border:1px solid black;">taakNaam</th>';
+            echo '            <th style="border:1px solid black;">clockType</th>';
             echo '        </tr>';
             echo '    </thead>';
             echo '    <tbody>';
@@ -30,13 +49,18 @@ if (isset($_GET['KEY'])){
             // repeat for all records
             foreach ($result[0] as $row) {
                 echo "        <tr>";
-                echo "            <td style=\"border:1px solid black;\">".$row['TimeWorked']."</td>";
-                echo "            <td style=\"border:1px solid black;\">".$row['Date']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['id']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['logTime']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['naam']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['van']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['CN']."</td>";
                 echo "            <td style=\"border:1px solid black;\">".$row['managerNaam']."</td>";
-                echo "            <td style=\"border:1px solid black;\">".$row['managerVan']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['managerVen']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['logDate']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['plaasNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['sipluntNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['taakNaam']."</td>";
+                echo "            <td style=\"border:1px solid black;\">".$row['clockType']."</td>";
                 echo "        </tr>";
             }
 

@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['ALL'])){
-        $sql = "SELECT * from workers";
+        $sql = "SELECT * from workers limit 0, 1000";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
