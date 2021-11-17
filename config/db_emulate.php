@@ -14,7 +14,8 @@
     try {
         $pdo = new PDO($dsn, $user, $pass, $options);
     } catch (\PDOException $e) {
-        //throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        //echo 'DB_CONNECTION ERROR !';
+        http_response_code(500);
+        // throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        // echo 'DB_CONNECTION ERROR !';
     }
 ?>
