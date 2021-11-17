@@ -8,6 +8,9 @@
 
     <!-- Custom Headers -->
     <?php include_once('_header.html'); ?>
+    <script src="JS/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
     <style>
     input[type=checkbox] {
         /* Double-sized Checkboxes */
