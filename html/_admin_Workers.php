@@ -16,7 +16,8 @@ if (isset($_POST['action'])){
         $Area = $_POST['Area'];
         $skof = $_POST['Skof'];
         $KDatum = $_POST['KDatum'];
-        $sql = "update workers set naam='$naam',van='$van',CN='$CN',img_data='$img',skof='$skof',area='$Area',contract_end='$KDatum' where id = '$uid'";
+        $SAid = $_POST['SAid'];
+        $sql = "update workers set naam='$naam',van='$van',CN='$CN',img_data='$img',skof='$skof',area='$Area',SA_id='$SAid',contract_end='$KDatum' where id = '$uid'";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -32,7 +33,8 @@ if (isset($_POST['action'])){
         $Area = $_POST['Area'];
         $skof = $_POST['Skof'];
         $KDatum = $_POST['KDatum'];
-        $sql = "insert into workers (naam,van,CN,img_data,area,skof,contract_end) values('$naam','$van','$CN','$img','$Area','$skof','$KDatum');";
+        $SAid = $_POST['SAid'];
+        $sql = "insert into workers (naam,van,CN,img_data,area,skof,SA_id,contract_end) values('$naam','$van','$CN','$img','$Area','$skof','$SAid','$KDatum');";
 
         require_once 'config/db_query.php';
         $sqlargs = array();
@@ -170,6 +172,8 @@ if (isset($_GET['delete'])){
             <input type="text" class="form-control" value="" name="Naam" id="farmName" placeholder="Naam">
             <label for="van">Van:</label>
             <input type="text" class="form-control" value="" name="Van" id="van" placeholder="Van">
+            <label for="van">SA ID:</label>
+            <input type="text" class="form-control" value="" name="SAid" id="SAid" placeholder="SA ID">
 
             <label for="Area">Woon Area:</label>
             <input type="text" class="form-control" value="" name="Area" id="Area" placeholder="Woon Area">
@@ -215,6 +219,7 @@ if (isset($_GET['delete'])){
         foreach ($result[0] as $row) {
             $naam = $row['naam'];
             $van = $row['van'];
+            $SAid = $row['SA_id'];
             $CN = $row['CN'];
             $img_data = $row['img_data'];
             $Area = $row['area'];
@@ -289,6 +294,9 @@ if (isset($_GET['delete'])){
                 placeholder="Naam">
             <label for="van">Van:</label>
             <input type="text" class="form-control" value="<?php echo $van; ?>" name="Van" id="van" placeholder="Van">
+
+            <label for="van">SA ID:</label> 
+            <input type="text" class="form-control" value="<?php echo $SAid; ?>" name="SAid" id="SAid" placeholder="SA ID">
 
             <label for="Area">Woon Area:</label>
             <input type="text" class="form-control" value="<?php echo $Area; ?>" name="Area" id="Area"

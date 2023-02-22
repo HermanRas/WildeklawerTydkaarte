@@ -36,14 +36,14 @@
     <!-- Start of App JS -->
     <script src="App/dbAPI.js"></script>
     <script src="App/app.js"></script>
-   <script src="App\backgroundSync.js"></script>
+    <script src="App\backgroundSync.js"></script>
     <!-- End Of App JS -->
     <script src="JS/jquery-3.6.0.min.js"></script>
     <script src="./service-worker-install.js"></script>
     <script src="./service-worker.js"></script>
 </head>
 
-<body>
+<body onload="setup()">
     <!-- NAV BAR -->
     <!-- FROM NAV.HTML -->
     <nav id="admin_menu" class="navbar navbar-expand-md navbar-dark bg-dark p-0">
@@ -134,12 +134,15 @@
              * devices would be an array of objects of type:
              * { id: "id", label: "label" }
              */
+            cameraId = devices[0].id
             if (devices && devices.length) {
-                if (devices[2]) {
-                    cameraId = devices[2].id
-                } else {
-                    cameraId = devices[1].id;
-                }
+                // if (devices[2]) {
+                //     cameraId = devices[2].id
+                // } else {
+                //     cameraId = devices[1].id;
+                // }
+                // cameraId = devices[0].id;
+
                 html5QrCode.start(
                     cameraId,     // retreived in the previous step.
                     {

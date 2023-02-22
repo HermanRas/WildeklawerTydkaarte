@@ -17,77 +17,77 @@ async function doDBSync() {
 ///////////////////////////////////////////////////////////////////////////
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
-const OFFLINE_VERSION = 7;
+const OFFLINE_VERSION = 8;
 const CACHE_NAME = 'offline';
 
 // Customize offline page for any url not in cache
-const OFFLINE_URL = '/WildeklawerTydkaarte/indexOffline.html';
+const OFFLINE_URL = '/indexOffline.html';
 // list of urls to cache
 const filesToCache = [
     // STATIC PAGES
-    '/favicon.ico',
-    '/WildeklawerTydkaarte/',
-    '/WildeklawerTydkaarte/_footer.html',
-    '/WildeklawerTydkaarte/_header.html',
-    '/WildeklawerTydkaarte/_nav.html',
-    '/WildeklawerTydkaarte/home.html',
-    '/WildeklawerTydkaarte/index.html',
-    '/WildeklawerTydkaarte/site_Privacy.html',
-    '/WildeklawerTydkaarte/site_Terms.html',
-    '/WildeklawerTydkaarte/user_InputBadge.html',
-    '/WildeklawerTydkaarte/user_InputClock.html',
-    '/WildeklawerTydkaarte/user_InputData.html',
-    '/WildeklawerTydkaarte/user_InputSelect.html',
+    // '/favicon.ico',
+    // '/',
+    // '/_footer.html',
+    // '/_header.html',
+    // '/_nav.html',
+    // '/home.html',
+    // '/index.html',
+    // '/site_Privacy.html',
+    // '/site_Terms.html',
+    // '/user_InputBadge.html',
+    // '/user_InputClock.html',
+    // '/user_InputData.html',
+    // '/user_InputSelect.html',
 
-    // CSS
-    '/WildeklawerTydkaarte/CSS/app.css',
-    '/WildeklawerTydkaarte/CSS/login.css',
-    '/WildeklawerTydkaarte/CSS/bootstrap.min.css',
+    // // CSS
+    // '/CSS/app.css',
+    // '/CSS/login.css',
+    // '/CSS/bootstrap.min.css',
 
-    // JS Scripts
-    '/WildeklawerTydkaarte/JS/bootstrap.bundle.min.js',
-    '/WildeklawerTydkaarte/JS/destAction.js',
-    '/WildeklawerTydkaarte/JS/farmAction.js',
-    '/WildeklawerTydkaarte/JS/jquery-3.6.0.min.js',
-    '/WildeklawerTydkaarte/JS/login.js',
-    '/WildeklawerTydkaarte/JS/produceAction.js',
-    '/WildeklawerTydkaarte/JS/qr-code.min.js',
-    '/WildeklawerTydkaarte/JS/html5-qrcode.min.js',
-    '/WildeklawerTydkaarte/JS/spryAction.js',
-    '/WildeklawerTydkaarte/JS/sweetalert2.10.js',
-    '/WildeklawerTydkaarte/JS/taskAction.js',
-    '/WildeklawerTydkaarte/JS/userAction.js',
-    '/WildeklawerTydkaarte/JS/workerAction.js',
+    // // JS Scripts
+    // '/JS/bootstrap.bundle.min.js',
+    // '/JS/destAction.js',
+    // '/JS/farmAction.js',
+    // '/JS/jquery-3.6.0.min.js',
+    // '/JS/login.js',
+    // '/JS/produceAction.js',
+    // '/JS/qr-code.min.js',
+    // '/JS/html5-qrcode.min.js',
+    // '/JS/spryAction.js',
+    // '/JS/sweetalert2.10.js',
+    // '/JS/taskAction.js',
+    // '/JS/userAction.js',
+    // '/JS/workerAction.js',
 
-    // JS APP
-    '/WildeklawerTydkaarte/App/app.js',
-    '/WildeklawerTydkaarte/App/dbAPI.js',
-    '/WildeklawerTydkaarte/App/navAdmin.js',
-    '/WildeklawerTydkaarte/App/backgroundSync.js',
-    '/WildeklawerTydkaarte/App/user_InputClock.js',
-    '/WildeklawerTydkaarte/App/user_InputData.js',
+    // // JS APP
+    // '/App/app.js',
+    // '/App/dbAPI.js',
+    // '/App/navAdmin.js',
+    // '/App/backgroundSync.js',
+    // '/App/user_InputClock.js',
+    // '/App/user_InputData.js',
 
-    // // Images
-    '/WildeklawerTydkaarte/Img/admin.png',
-    '/WildeklawerTydkaarte/Img/bins.png',
-    '/WildeklawerTydkaarte/Img/Bulk_klok.png',
-    '/WildeklawerTydkaarte/Img/details_close.png',
-    '/WildeklawerTydkaarte/Img/details_open.png',
-    '/WildeklawerTydkaarte/Img/favicon.png',
-    '/WildeklawerTydkaarte/Img/icon-192x192.png',
-    '/WildeklawerTydkaarte/Img/icon-256x256.png',
-    '/WildeklawerTydkaarte/Img/icon-384x384.png',
-    '/WildeklawerTydkaarte/Img/icon-512x512.png',
-    '/WildeklawerTydkaarte/Img/icon.ico',
-    '/WildeklawerTydkaarte/Img/icon.jpeg',
-    '/WildeklawerTydkaarte/Img/invoere.png',
-    '/WildeklawerTydkaarte/Img/klok.png',
-    '/WildeklawerTydkaarte/Img/splash.jpg',
-    '/WildeklawerTydkaarte/Img/teken_uit.png',
-    '/WildeklawerTydkaarte/Img/tuis.png',
-    '/WildeklawerTydkaarte/Img/verslae.png',
-    '/WildeklawerTydkaarte/Img/Wildeklawer-logo.png',
-    '/WildeklawerTydkaarte/Img/WKLogo_Full.jpeg',
+    // // // Images
+    // '/Img/admin.png',
+    // '/Img/bins.png',
+    // '/Img/Bulk_klok.png',
+    // '/Img/details_close.png',
+    // '/Img/details_open.png',
+    // '/Img/favicon.png',
+    // '/Img/icon-192x192.png',
+    // '/Img/icon-256x256.png',
+    // '/Img/icon-384x384.png',
+    // '/Img/icon-512x512.png',
+    // '/Img/icon.ico',
+    // '/Img/icon.jpeg',
+    // '/Img/invoere.png',
+    // '/Img/klok.png',
+    // '/Img/splash.jpg',
+    // '/Img/teken_uit.png',
+    // '/Img/tuis.png',
+    // '/Img/verslae.png',
+    // '/Img/Wildeklawer-logo.png',
+    // '/Img/WKLogo_Full.jpeg',
 ];
 
 self.addEventListener('install', (event) => {
@@ -153,5 +153,5 @@ self.addEventListener('fetch', (event) => {
 
 function clearCash(CACHE_NAME) {
     caches.delete(CACHE_NAME);
-	alert('Offline Data Cleared');
+    alert('Offline Data Cleared');
 }

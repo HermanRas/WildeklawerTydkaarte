@@ -1,6 +1,7 @@
 function updateData(newState) {
     setTimeout(function () {
         updateTheData();
+        document.getElementById("kratte").focus();
     }, 1000);
 }
 

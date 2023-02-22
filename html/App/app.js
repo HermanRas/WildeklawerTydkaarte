@@ -55,7 +55,7 @@ function setup() {
 function updateDB() {
     if (window.navigator.onLine) {
         // set api stuff
-        let baseURL = 'http://localhost:8080/';
+        let baseURL = 'https://laptop.dev:8443';
         let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
 
         // update tables system is online

@@ -1,13 +1,12 @@
 <?php
 // TEST to see if API is present
-if (isset($_GET['KEY'])){
+if (isset($_GET['KEY'])) {
     // TEST to see if this is our key
-    if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
+    if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK') {
         //is results for excel or Offline app?
-        if (isset($_GET['EXCEL'])){
+        if (isset($_GET['EXCEL'])) {
             // All good do some work
-            $sql = "SELECT * from `worklog`
-                    where logDate > ''";
+            $sql = "SELECT * from `worklog`";
             require_once 'config/db_query.php';
             $sqlargs = array();
             $result = sqlQuery($sql, $sqlargs);
@@ -21,24 +20,23 @@ if (isset($_GET['KEY'])){
             echo '        </tr>';
             echo '    </thead>';
             echo '</table>';
-        }else{
+        } else {
             // All good do some work
             $sql = "SELECT * from `worklog`
-                    where logDate is not null and logDate > (CURDATE()-1) ";//where logDate = curdate()
+                    where  logDate > (CURDATE()-1) "; //where logDate = curdate()
             require_once 'config/db_query.php';
             $sqlargs = array();
             $result = sqlQuery($sql, $sqlargs);
             //for application use
             echo json_encode($result[0]);
         }
-
-    }else{
+    } else {
         http_response_code(403);
-        $err = array('error'=>'API AUTH KEY FAILED');
+        $err = array('error' => 'API AUTH KEY FAILED');
         echo   json_encode($err);
     }
-}else{
+} else {
     http_response_code(403);
-    $err = array('error'=>'NO API KEY');
+    $err = array('error' => 'NO API KEY');
     echo   json_encode($err);
 }

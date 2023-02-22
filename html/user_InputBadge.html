@@ -41,7 +41,7 @@
     <script src="./service-worker.js"></script>
 </head>
 
-<body>
+<body onload="setup()">
     <!-- NAV BAR -->
     <!-- FROM NAV.HTML -->
     <nav id="admin_menu" class="navbar navbar-expand-md navbar-dark bg-dark p-0">
@@ -164,12 +164,13 @@
              * devices would be an array of objects of type:
              * { id: "id", label: "label" }
              */
+            cameraId = devices[0].id;
             if (devices && devices.length) {
-                if (devices[2]) {
-                    cameraId = devices[2].id
-                } else {
-                    cameraId = devices[1].id;
-                }
+                // if (devices[2]) {
+                //     cameraId = devices[2].id
+                // } else {
+                //     cameraId = devices[1].id;
+                // }
                 html5QrCode.start(
                     cameraId,     // retreived in the previous step.
                     {
