@@ -145,19 +145,33 @@ function updateAppStatus(status) {
     }
 }
 
-// PWA Status change listener (Lost Connection go Offline)
-window.addEventListener('offline', function (event) {
-    updateAppStatus('offline');
-});
-window.addEventListener('online', function (event) {
-    updateAppStatus('online');
-});
+function checkConnectionQuality(event_details){
+    const goodConnection    = ['3g', '4g', '5g', '6g'];
+    const connectionType    = navigator.connection.effectiveType;
+    const connectionLatency = navigator.connection.rtt;
+    const bandwidth = navigator.connection.downlink;
 
-if (window.navigator.onLine) {
-    updateAppStatus('online');
-}
-if (!window.navigator.onLine) {
-    updateAppStatus('offline');
+    if( (connectionLatency < 500) 
+    &&  (goodConnection.includes(connectionType))
+    &&  (bandwidth > 0.5)
+    ){
+        updateAppStatus('online');
+        const createLocationEvent = new CustomEvent ( 'connection:stable'
+        , { bubbles: true
+          , detail: true
+          }
+        );
+        window.dispatchEvent(createLocationEvent);
+
+    } else {
+        updateAppStatus('offline');
+        const createLocationEvent = new CustomEvent ( 'connection:stable'
+        , { bubbles: true
+          , detail: false
+          }
+        );
+        window.dispatchEvent(createLocationEvent);
+    }
 }
 
 // PWA Logout
@@ -218,3 +232,13 @@ function getCookie(cname) {
     }
     return "";
 }
+
+// PWA Status change listener (Lost Connection go Offline)
+window.addEventListener('offline', checkConnectionQuality);
+window.addEventListener('online', checkConnectionQuality);
+window.navigator.connection.addEventListener("change", checkConnectionQuality);
+
+checkConnectionQuality(); //on first run check connection quality
+
+
+
