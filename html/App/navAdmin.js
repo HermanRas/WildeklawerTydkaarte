@@ -19,6 +19,7 @@ if (parseInt(sessionStorage.getItem('acl')) > 6) {
                     <a class="dropdown-item" href="admin_Spry.php">Spilpunte</a>
                     <a class="dropdown-item" href="admin_Task.php">Take</a>
                     <a class="dropdown-item" href="admin_bulkClocking.php">Massa TerugKlok</a>
+                    <a class="dropdown-item" href="admin_Clients.php">Kliente Konneksies</a>
                     <a class="dropdown-item" href="admin_sync.php">Sinkroniseer Databasis</a>
                 </div>
             </li>
