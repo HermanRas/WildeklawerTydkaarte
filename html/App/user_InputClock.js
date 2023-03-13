@@ -12,22 +12,23 @@ function updateData ()
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
-function saveData ()
+async function saveData ()
 {
+    console.log("Clocking_SaveData");
     // if form ready to save
     if ( document.getElementById( "frm1" ).checkValidity() )
     {
 
         // get from data
-        let farm_id = document.getElementById( 'Plaas' ).value;
-        let Gewas_id = document.getElementById( 'Gewas' ).value;
+        let uid         = sessionStorage.getItem( "uid" );
+        let CNs         = document.querySelectorAll( '[id=CN]' );
+        let farm_id     = document.getElementById( 'Plaas' ).value;
+        let Gewas_id    = document.getElementById( 'Gewas' ).value;
         let spilpunt_id = document.getElementById( 'spilpunt' ).value;
-        let uid = sessionStorage.getItem( "uid" );
-        let CNs = document.querySelectorAll( '[id=CN]' );
-        let clockType = document.getElementById( 'clockType' ).value;
-        let task = document.getElementById( 'task' ).value;
-        let date = document.getElementById( 'date' ).value;
-        let time = document.getElementById( 'time' ).value;
+        let clockType   = document.getElementById( 'clockType' ).value;
+        let task        = document.getElementById( 'task' ).value;
+        let date        = document.getElementById( 'date' ).value;
+        let time        = document.getElementById( 'time' ).value;
 
 
         // if user save, set cookies
@@ -40,24 +41,43 @@ function saveData ()
         document.cookie = 'spilpunt=' + spilpunt_id + ';expires=' + expireTime + ';path=/';
 
         // Store data to browser store to push to server when online
-        let worklogUP = JSON.parse( window.localStorage.getItem( 'clockingsUP' ) );
+        let dbPromise = await idb.openDB('wildeklawer');
+
+        let clockingsUP = await dbPromise.get('dataset','clockingsUP');
+        let client_id   = await dbPromise.get('dataset','client_id');
+
+        if(clockingsUP == null){
+            clockingsUP = [];
+        }
+
         CNs.forEach( CN =>
         {
-            let work_rec = {
-                "user_id": uid,
-                "cn": CN.value,
-                "farm_id": farm_id,
-                "clockType": clockType,
-                "spry_id": spilpunt_id,
-                "task_id": task,
-                "produce_id": Gewas_id,
-                "logDate": date,
-                "logTime": time,
-            };
-            worklogUP.push( work_rec );
+            let clock_rec = { "user_id":    uid
+                            , "client_id":  client_id
+                            , "cn":         CN.value
+                            , "farm_id":    farm_id
+                            , "clockType":  clockType
+                            , "spry_id":    spilpunt_id
+                            , "task_id":    task
+                            , "produce_id": Gewas_id
+                            , "logDate":    date
+                            , "logTime":    time
+                            };
+            clockingsUP.push( clock_rec );
         } );
 
-        window.localStorage.setItem( 'clockingsUP', JSON.stringify( worklogUP ) );
+        console.log("Clocking_SaveData:");
+        console.dir(clockingsUP);
+
+        let putSuccess = await dbPromise.put('dataset', clockingsUP, 'clockingsUP')
+
+        console.dir(putSuccess);
+       
+        try {
+            dbPromise.close()
+        } catch (error) {
+            console.error(error);
+        }
 
         // Give user feedback on save transaction
         msg = `<script>window.setTimeout(function(){ window.location = "home.html"; },3000);</script>
@@ -181,24 +201,25 @@ function getWorkers ( Element )
 }
 
 // Fetch Last Clocking names
-function getClockDir ( Element, CN )
+async function getClockDir ( Element, CN )
 {
     let clockVal = document.getElementById( Element );
     // let clockText = document.getElementById(Element + 'Text');
     let clockDir = null;
 
     let onServer = JSON.parse( localStorage.getItem( "clockings" ) );
-    let onDevice = JSON.parse( localStorage.getItem( "clockingsUP" ) );
+
+    let dbPromise = await idb.openDB('wildeklawer');
+    
+    let onDevice = await dbPromise.get('dataset','clockingsUP')
+
     results = onServer.concat( onDevice );
 
     results.forEach( item =>
     {
-        if ( item[ 'cn' ] )
+        if ( item && item[ 'cn' ] && item[ 'cn' ].toString() == CN )
         {
-            if ( item[ 'cn' ].toString() == CN )
-            {
-                clockDir = item[ 'clockType' ];
-            }
+            clockDir = item[ 'clockType' ];
         }
     } );
 
