@@ -2,6 +2,15 @@ $(function () {
     var container = $(".numpad");
     var inputCount = 4;
 
+    //Check indexDB for Client key
+    //if (the client key exists) then 
+    //  show login section
+    //else
+    // generate a new key 
+    // Set the inputs with key
+    // show the register section
+
+
     // Generate the input boxes
     // Generates the input container
     container.append("<div class='inputBoxes p-2'></div>");
@@ -123,4 +132,30 @@ function login(pin) {
             return;
         }
     });
+}
+
+function register(uuid, naam){
+    if (window.navigator.onLine) {
+
+        // set api stuff
+        let baseURL = 'https://laptop.dev:8443';
+        let apiKey = 'MucJIL1vkG6YJibwB7HINgvnT89gpK';
+        let url = baseURL + '/API/client.php' + '?KEY=' + apiKey
+        postData += ('&uid[]=' + uuid);
+        postData += ('&naam[]=' + naam);
+        postData += ('&kdatum[]=' + Date.now().toJSON());
+
+        // send register request
+        var xhttpCalls = new XMLHttpRequest();
+        xhttpCalls.onreadystatechange = function () {
+            window.location.replace("index.html");
+            return;
+        }
+
+        xhttpCalls.open("POST", url, true);
+        xhttpCalls.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttpCalls.timeout = 60000;
+        changes = true;
+        xhttpCalls.send(postData);
+    }
 }

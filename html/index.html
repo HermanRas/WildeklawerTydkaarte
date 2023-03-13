@@ -25,13 +25,23 @@
             <h1>Tydkaarte</h1>
         </div>
     </div>
-
-    <h1 style="text-align: center;color: #fff;"></h1>
-    <form method="POST" action="_login.php" id="frm_login">
-        <div class="numpad"></div>
-        <script src="JS\login.js"></script>
-    </form>
-
+    <div class="offline">Ongeregisteered kliente moet eers aanlyn geregistreer word!</div>
+    <div class="register" style="display:none">
+        <h1 style="text-align: center;color: #fff;">Registreer</h1>
+        <form method="POST" action="_register.php" id="frm_regs">
+            <div class="client_id" id="uuid"></div>
+            <div class="client_name" id="naam"></div>
+            <button class="register" type="button" name="register" onclick="register()">Registreer</button>
+            <script src="JS\login.js"></script>
+        </form>
+    </div>
+    <div class="login" style="display:none">
+        <h1 style="text-align: center;color: #fff;">Aanteken</h1>
+        <form method="POST" action="_login.php" id="frm_login">
+            <div class="numpad"></div>
+            <script src="JS\login.js"></script>
+        </form>
+    </div>
     <!-- footer -->
     <script>
         loadData('_footer.html', '', 'BODY');
