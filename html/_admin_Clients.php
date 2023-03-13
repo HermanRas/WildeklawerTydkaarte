@@ -11,9 +11,8 @@ if (isset($_POST['action'])){
         $uid = $_POST['uid'];
         $naam = $_POST['Naam'];
         $KDatum = $_POST['KDatum'];
-        $gebruiker = $_POST['gebruiker'];
         $updated_at = $_POST['updated_at'];
-        $sql = "update clients set naam='$naam',gebruiker='$gebruiker',kdatum='$KDatum',updated_at='$updated_at' where id = '$uid'";
+        $sql = "update clients set naam='$naam',kdatum='$KDatum',updated_at='$updated_at' where id = '$uid'";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQuery($sql, $sqlargs);
@@ -25,10 +24,9 @@ if (isset($_POST['action'])){
         $uid = $_POST['uid'];
         $naam = $_POST['Naam'];
         $KDatum = $_POST['KDatum'];
-        $gebruiker = $_POST['gebruiker'];
         $created_at = $_POST['created_at'];
         $updated_at = $_POST['updated_at'];
-        $sql = "insert into clients (uid,naam,kdatum,gebruiker,created_at,updated_at) values('$uid','$naam','$KDatum','$gebruiker','$created_at','$updated_at');";
+        $sql = "insert into clients (uid,naam,kdatum,created_at,updated_at) values('$uid','$naam','$KDatum','$created_at','$updated_at');";
 
         require_once 'config/db_query.php';
         $sqlargs = array();
@@ -93,14 +91,13 @@ if (isset($_POST['action'])){
     //update current
     if (isset($_GET['name'])){
         $uid = $_GET['name'];
-        $sql = "select  uid,naam,gebruiker,kdatum,created_at,updated_at from clients where id = '$uid' limit 1;";
+        $sql = "select  uid,naam,kdatum,created_at,updated_at from clients where id = '$uid' limit 1;";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQueryEmulate($sql, $sqlargs);
         $img_data = 'Img/favicon.png';
         foreach ($result[0] as $row) {
             $naam = $row['naam'];
-            $gebruiker = $row['gebruiker'];
             $KDatum = $row['kdatum'];
             $created_at = $row['created_at'];
             $updated_at = $row['updated_at'];
@@ -113,10 +110,6 @@ if (isset($_POST['action'])){
             <label for="farmName">Naam:</label>
             <input type="text" class="form-control" value="<?php echo $naam; ?>" name="Naam" id="naam"
                 placeholder="Naam">
-
-            <label for="gebruiker">Werker:</label>
-            <input type="text" class="form-control" value="<?php echo $gebruiker; ?>" name="gebruiker" id="gebruiker"
-                placeholder="Gebruiker" disabled>
 
             <label for="KDatum">Klient Datum:</label>
             <input type="date" class="form-control" value="<?php echo $KDatum; ?>" name="KDatum" id="KDatum" disabled>

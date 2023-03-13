@@ -12,13 +12,10 @@ if (isset($_GET['KEY'])){
         // After response processing 
         $uid        = $_POST["uid"];
         $naam       = $_POST["naam"];
-        $gebruiker  = $_POST["gebruiker"];
         $kdatum     = $_POST["kdatum"];
-        $created_at = $_POST["created_at"];
-        $updated_at = $_POST["updated_at"];
         
-        $sql = "insert into clients (uid, naam, gebruiker, kdatum, created_at, updated_at)
-        '$uid','$naam','$gebruiker', '$kdatums','$created_at','$updated_at' from worklog;";
+        $sql = "insert into clients (uid, naam, kdatum)
+        '$uid','$naam', '$kdatums' from worklog;";
         
         require_once 'config/db_query.php';
         $sqlargs = array();
