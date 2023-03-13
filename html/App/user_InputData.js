@@ -1,12 +1,11 @@
 function updateData(newState) {
     setTimeout(function () {
         updateTheData();
-        document.getElementById("kratte").focus();
     }, 1000);
 }
 
-function updateTheData() {
-    let taskID = getTask();
+async function updateTheData() {
+    let taskID = await getTask();
     console.log(taskID);
     // id = 0 is not clocked
     if (taskID !== 0) {
@@ -34,15 +33,20 @@ function updateTheData() {
             <a href="user_InputSelect.html" class="btn btn-primary">Tuis</a>`;
         // window.setTimeout(function () { window.location = "user_InputBadge.php"; }, 10000);
     }
+    document.getElementById("kratte").focus();
 }
 
-function getTask() {
+async function getTask() {
     let url = window.location.href.split('?');
     url = url[1].split('=')
     CN = url[1];
 
     let onServer = JSON.parse(localStorage.getItem("clockings"));
-    let onDevice = JSON.parse(localStorage.getItem("clockingsUP"));
+    
+    dbPromise = await idb.openDB('wildeklawer');
+   
+    let onDevice = await dbPromise.get('dataset','clockingsUP');
+
     let results = onServer.concat(onDevice);
 
     // if there is any clockings
@@ -81,20 +85,20 @@ function getTask() {
 ///////////////////////////////////////////////////////////////////////////////////
 //   Do POST Actions
 ///////////////////////////////////////////////////////////////////////////////////
-function saveData() {
+async function saveData() {
     // if form ready to save
     if (document.getElementById("frm1").checkValidity()) {
 
         // get from data
-        let farm_id = document.getElementById('Plaas').value;
-        let Gewas_id = document.getElementById('Gewas').value;
+        let uid         = sessionStorage.getItem("uid");
+        let CN          = document.getElementById('CN').value;
+        let farm_id     = document.getElementById('Plaas').value;
+        let Gewas_id    = document.getElementById('Gewas').value;
         let spilpunt_id = document.getElementById('spilpunt').value;
-        let uid = sessionStorage.getItem("uid");
-        let CN = document.getElementById('CN').value;
-        let kratte = document.getElementById('kratte').value;
-        let task = document.getElementById('Taak').value;
-        let date = document.getElementById('date').value;
-        let time = document.getElementById('time').value;
+        let task        = document.getElementById('Taak').value;
+        let kratte      = document.getElementById('kratte').value;
+        let date        = document.getElementById('date').value;
+        let time        = document.getElementById('time').value;
 
 
         // if user save, set cookies
@@ -106,22 +110,38 @@ function saveData() {
         document.cookie = 'Gewas=' + Gewas_id + ';expires=' + expireTime + ';path=/';
         document.cookie = 'spilpunt=' + spilpunt_id + ';expires=' + expireTime + ';path=/';
 
-        // Store data to browser store to push to server when online
-        let worklogUP = JSON.parse(window.localStorage.getItem('worklogUP'));
+        let dbPromise = await idb.openDB('wildeklawer');
+        
+        let worklogUP = await dbPromise.get('dataset','worklogUP');
+        let client_id = await dbPromise.get('dataset','client_id');
 
-        let work_rec = {
-            "user_id": uid,
-            "worker_id": CN,
-            "farm_id": farm_id,
-            "produce_id": Gewas_id,
-            "spry_id": spilpunt_id,
-            "task_id": task,
-            "crates": kratte,
-            "logDate": date,
-            "logTime": time,
-        };
+        if (worklogUP == null){
+            worklogUP = [];
+            console.error("Resetting Worklog to empty Array because it was NULL");
+        }
+
+        let work_rec = { "user_id":     uid
+                       , "client_id":   client_id
+                       , "worker_id":   CN
+                       , "farm_id":     farm_id
+                       , "produce_id":  Gewas_id
+                       , "spry_id":     spilpunt_id
+                       , "task_id":     task
+                       , "crates":      kratte
+                       , "logDate":     date
+                       , "logTime":     time
+                        };
         worklogUP.push(work_rec);
-        window.localStorage.setItem('worklogUP', JSON.stringify(worklogUP));
+
+        let putSuccess = await dbPromise.put('dataset', worklogUP, 'worklogUP');
+            
+        console.dir(putSuccess);
+        
+        try {
+            dbPromise.close()
+        } catch (error) {
+            console.error(error);
+        }
 
         // Give user feedback on save transaction
         msg = `<script>window.setTimeout(function(){ window.location = "home.html"; },3000);</script>
