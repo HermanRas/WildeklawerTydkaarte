@@ -9,9 +9,21 @@ if (isset($_GET['KEY'])){
         set_time_limit(60);
         // Buffer all upcoming output...
         ob_start();
-        // Send your response.
-        $info = array('success'=>'DataSaved');
-        echo   json_encode($info);
+        // After response processing 
+        $uid        = $_POST["uid"];
+        $naam       = $_POST["naam"];
+        $gebruiker  = $_POST["gebruiker"];
+        $kdatum     = $_POST["kdatum"];
+        $created_at = $_POST["created_at"];
+        $updated_at = $_POST["updated_at"];
+        
+        $sql = "insert into clients (uid, naam, gebruiker, kdatum, created_at, updated_at)
+        '$uid','$naam','$gebruiker', '$kdatums','$created_at','$updated_at' from worklog;";
+        
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $res = sqlQuery($sql, $sqlargs);
+        echo json_encode($res[0]);
         // Get the size of the output.
         $size = ob_get_length();
         // Disable compression (in case content length is compressed).
@@ -24,35 +36,6 @@ if (isset($_GET['KEY'])){
         ob_end_flush();
         ob_flush();
         flush();
-
-        // After response processing 
-        for ($i=0; $i < count($_POST['worker_id']); $i++) {
-            $uid = $_POST["user_id"][$i];
-            $CN = $_POST["worker_id"][$i];
-            $Plaas = $_POST["farm_id"][$i];
-            $Gewas = $_POST["produce_id"][$i];
-            $Spry = $_POST["spry_id"][$i];
-            $kratte = $_POST["crates"][$i];
-            $task = $_POST["task_id"][$i];
-            $date = $_POST["logDate"][$i];
-            $time = $_POST["logTime"][$i];
-
-            // Lookup user_id
-            $sql = "select id,naam,van from `workers` where CN = '$CN' limit 1;";
-
-            require_once 'config/db_query.php';
-            $sqlargs = array();
-            $worker_id = sqlQuery($sql, $sqlargs);
-            $worker_id = $worker_id[0][0]['id'];
-            
-            $sql = "insert into worklog (id,user_id,worker_id,farm_id,produce_id,spry_id,task_id,crates,logDate,logTime)
-            Select max(id)+1 ,'$uid','$worker_id',     '$Plaas', '$Gewas',    '$Spry',   '$task', '$kratte','$date', '$time' from worklog;";
-            
-            require_once 'config/db_query.php';
-            $sqlargs = array();
-            $res = sqlQuery($sql, $sqlargs);
-            
-        }
 
     }else{
         http_response_code(403);
