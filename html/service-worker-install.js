@@ -8,6 +8,14 @@ if ('serviceWorker' in navigator) {
 }
 
 // Setup Service Worker
-navigator.serviceWorker.ready.then(function (swRegistration) {
-     return swRegistration.sync.register('DBSync');
+navigator.serviceWorker.ready.then(async function(registration) {
+    await registration.sync.register('OneOffSync');
 });
+
+navigator.serviceWorker.ready.then(async function(registration) {
+    await registration.periodicSync.register({ tag:          'PeriodicSync'
+                                            ,  minPeriod:    15 * 60 * 1000   // 15 minutes
+                                            ,  powerState:   'auto'           // alternative: 'avoid-draining'
+                                            ,  networkState: 'online'         // alternative: 'avoid-cellular'
+                                            });
+  });

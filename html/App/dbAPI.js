@@ -1,4 +1,4 @@
-function getDBUpdate(URL, table) {
+function getLocalStorageUpdate(URL, table) {
     var xhttpCalls = new XMLHttpRequest();
     xhttpCalls.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -14,7 +14,33 @@ function getDBUpdate(URL, table) {
                     'status': this.status,
                     'data': xhttpCalls.responseText,
                 };
-                console.log('Error', err);
+                console.error(err);
+            }
+        }
+    };
+    xhttpCalls.open("GET", URL, true);
+    xhttpCalls.send();
+}
+
+function getIndexedDBUpdate(URL, db, table) {
+    var xhttpCalls = new XMLHttpRequest();
+    xhttpCalls.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            let response = xhttpCalls.responseText;
+            
+            db.put('dataset',JSON.parse(response), table);
+
+        } else {
+            if (this.readyState == 4) {
+                let err = {
+                    'URL': URL,
+                    'table': table,
+                    'page': this.readyState,
+                    'status': this.status,
+                    'data': xhttpCalls.responseText,
+                };
+                console.error(err);
             }
         }
     };
@@ -57,6 +83,14 @@ function postDBUpdate(URL, table) {
                 // localStorage.setItem(table + date, tmpData); //debug cash handling
                 localStorage.setItem(table, JSON.stringify([]));
                 changes = false;
+
+                const syncDoneEvent = new CustomEvent ( 'sync:done'
+                , { bubbles: true
+                  , detail: true
+                  }
+                );
+                window.dispatchEvent(syncDoneEvent);   
+                
             }
         } else {
             if (this.readyState == 4) {
