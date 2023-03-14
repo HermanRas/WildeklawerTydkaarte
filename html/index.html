@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Start of App JS -->
-    <script src="JS/umd.js"></script>
+    <script src="JS/idb.min.js"></script>
+    <script src="JS/uuidv4.min.js"></script>
     <script src="App/dbAPI.js"></script>
     <script src="App/app.js"></script>
+
     <!-- End Of App JS -->
     <script src="JS/jquery-3.6.0.min.js"></script>
     <script>
@@ -17,6 +19,8 @@
     </script>
     <!-- include libraries(for login CSS  & jQuery) -->
     <link href="CSS/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/app.css">
 </head>
 
 <body onload="setup()">
@@ -26,18 +30,21 @@
             <h1>Tydkaarte</h1>
         </div>
     </div>
-    <div class="offline" style="display:block;text-align: center;color: #fff;">Ongeregisteered kliente moet eers aanlyn geregistreer word!</div>
-    <div class="register" style="display:none">
-        <h1 style="text-align: center;color: #fff;">Registreer</h1>
-        <form method="POST" action="_register.php" id="frm_regs">
-            <div class="client_id" id="uuid"></div>
-            <div class="client_name" id="naam"></div>
-            <button class="register" type="button" name="register" onclick="register()">Registreer</button>
-            <script src="JS\login.js"></script>
+    <div id="offline" style="display:block;text-align: center;color: #fff;">Ongeregisteered kliente moet eers aanlyn geregistreer word!</div>
+    <div id="register" style="display:none;margin: 15px; background-color: antiquewhite; border-radius: 20px; padding: 20px; margin-bottom: 60px;">
+        <h1 style="text-align: center;color: #000;">Registreer Konneksie</h1>
+        <form method="POST" action="_register.php" id="frm_regs" class="">
+            <div  class="registerFrom form-group" style="justify-items: center;">
+                <label for="uuid">ID:</label>
+                <input type="text" class="form-control" id="uuid" name="uuid" disabled style="padding:3px; font-size: x-large; height: 40px;"/>
+                <label for="naam">Naam:</label>
+                <input type="text" class="form-control" id="naam" name="naam" style="padding:3px; font-size: x-large; height: 40px;"/>
+            </div>
+            <script src="JS/register.js"></script>
         </form>
     </div>
-    <div class="login" style="display:none">
-        <h1 style="text-align: center;color: #fff;">Aanteken</h1>
+    <div id="login" style="display:none">
+        <!--<h1 style="text-align: center;color: #fff;">Aanteken</h1>-->
         <form method="POST" action="_login.php" id="frm_login">
             <div class="numpad"></div>
             <script src="JS\login.js"></script>
@@ -48,5 +55,6 @@
         loadData('_footer.html', '', 'BODY');
     </script>
 </body>
+<script src="JS\load.js"></script>
 
 </html>
