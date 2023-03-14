@@ -91,7 +91,7 @@ if (isset($_POST['action'])){
     //update current
     if (isset($_GET['name'])){
         $uid = $_GET['name'];
-        $sql = "select  uid,naam,kdatum,created_at,updated_at from clients where id = '$uid' limit 1;";
+        $sql = "select  uid,naam,kdatum,created_at,updated_at from clients where uid = '$uid' limit 1;";
         require_once 'config/db_query.php';
         $sqlargs = array();
         $result = sqlQueryEmulate($sql, $sqlargs);
@@ -136,14 +136,13 @@ if (isset($_POST['action'])){
             <tr>
                 <th>#</th>
                 <th>Naam</th>
-                <th>Gebruiker</th>
                 <th>Klient Datum</th>
                 <th>Opdateer Datum</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $sql = "select uid,naam,gebruiker,kdatum,created_at,updated_at from clients order by naam;";
+            $sql = "select uid,naam,kdatum,created_at,updated_at from clients order by naam;";
             require_once 'config/db_query.php';
             $sqlargs = array();
             $result = sqlQueryEmulate($sql, $sqlargs);
@@ -152,12 +151,11 @@ if (isset($_POST['action'])){
             ?>
             <tr>
                 <td>
-                    <div class="text-end">
-                        <input class="checkBox" type="checkbox" name="uid" value="<?php echo $row['uid']?>" checked>
+                    <div class="text-centre">
+                        <input class="checkBox" type="checkbox" name="uid" value="<?php echo $row['uid']?>">
                     </div>
                 </td>
                 <td><?php echo $row['naam'];?></td>
-                <td><?php echo $row['gebruiker'];?></td>
                 <td><?php echo $row['kdatum'];?></td>
                 <td><?php echo $row['updated_at'];?></td>
             </tr>
