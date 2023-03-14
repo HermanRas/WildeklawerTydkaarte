@@ -5,7 +5,9 @@ function swCheckConnectionQuality(event_details){
     } else {
 
         const goodConnection    = ['3g', '4g', '5g', '6g'];
-        const connectionType    = navigator.connection.effectiveType;
+        const connectionType    = navigator.connection.effectiveType;    
+        
+
         const connectionLatency = navigator.connection.rtt;
         const bandwidth = navigator.connection.downlink;
             
@@ -27,10 +29,8 @@ async function swPostDBUpdate(URL, dataset){
     let i = 0;
     dataset.forEach(row => {
         for (const [key, value] of Object.entries(row)) {
-            ////console.log(key + "[" + i + "]", value);
             postData += ('&' + key + '[]=' + value);
         }
-        i++;
     });
 
     const requestOptions = {
@@ -43,12 +43,12 @@ async function swPostDBUpdate(URL, dataset){
 
     try {
         const response = await fetch(URL, requestOptions);
-        const data = await response.json();
-        console.dir({'SW_postDBUpdate': {'json_response': data, 'response': response}});
+
+        console.dir({'SW_postDBUpdate': {'response': response}});
         return true;
     } catch (error) {
-        console.error('SW_postDBUpdate Error: ' + error);
-        //console.dir({'SW_postDBUpdate': {"error": error}});
+        console.error(error);
+        console.dir({'SW_postDBUpdate': {"error": error}});
         return false;
     }
 
@@ -167,7 +167,7 @@ async function swDoDBSync() {
 ///////////////////////////////////////////////////////////////////////////
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
-const OFFLINE_VERSION = 8;
+const OFFLINE_VERSION = 9;
 const CACHE_NAME = 'offline';
 
 // Customize offline page for any url not in cache
@@ -180,42 +180,50 @@ const filesToCache = [
     // '/_footer.html',
     // '/_header.html',
     // '/_nav.html',
-    // '/home.html',
-    // '/index.html',
-    // '/site_Privacy.html',
-    // '/site_Terms.html',
-    // '/user_InputBadge.html',
-    // '/user_InputClock.html',
-    // '/user_InputData.html',
-    // '/user_InputSelect.html',
+    // '/_home.html',
+    OFFLINE_URL,
+    '/home.html',
+    '/index.html',
+    '/site_Privacy.html',
+    '/site_Terms.html',
+    '/user_InputBadge.html',
+    '/user_InputClock.html',
+    '/user_InputData.html',
+    '/user_InputSelect.html',
 
     // // CSS
-    // '/CSS/app.css',
-    // '/CSS/login.css',
-    // '/CSS/bootstrap.min.css',
+    '/CSS/app.css',
+    '/CSS/login.css',
+    '/CSS/bootstrap.min.css',
 
     // // JS Scripts
-    // '/JS/bootstrap.bundle.min.js',
-    // '/JS/destAction.js',
-    // '/JS/farmAction.js',
-    // '/JS/jquery-3.6.0.min.js',
-    // '/JS/login.js',
-    // '/JS/produceAction.js',
-    // '/JS/qr-code.min.js',
-    // '/JS/html5-qrcode.min.js',
-    // '/JS/spryAction.js',
-    // '/JS/sweetalert2.10.js',
-    // '/JS/taskAction.js',
-    // '/JS/userAction.js',
-    // '/JS/workerAction.js',
+    '/JS/bootstrap.bundle.min.js',
+    '/JS/clientAction.js',
+    '/JS/destAction.js',
+    '/JS/farmAction.js',
+    '/JS/jquery-3.6.0.min.js',
+    '/JS/login.js',
+    '/JS/produceAction.js',
+    '/JS/qr-code.min.js',
+    '/JS/html5-qrcode.min.js',
+    '/JS/spryAction.js',
+    '/JS/sweetalert2.10.js',
+    '/JS/taskAction.js',
+    '/JS/userAction.js',
+    '/JS/workerAction.js',
+    '/JS/idb.min.js',
+    '/JS/uuidv4.min.js',
+    '/JS/uuidv5.min.js',
+    '/JS/register.js',
+    '/JS/load.js',
 
     // // JS APP
-    // '/App/app.js',
-    // '/App/dbAPI.js',
-    // '/App/navAdmin.js',
-    // '/App/backgroundSync.js',
-    // '/App/user_InputClock.js',
-    // '/App/user_InputData.js',
+    '/App/app.js',
+    '/App/dbAPI.js',
+    '/App/navAdmin.js',
+    '/App/backgroundSync.js',
+    '/App/user_InputClock.js',
+    '/App/user_InputData.js',
 
     // // // Images
     // '/Img/admin.png',
@@ -223,11 +231,11 @@ const filesToCache = [
     // '/Img/Bulk_klok.png',
     // '/Img/details_close.png',
     // '/Img/details_open.png',
-    // '/Img/favicon.png',
-    // '/Img/icon-192x192.png',
-    // '/Img/icon-256x256.png',
-    // '/Img/icon-384x384.png',
-    // '/Img/icon-512x512.png',
+    '/Img/favicon.png',
+    '/Img/icon-192x192.png',
+    '/Img/icon-256x256.png',
+    '/Img/icon-384x384.png',
+    '/Img/icon-512x512.png',
     // '/Img/icon.ico',
     // '/Img/icon.jpeg',
     // '/Img/invoere.png',
@@ -250,7 +258,16 @@ self.addEventListener('install', (event) => {
     // Load Offline cash for PWA
     event.waitUntil((async () => {
         const cache = await caches.open(CACHE_NAME);
-        await cache.addAll(filesToCache);
+        filesToCache.forEach(async function(file){
+            try {
+                await cache.add(new Request(file));
+            } catch (error) {
+                console.error(error);
+                console.dir(error);
+            }
+            
+        })
+        
     })());
 });
 
