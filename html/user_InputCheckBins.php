@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Start of App JS -->
-    <script src="JS/umd.js"></script>
+    <script src="JS/idb.min.js"></script>
     <script src="App/dbAPI.js"></script>
     <script src="App/app.js"></script>
     <!-- End Of App JS -->
