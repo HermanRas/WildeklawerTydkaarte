@@ -4,6 +4,8 @@ if (isset($_GET['KEY'])){
     // TEST to see if this is our key
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
+
+        // error_log(print_r($_POST,true),3,"/tmp/php.log");
         // Set header for free run, send response then process
         ignore_user_abort(true);//not required
         set_time_limit(60);
@@ -52,16 +54,15 @@ if (isset($_GET['KEY'])){
             require_once 'config/db_query.php';
             $sqlargs = array();
             $res = sqlQuery($sql, $sqlargs);
-            
-            $time_now = date("Y-m-d H:i:s");
-            // Update the clients sync timestamp
-            $sql = "update clients set updated_at = ' $time_now ' where uid = ' $client_id ';";
-            // echo $sql;
-            require_once 'config/db_query.php';
-            $sqlargs = array();
-            $res = sqlQuery($sql, $sqlargs);
-
+        
         }
+        $time_now = date("Y-m-d H:i:s");
+        // Update the clients sync timestamp
+        $sql = "update clients set updated_at = ' $time_now ' where uid = ' $client_id ';";
+        // echo $sql;
+        require_once 'config/db_query.php';
+        $sqlargs = array();
+        $res = sqlQuery($sql, $sqlargs);
 
     }else{
         http_response_code(403);
