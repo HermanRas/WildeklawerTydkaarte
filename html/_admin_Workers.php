@@ -98,7 +98,7 @@ if (isset($_GET['delete'])){
         $sql = "select id,naam,van from workers order by naam;";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQueryEmulate($sql, $sqlargs);
+        $result = sqlQuery($sql, $sqlargs);
     ?>
     <div class="form-group">
         <label for="worker">Werker:</label>
@@ -214,7 +214,7 @@ if (isset($_GET['delete'])){
         $sql = "select * from workers where id = '$uid' limit 1;";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQueryEmulate($sql, $sqlargs);
+        $result = sqlQuery($sql, $sqlargs);
         $img_data = 'Img/favicon.png';
         foreach ($result[0] as $row) {
             $naam = $row['naam'];

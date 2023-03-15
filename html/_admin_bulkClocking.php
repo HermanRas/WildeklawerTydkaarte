@@ -83,7 +83,7 @@ if (isset($_POST['uit'])){
                         limit 0,1000";
                 require_once 'config/db_query.php';
                 $sqlargs = array();
-                $result = sqlQueryEmulate($sql, $sqlargs);
+                $result = sqlQuery($sql, $sqlargs);
                 
                 foreach ($result[0] as $row) {
                 ?>

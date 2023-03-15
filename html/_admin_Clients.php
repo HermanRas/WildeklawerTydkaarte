@@ -94,7 +94,7 @@ if (isset($_POST['action'])){
         $sql = "select  uid,naam,kdatum,created_at,updated_at from clients where uid = '$uid' limit 1;";
         require_once 'config/db_query.php';
         $sqlargs = array();
-        $result = sqlQueryEmulate($sql, $sqlargs);
+        $result = sqlQuery($sql, $sqlargs);
         $img_data = 'Img/favicon.png';
         foreach ($result[0] as $row) {
             $naam = $row['naam'];
@@ -145,7 +145,7 @@ if (isset($_POST['action'])){
             $sql = "select uid,naam,kdatum,created_at,updated_at from clients order by naam;";
             require_once 'config/db_query.php';
             $sqlargs = array();
-            $result = sqlQueryEmulate($sql, $sqlargs);
+            $result = sqlQuery($sql, $sqlargs);
             
             foreach ($result[0] as $row) {
             ?>
