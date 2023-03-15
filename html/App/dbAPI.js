@@ -102,7 +102,7 @@ function postDBUpdate(URL, table) {
                     'status': this.status,
                     'data': xhttpCalls.responseText,
                 };
-                console.log('Error', err);
+                console.error(err);
                 changes = false;
             }
         }

@@ -171,7 +171,7 @@ Html5Qrcode.getCameras().then(devices => {
                 })
             .catch(err => {
                 // Start failed, handle it. For example,
-                console.log(`Unable to start scanning, error: ${err}`);
+                console.error(`Unable to start scanning, error: ${err}`);
             });
     }
 }).catch(err => {

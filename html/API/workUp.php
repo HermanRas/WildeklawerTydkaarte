@@ -4,8 +4,6 @@ if (isset($_GET['KEY'])){
     // TEST to see if this is our key
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
-
-        // error_log(print_r($_POST,true),3,"/tmp/php.log");
         // Set header for free run, send response then process
         ignore_user_abort(true);//not required
         set_time_limit(60);

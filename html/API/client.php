@@ -2,7 +2,7 @@
 // TEST to see if API is present
 if (isset($_GET['KEY'])){
     var_dump($_POST);
-    error_log(print_r($_POST,true),3,"/tmp/php.log");
+
     // TEST to see if this is our key
     if ($_GET['KEY'] == 'MucJIL1vkG6YJibwB7HINgvnT89gpK'){
 
@@ -22,11 +22,10 @@ if (isset($_GET['KEY'])){
             require_once 'config/db_query.php';
             $sqlargs = array();
             $res = sqlQuery($sql, $sqlargs);
-            error_log(print_r($res,true),3,"/tmp/php.log");
+
             // Get the size of the output.
         } catch (Exception $ex){
             http_response_code(500);
-            error_log(print_r($res,true),3,"/tmp/php.log");
         }
     
         $size = ob_get_length();

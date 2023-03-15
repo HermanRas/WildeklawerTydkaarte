@@ -14,7 +14,7 @@ function updateData ()
 ///////////////////////////////////////////////////////////////////////////////////
 async function saveData ()
 {
-    console.log("Clocking_SaveData");
+    // console.log("Clocking_SaveData");
     // if form ready to save
     if ( document.getElementById( "frm1" ).checkValidity() )
     {
@@ -66,12 +66,12 @@ async function saveData ()
             clockingsUP.push( clock_rec );
         } );
 
-        console.log("Clocking_SaveData:");
-        console.dir(clockingsUP);
+        //console.log("Clocking_SaveData:");
+        //console.dir(clockingsUP);
 
         let putSuccess = await dbPromise.put('dataset', clockingsUP, 'clockingsUP')
 
-        console.dir(putSuccess);
+        //console.dir(putSuccess);
        
         try {
             dbPromise.close()
@@ -136,7 +136,7 @@ function getTaskList ( Element, clockDir )
     let dropdown = Element.innerHTML;
     let list = '';
     let cookie = getCookie( "task" );
-    console.log( clockDir );
+    // console.log( clockDir );
     if ( clockDir == 1 )
     {
         list += '<option value="0" selected>Teken UIT</option>';
@@ -229,14 +229,14 @@ async function getClockDir ( Element, CN )
         setTimeout( function ()
         {
             clockVal.value = '0';
-            console.log( 'IN' );
-            console.log( 'sleeped1' );
+            // console.log( 'IN' );
+            // console.log( 'sleeped1' );
         }, 800 );
         setTimeout( function ()
         {
             clockVal.value = '0';
-            console.log( 'IN' );
-            console.log( 'sleeped2' );
+            // console.log( 'IN' );
+            // console.log( 'sleeped2' );
         }, 1200 );
 
         return 0;
@@ -245,14 +245,14 @@ async function getClockDir ( Element, CN )
         setTimeout( function ()
         {
             clockVal.value = '1';
-            console.log( 'OUT' );
-            console.log( 'sleeped1' );
+            // console.log( 'OUT' );
+            // console.log( 'sleeped1' );
         }, 800 );
         setTimeout( function ()
         {
             clockVal.value = '1';
-            console.log( 'OUT' );
-            console.log( 'sleeped2' );
+            // console.log( 'OUT' );
+            // console.log( 'sleeped2' );
         }, 1200 );
         return 1;
     }

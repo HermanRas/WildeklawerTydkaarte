@@ -133,7 +133,7 @@ async function updateDB() {
 async function idbOpen(databaseName){
     let dbPromise = await idb.openDB(databaseName, 1, 
                 {   upgrade(db, oldVersion, newVersion, transaction, event) {
-                        console.log(`need to upgrade from ${oldVersion} to ${newVersion}`);
+                        // console.log(`need to upgrade from ${oldVersion} to ${newVersion}`);
                         db.createObjectStore('dataset');
                     }
                 ,
@@ -277,7 +277,7 @@ async function loadData(URI, TAG, POS) {
                     pageBody.innerHTML += data;
                 }
                 if (POS == 'BODY' && POS == 'HEAD') {
-                    console.log('loadData(' + URI + ') ERROR don\'t know where to write');
+                    console.error('loadData(' + URI + ') ERROR don\'t know where to write');
                 }
             }
         }
@@ -310,7 +310,7 @@ function getCookie(cname) {
 window.addEventListener('offline', checkConnectionQuality);
 window.addEventListener('online', checkConnectionQuality);
 window.addEventListener('sync:done', function(event){
-    console.log("Sync:Done Received");
+    // console.log("Sync:Done Received");
     checkConnectionQuality();
 });
 window.navigator.connection.addEventListener("change", checkConnectionQuality);
@@ -321,11 +321,11 @@ checkConnectionQuality(); //on first run check connection quality
 const broadcastListener = new BroadcastChannel('wildeklawer');
 broadcastListener.onmessage = (event) => {
     if (event.data && event.data.type === 'background-sync-done') {
-        console.log('background-sync-done');
+        // console.log('background-sync-done');
         updateNotice("AppOnline");
     }
     else if (event.data && event.data.type === 'background-sync-not-done') {
-        console.log('background-sync-not-done');
+        // console.log('background-sync-not-done');
         updateNotice("AppOffline");
     }
 };
