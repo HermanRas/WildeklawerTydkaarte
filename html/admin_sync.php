@@ -8,9 +8,10 @@
 
     <!-- Custom Headers -->
     <?php include_once('_header.html'); ?>
+	<script src="JS/idb.min.js"></script>
     <script src="App/dbAPI.js"></script>
     <script src="App/app.js"></script>
-    <script src="App\backgroundSync.js"></script>
+    <script src="App/backgroundSync.js"></script>
     <script src="./service-worker-install.js"></script>
     <script src="./service-worker.js"></script>
 </head>
